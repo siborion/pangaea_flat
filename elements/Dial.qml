@@ -11,7 +11,7 @@ Item
     property int valueLast: 0
     property int valueMin: 0
     property int valueMax: 31
-    property int dispMin:  0
+    property int dispMin:  -100
     property int dispMax:  500
     property int angleMin: -140
     property int angleMax:  140
@@ -73,60 +73,45 @@ Item
                     property int startAngle
                     property int lastX
                     property int lastY
+                    property int angle
+                    property int curAngle
+                    property int lastAngle
+                    property bool changeZnalAngle
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: pressed?Qt.ClosedHandCursor:Qt.OpenHandCursor
                     onPositionChanged:
                     {
                         if (pressed)
-                            main.value = main.valueLast + (angleFromPoint(mouseX, mouseY)/((angleMax-angleMin)/(valueMax-valueMin)));
+                        {
+                            angle = (angleFromPoint(mouseX, mouseY));
+                            if(angle*lastAngle<0)
+                            {
+                                if(Math.abs(angle)>100)
+                                    changeZnalAngle^=1;
+                            }
+                            if(!changeZnalAngle)
+                                curAngle = angle;
+                            else
+                                curAngle = (angle<0)?(360+angle):(-360+angle);
+                            main.value = main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin));
+                            valueUpdate();
+                            lastAngle = angle;
+                        }
                     }
                     onPressed:
                     {
+                        changeZnalAngle = false;
                         lastX = mouseX;
                         lastY = mouseY;
                         main.valueLast = main.value;
                     }
-                    onWheel: main.value += (wheel.angleDelta.y/120);
+                    onWheel:
+                    {
+                        main.value += (wheel.angleDelta.y/120);
+                        valueUpdate();
+                    }
                 }
-
-                //                    MouseArea
-                //                    {
-                //                        id: mAreaVertical
-                //                        property int lastY
-                //                        anchors.centerIn: parent
-                //                        height: parent.height/2
-                //                        width:  parent.width/2
-                //                        cursorShape:  Qt.SizeVerCursor
-                //                        onPositionChanged:
-                //                        {
-                //                            if (pressed)
-                //                            {
-                //                                fon.orientation += ((lastY - mouseY));
-                //                                fon.orientation = normalValue(fon.orientation);
-                //                                lastY = mouseY;
-                //                            }
-                //                        }
-
-                //                        onPressed:
-                //                        {
-                //                            lastY = mouseY;
-                //                            normalValue(fon.orientation);
-                //                        }
-
-                //                        onWheel:
-                //                        {
-                //                            fon.orientation += (wheel.angleDelta.y/15);
-                //                            fon.orientation = normalValue(fon.orientation);
-                //                        }
-                //                    }
-
-
-
-
-
-
-
             }
         }
 
@@ -160,8 +145,13 @@ Item
         angle = Math.atan2(vectorAX*vectorBY - vectorAY*vectorBX, vectorAX*vectorBX + vectorAY*vectorBY) ;
         angle *= 180;
         angle /= Math.PI;
-        console.log(angle);
         return angle;
+    }
+
+    function valueUpdate()
+    {
+        main.value = main.value<=valueMin?valueMin:main.value;
+        main.value = main.value>=valueMax?valueMax:main.value;
     }
 
     Connections
