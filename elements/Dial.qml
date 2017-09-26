@@ -5,23 +5,17 @@ Item
 {
     id: main
     property string fonColor: "#ffffff"
-    property string label: "label"
+    property string label: "DIAL"
+
     property int    value: 31
+    property int valueLast: 0
     property int valueMin: 0
     property int valueMax: 31
     property int dispMin:  0
     property int dispMax:  500
     property int angleMin: -140
     property int angleMax:  140
-    /*
-    k1+valueMin*k2 = dispMin
-    k1+valueMax*k2 = dispMax
-    k1 = dispMin-valueMin*k2
-    dispMin-valueMin*k2 + valueMax*k2 = dispMax:
-    k2(valueMin-valueMax) = dispMin -  dispMax;
-    k2 = (dispMin-dispMax)/(valueMin-valueMax);
-    dispValue = k1 + value*k2
-    */
+
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
     property int dispValue: k1 + value*k2
@@ -73,8 +67,6 @@ Item
                 }
 
 
-
-
                 MouseArea
                 {
                     id: mArea
@@ -87,14 +79,15 @@ Item
                     onPositionChanged:
                     {
                         if (pressed)
-                            main.value += valueFromPoint(mouseX, mouseY);
+                            main.value = main.valueLast + (angleFromPoint(mouseX, mouseY)/((angleMax-angleMin)/(valueMax-valueMin)));
                     }
                     onPressed:
                     {
                         lastX = mouseX;
                         lastY = mouseY;
+                        main.valueLast = main.value;
                     }
-                    onWheel: main.value += (wheel.angleDelta.y/15);
+                    onWheel: main.value += (wheel.angleDelta.y/120);
                 }
 
                 //                    MouseArea
@@ -155,29 +148,18 @@ Item
         }
     }
 
-    function valueFromPoint(x, y)
+    function angleFromPoint(x, y)
     {
         var angle;
-        var centerX = mArea.width  / 2.0;
-        var centerY = mArea.height / 2.0;
+        var centerX = mArea.width  / 2;
+        var centerY = mArea.height / 2;
         var vectorAX = mArea.lastX - centerX;
         var vectorAY = mArea.lastY - centerY;
         var vectorBX = x - centerX;
         var vectorBY = y - centerY;
-        angle = Math.atan((vectorAX*vectorBY - vectorAY*vectorBX) / (vectorAX*vectorBX + vectorAY*vectorBY))
+        angle = Math.atan2(vectorAX*vectorBY - vectorAY*vectorBX, vectorAX*vectorBX + vectorAY*vectorBY) ;
         angle *= 180;
         angle /= Math.PI;
-
-        if(Math.abs(angle)>((angleMax-angleMin)/(valueMax-valueMin)))
-        {
-            mArea.lastX = x;
-            mArea.lastY = y;
-        }
-        else
-            angle = 0;
-
-        angle /= ((angleMax-angleMin)/(valueMax-valueMin));
-
         console.log(angle);
         return angle;
     }
