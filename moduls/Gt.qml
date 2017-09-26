@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 1.5
+import "../elements/"
 
 Item
 {
@@ -10,5 +11,9 @@ Item
     {
         anchors.fill: parent
         header: "GT"
+        Dial
+        {
+
+        }
     }
 }
