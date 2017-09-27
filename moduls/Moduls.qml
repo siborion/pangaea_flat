@@ -8,70 +8,74 @@ Item
     id: main
     Row
     {
-    anchors.fill: parent
-	Item
-		{
-            height: parent.height
-            width:  parent.width/15
-		}
-    Item
+        id: row
+        anchors.fill: parent
+        spacing: 5
+        property int widthWithoutSpase: width-spacing*12
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15*5
+            width:  row.widthWithoutSpase/15
+        }
+        Item
+        {
+            height: parent.height
+            width:  row.widthWithoutSpase/15*5
         }
 
 
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width: row.widthWithoutSpase/15
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
-        }
-    Item
-        {
-            height: parent.height
-            width:  parent.width/15
-            Cp
+            width:  row.widthWithoutSpase/15
+            F1
             {
-
             }
         }
-    Item
+        Item
         {
             height: parent.height
-            width:  parent.width/15
+            width:  row.widthWithoutSpase/15
+            Cp
+            {
+            }
+        }
+        Item
+        {
+            height: parent.height
+            width:  row.widthWithoutSpase/15
             Gt
             {
-
             }
         }
     }

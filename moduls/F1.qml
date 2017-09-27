@@ -9,17 +9,18 @@ Item
     id: main
     Common
     {
-        id:common
+        id: common
         anchors.fill: parent
-        header: "GT"
+        header: "F1"
         Column
         {
             anchors.fill: parent
             Item
             {
                 width:  parent.width
-                height: parent.height/5*3
+                height: parent.height/5
             }
+
             Item
             {
                 width:  parent.width
@@ -27,9 +28,32 @@ Item
                 Dial
                 {
                     enabled: common.on
-                    name: "THRESH"
+                    name: "HIGH"
                 }
             }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/5
+                Dial
+                {
+                    enabled: common.on
+                    name: "MID"
+                }
+            }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/5
+                Dial
+                {
+                    enabled: common.on
+                    name: "LOW"
+                }
+            }
+
             Item
             {
                 width:  parent.width
