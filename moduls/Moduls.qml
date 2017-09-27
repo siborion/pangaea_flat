@@ -16,33 +16,47 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
+            Vl
+            {
+            }
         }
         Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
+            Rm
+            {
+            }
         }
         Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
+            Pr
+            {
+            }
         }
         Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
-        }
+            Lp
+            {
+            }
+         }
         Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*5
         }
 
-
         Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
+            Hp
+            {
+            }
         }
         Item
         {
