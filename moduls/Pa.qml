@@ -11,7 +11,7 @@ Item
     {
         id: common
         anchors.fill: parent
-        header: "F1"
+        header: "PA"
         Column
         {
             anchors.fill: parent

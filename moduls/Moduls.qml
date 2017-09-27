@@ -48,11 +48,17 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15
+            Ir
+            {
+            }
         }
         Item
         {
             height: parent.height
             width: row.widthWithoutSpase/15
+            Pa
+            {
+            }
         }
         Item
         {
