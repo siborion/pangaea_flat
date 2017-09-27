@@ -11,9 +11,33 @@ Item
     {
         anchors.fill: parent
         header: "GT"
-        Dial
+        Column
         {
+            anchors.fill: parent
+            Item
+            {
+                width:  parent.width
+                height: parent.height/5*3
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/5
+                Dial
+                {
+                    name: "GT"
 
+                }
+            }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/5
+                Dial
+                {
+                }
+            }
         }
     }
 }

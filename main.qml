@@ -6,8 +6,8 @@ ApplicationWindow
 {
     id: main
     visible: true
-    height: 100
-    width:  100
+    height: 625
+    width:  1345
     Gt
     {
 

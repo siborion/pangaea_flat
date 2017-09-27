@@ -5,14 +5,14 @@ Item
 {
     id: main
     property string fonColor: "#ffffff"
-    property string label: "DIAL"
+    property string name: "DIAL"
 
-    property int    value: 31
+    property int value:     15
     property int valueLast: 0
-    property int valueMin: 0
-    property int valueMax: 31
-    property int dispMin:  -100
-    property int dispMax:  500
+    property int valueMin:  0
+    property int valueMax:  31
+    property int dispMin:   0
+    property int dispMax:   31
     property int angleMin: -140
     property int angleMax:  140
 
@@ -128,7 +128,7 @@ Item
                 font.family: "Arial Black"
                 font.bold: true
                 font.pixelSize: parent.width/7
-                text: label
+                text: main.name
             }
         }
     }
