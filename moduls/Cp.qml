@@ -9,6 +9,7 @@ Item
     id: main
     Common
     {
+        id: common
         anchors.fill: parent
         header: "CP"
         Column
@@ -25,6 +26,7 @@ Item
                 height: parent.height/5
                 Dial
                 {
+                    enabled: common.on
                     name: "SUSTAIN"
 
                 }
@@ -35,6 +37,7 @@ Item
                 height: parent.height/5
                 Dial
                 {
+                    enabled: common.on
                     name: "VOLUME"
                 }
             }

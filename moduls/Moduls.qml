@@ -60,6 +60,10 @@ Item
         {
             height: parent.height
             width:  parent.width/15
+            Cp
+            {
+
+            }
         }
     Item
         {
@@ -70,7 +74,5 @@ Item
 
             }
         }
-
-
     }
 }

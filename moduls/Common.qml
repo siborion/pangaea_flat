@@ -5,7 +5,7 @@ import "../elements/"
 Item
 {
     property string header: "TEXT"
-    property bool on: false
+    property bool on: true
     anchors.fill: parent
     id: main
     Rectangle
@@ -28,7 +28,13 @@ Item
                 font.pixelSize: 24
                 color: on?"firebrick":"Salmon"
                 text: header
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked: main.on = (!main.on);
+                }
             }
         }
+
     }
 }
