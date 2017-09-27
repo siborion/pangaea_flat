@@ -25,17 +25,17 @@ Item
                 height: parent.height/5
                 Dial
                 {
-                    name: "GT"
+                    name: "THRESH"
 
                 }
             }
-
             Item
             {
                 width:  parent.width
                 height: parent.height/5
                 Dial
                 {
+                    name: "VOLUME"
                 }
             }
         }

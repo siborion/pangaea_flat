@@ -8,7 +8,7 @@ ApplicationWindow
     visible: true
     height: 625
     width:  1345
-    Gt
+    Moduls
     {
 
     }
