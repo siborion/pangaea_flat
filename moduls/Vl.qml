@@ -12,6 +12,7 @@ Item
         id: common
         anchors.fill: parent
         header: "VL"
+        checkable: false
         Column
         {
             anchors.fill: parent
@@ -28,6 +29,7 @@ Item
                 Dial
                 {
                     enabled: common.on
+                    checkable: false
                     name: "VOLUME"
                 }
             }

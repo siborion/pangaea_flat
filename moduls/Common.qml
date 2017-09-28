@@ -6,6 +6,7 @@ Item
 {
     property string header: "TEXT"
     property bool on: true
+    property bool checkable: true
     anchors.fill: parent
     id: main
     Rectangle
@@ -32,8 +33,12 @@ Item
                 {
                     anchors.fill: parent
                     hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: main.on = (!main.on);
+                    cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
+                    onClicked:
+                    {
+                        if(main.checkable)
+                            main.on = (!main.on);
+                    }
                 }
             }
         }

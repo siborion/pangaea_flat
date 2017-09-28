@@ -7,6 +7,9 @@ Item
     property string fonColor: "#ffffff"
     property string name: "DIAL"
 
+    property bool checkable: true
+    property bool on: true
+
     property int value:     15
     property int valueLast: 0
     property int valueMin:  0
@@ -28,6 +31,7 @@ Item
     Column
     {
         anchors.fill: parent
+        opacity: main.enabled?1:0.5
         Item
         {
             height: Math.min(parent.height, parent.width)*0.8
@@ -38,6 +42,7 @@ Item
                 anchors.fill: parent
                 radius: parent.width
                 color: "Black"
+                opacity: main.on?1:0.5
 
                 Item
                 {
@@ -55,7 +60,6 @@ Item
                     }
                     rotation:  dispAngle
                 }
-
                 Text
                 {
                     anchors.centerIn: parent
@@ -65,7 +69,6 @@ Item
                     font.pixelSize: parent.width/7
                     text: dispValue
                 }
-
 
                 MouseArea
                 {
@@ -78,8 +81,9 @@ Item
                     property int lastAngle
                     property bool changeZnalAngle
                     anchors.fill: parent
+                    enabled: main.on
                     hoverEnabled: true
-                    cursorShape: pressed?Qt.ClosedHandCursor:Qt.OpenHandCursor
+                    cursorShape: main.on?(pressed?Qt.ClosedHandCursor:Qt.OpenHandCursor):Qt.ArrowCursor
                     onPositionChanged:
                     {
                         if (pressed)
@@ -124,11 +128,22 @@ Item
             {
                 anchors.verticalCenter:   parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: fonColor
+                color: main.on?"red":fonColor
                 font.family: "Arial Black"
                 font.bold: true
                 font.pixelSize: parent.width/7
                 text: main.name
+                MouseArea
+                {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
+                    onClicked:
+                    {
+                        if(main.checkable)
+                            main.on = (!main.on)
+                    }
+                }
             }
         }
     }
