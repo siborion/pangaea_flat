@@ -11,7 +11,7 @@ Item
         id: row
         anchors.fill: parent
         spacing: 5
-        property int widthWithoutSpase: width-spacing*12
+        property int widthWithoutSpase: width-spacing*10
         Item
         {
             height: parent.height

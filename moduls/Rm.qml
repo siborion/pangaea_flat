@@ -28,7 +28,7 @@ Item
                 Dial
                 {
                     enabled: common.on
-                    name: "20 Hz 1k"
+                    name: "VOLUME"
                 }
             }
         }
