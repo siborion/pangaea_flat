@@ -10,7 +10,7 @@ Item
     {
         id: row
         anchors.fill: parent
-        spacing: 5
+        spacing: 3
         property int widthWithoutSpase: width-spacing*10
         Item
         {
@@ -48,6 +48,9 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*5
+            Eqs
+            {
+            }
         }
 
         Item

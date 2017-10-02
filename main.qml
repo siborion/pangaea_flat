@@ -6,8 +6,8 @@ ApplicationWindow
 {
     id: main
     visible: true
-    height: 625
-    width:  1345
+    height: 450
+    width:  1120
     Moduls
     {
 

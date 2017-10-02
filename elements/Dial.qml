@@ -34,8 +34,8 @@ Item
         opacity: main.enabled?1:0.5
         Item
         {
-            height: Math.min(parent.height, parent.width)*0.8
-            width : Math.min(parent.height, parent.width)*0.8
+            height: Math.min(parent.height, parent.width)*0.85
+            width : Math.min(parent.height, parent.width)*0.85
             anchors.horizontalCenter: parent.horizontalCenter
             Rectangle
             {
@@ -121,8 +121,8 @@ Item
 
         Item
         {
-            height: Math.min(parent.height, parent.width)*0.2
-            width : Math.min(parent.height, parent.width)*0.8
+            height: Math.min(parent.height, parent.width)*0.15
+            width : Math.min(parent.height, parent.width)*0.85
             anchors.horizontalCenter: parent.horizontalCenter
             Text
             {

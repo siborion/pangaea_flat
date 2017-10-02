@@ -18,12 +18,12 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/5*3
+                height: parent.height/6*4
             }
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/6
                 Dial
                 {
                     enabled: common.on
@@ -33,7 +33,7 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/6
                 Dial
                 {
                     enabled: common.on
