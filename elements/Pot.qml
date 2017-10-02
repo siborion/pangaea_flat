@@ -59,9 +59,7 @@ Item
                 onPositionChanged:
                 {
                     if (pressed)
-                    {
                         valueUpdate(mouseY);
-                    }
                 }
                 onPressed:
                 {
