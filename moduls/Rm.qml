@@ -77,6 +77,7 @@ Item
                 {
                     enabled: common.on
                     name: "VOLUME"
+                    checkable: false
                 }
             }
             Item
