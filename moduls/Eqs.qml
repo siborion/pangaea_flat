@@ -16,6 +16,7 @@ Item
             Eq
             {
                 dialFreq: "20 Hz 220"
+                nomBand: 1
             }
         }
 
@@ -26,6 +27,7 @@ Item
             Eq
             {
                 dialFreq: "260 Hz 460"
+                nomBand: 2
             }
         }
 
@@ -36,6 +38,7 @@ Item
             Eq
             {
                 dialFreq: "600 Hz 1k"
+                nomBand: 3
             }
         }
 
@@ -46,6 +49,7 @@ Item
             Eq
             {
                 dialFreq: "1k Hz 3k"
+                nomBand: 4
             }
         }
         Item
@@ -55,6 +59,7 @@ Item
             Eq
             {
                 dialFreq: "1k Hz 11k"
+                nomBand: 5
             }
         }
     }

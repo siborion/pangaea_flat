@@ -20,10 +20,11 @@ Item
     property int dispMax:   31
     property int angleMin: -140
     property int angleMax:  140
+//    property int div:       1
 
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
-    property int dispValue: k1 + value*k2
+    property double dispValue: Math.round(k1 + value*k2)
 
     property double a2: (angleMin-angleMax)/(valueMin-valueMax)
     property double a1:  angleMin-(valueMin*a2)
