@@ -4,26 +4,65 @@ import "../elements/"
 
 Item
 {
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
+    property string name:     "GT"
+
     property bool on: false
     anchors.fill: parent
     id: main
-    Common
+    Rectangle
     {
-        id:common
         anchors.fill: parent
-        header: "GT"
+        color: devColor
         Column
         {
             anchors.fill: parent
             Item
             {
                 width:  parent.width
-                height: parent.height/6*4
+                height: parent.height/1000*70
+                Common
+                {
+                    id:common
+                    anchors.fill: parent
+                    header: name
+                }
             }
             Item
             {
                 width:  parent.width
-                height: parent.height/6
+                height: parent.height/1000*80
+            }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
                 Dial
                 {
                     enabled: common.on
@@ -33,12 +72,17 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/6
+                height: parent.height/1000*165
                 Dial
                 {
                     enabled: common.on
                     name: "VOLUME"
                 }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*25
             }
         }
     }

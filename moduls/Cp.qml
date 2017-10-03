@@ -4,42 +4,85 @@ import "../elements/"
 
 Item
 {
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
+    property string name:     "CP"
+
     property bool on: false
     anchors.fill: parent
     id: main
-    Common
+    Rectangle
     {
-        id: common
         anchors.fill: parent
-        header: "CP"
+        color: devColor
         Column
         {
             anchors.fill: parent
             Item
             {
                 width:  parent.width
-                height: parent.height/5*3
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/5
-                Dial
+                height: parent.height/1000*70
+                Common
                 {
-                    enabled: common.on
-                    name: "SUSTAIN"
-
+                    id:common
+                    anchors.fill: parent
+                    header: name
                 }
             }
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/1000*80
+            }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+                Dial
+                {
+                    enabled: common.on
+                    name: "SUSTAIN"
+                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
                 Dial
                 {
                     enabled: common.on
                     name: "VOLUME"
                 }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*25
             }
         }
     }

@@ -6,28 +6,31 @@ Item
 {
     id: main
     anchors.fill: parent
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
 
-    Common
+    Rectangle
     {
         id: common
         anchors.fill: parent
-        header: ""
+        color: devColor
+
         Column
         {
             anchors.fill: parent
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/1000*140
             }
 
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+//                    enabled: common.on
                     name: "VOLUME"
                 }
 
@@ -35,7 +38,7 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/5*2
+                height: parent.height/1000*505
                 Pot
                 {
 
@@ -44,12 +47,16 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/5
+                height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
                     name: "VOLUME"
                 }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*25
             }
         }
     }

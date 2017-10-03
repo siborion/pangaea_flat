@@ -4,7 +4,9 @@ import QtQuick.Controls 1.5
 Item
 {
     id: main
-    property string fonColor: "#ffffff"
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
+
     property string name: "DIAL"
 
     property bool checkable: true
@@ -34,20 +36,20 @@ Item
         opacity: main.enabled?1:0.5
         Item
         {
-            height: Math.min(parent.height, parent.width)*0.85
-            width : Math.min(parent.height, parent.width)*0.85
+            height: Math.min(parent.height, parent.width)*0.76
+            width : Math.min(parent.height, parent.width)*0.76
             anchors.horizontalCenter: parent.horizontalCenter
             Rectangle
             {
                 anchors.fill: parent
                 radius: parent.width
-                color: "Black"
+                color: fonColor
                 opacity: main.on?1:0.5
 
                 Item
                 {
                     height: parent.height
-                    width:  parent.width/10
+                    width:  parent.width/7
                     anchors.centerIn: parent
                     Rectangle
                     {
@@ -56,17 +58,17 @@ Item
                         height: Math.min(parent.height, parent.width)
                         width : Math.min(parent.height, parent.width)
                         radius: width
-                        color: fonColor
+                        color: devColor
                     }
                     rotation:  dispAngle
                 }
                 Text
                 {
                     anchors.centerIn: parent
-                    color: fonColor
+                    color: devColor
                     font.family: "Arial Black"
                     font.bold: true
-                    font.pixelSize: parent.width/7
+                    font.pixelSize: parent.width/5
                     text: dispValue
                 }
 
@@ -121,17 +123,18 @@ Item
 
         Item
         {
-            height: Math.min(parent.height, parent.width)*0.15
-            width : Math.min(parent.height, parent.width)*0.85
+            height: Math.min(parent.height, parent.width)*0.24
+            width : Math.min(parent.height, parent.width)*0.76
             anchors.horizontalCenter: parent.horizontalCenter
             Text
             {
                 anchors.verticalCenter:   parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenterOffset: -parent.width/30
                 color: main.on?"red":fonColor
                 font.family: "Arial Black"
                 font.bold: true
-                font.pixelSize: parent.width/7
+                font.pixelSize: parent.width/6
                 text: main.name
                 MouseArea
                 {

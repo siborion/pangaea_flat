@@ -8,6 +8,7 @@ ApplicationWindow
     visible: true
     height: 450
     width:  1120
+    color: "#EBECEC"
     Moduls
     {
 

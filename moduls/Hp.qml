@@ -6,7 +6,7 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string name:     "VL"
+    property string name:     "HP"
 
     property bool on: false
     anchors.fill: parent
@@ -76,7 +76,7 @@ Item
                 Dial
                 {
                     enabled: common.on
-                    name: "VOLUME"
+                    name: "20 Hz 1k"
                 }
             }
             Item

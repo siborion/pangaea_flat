@@ -4,23 +4,86 @@ import "../elements/"
 
 Item
 {
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
+    property string name:     "IR"
+
     property bool on: false
     anchors.fill: parent
     id: main
-    Common
+    Rectangle
     {
-        id: common
         anchors.fill: parent
-        header: "IR"
+        color: devColor
         Column
         {
             anchors.fill: parent
             Item
             {
                 width:  parent.width
-                height: parent.height/5*5
+                height: parent.height/1000*70
+                Common
+                {
+                    id:common
+                    anchors.fill: parent
+                    header: name
+                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*80
             }
 
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                    enabled: common.on
+//                    name: "THRESH"
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+//                Dial
+//                {
+//                    enabled: common.on
+//                    name: "VOLUME"
+//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*25
+            }
         }
     }
 }

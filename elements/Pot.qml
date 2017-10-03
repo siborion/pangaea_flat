@@ -4,9 +4,10 @@ import QtQuick.Controls 1.5
 Item
 {
     id: main
-    property string fonColor: "#ffffff"
+    property string fonColor: "#EBECEC"
+    property string devColor: "#5E5971"
 
-    property int value:     0
+    property int value:     15
     property int valueLast: 0
     property int valueMin:  0
     property int valueMax:  31
@@ -23,7 +24,7 @@ Item
     {
         anchors.centerIn: parent
         anchors.fill: parent
-        color: "Grey"
+        color: devColor
 
         Rectangle
         {
@@ -31,23 +32,26 @@ Item
             anchors.centerIn: parent
             width:  parent.width
             height: parent.height*0.8
-            color: "Grey"
+            color: devColor
 
             Rectangle
             {
                 id: pot
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: ((valueMax-valueMin)/2-value) * (valueArea.height/valueMax)
-                width:  parent.width*0.8
-                height: parent.width*0.8/2
+                width:  parent.width*0.7
+                height: parent.width*0.7/2
                 radius: parent.width*0.2
 
-                color: "White"
+                color: fonColor
                 Text
                 {
-                    text: dispValue
-                    color: "Grey"
+                    color: devColor
                     anchors.centerIn: parent
+                    font.family: "Arial Black"
+                    font.bold: true
+                    font.pixelSize: parent.height/2.5
+                    text: dispValue
                 }
             }
 

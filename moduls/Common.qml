@@ -9,37 +9,24 @@ Item
     property bool checkable: true
     anchors.fill: parent
     id: main
-    Rectangle
+    Text
     {
-        anchors.fill: parent
-        color: "Grey"
-
-        Item
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.family: "Arial Black"
+        font.bold: true
+        font.pixelSize: 16
+        color: on?"firebrick":"Salmon"
+        text: header
+        MouseArea
         {
-            anchors.top: parent.top
-            width:  parent.width
-            height: parent.height/8
-
-            Text
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
+            onClicked:
             {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.family: "Arial Black"
-                font.bold: true
-                font.pixelSize: 24
-                color: on?"firebrick":"Salmon"
-                text: header
-                MouseArea
-                {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
-                    onClicked:
-                    {
-                        if(main.checkable)
-                            main.on = (!main.on);
-                    }
-                }
+                if(main.checkable)
+                    main.on = (!main.on);
             }
         }
     }
