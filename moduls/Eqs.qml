@@ -15,6 +15,7 @@ Item
             height: parent.height
             Eq
             {
+                dialFreq: "20 Hz 220"
             }
         }
 
@@ -24,6 +25,7 @@ Item
             height: parent.height
             Eq
             {
+                dialFreq: "260 Hz 460"
             }
         }
 
@@ -33,6 +35,7 @@ Item
             height: parent.height
             Eq
             {
+                dialFreq: "600 Hz 1k"
             }
         }
 
@@ -42,15 +45,16 @@ Item
             height: parent.height
             Eq
             {
+                dialFreq: "1k Hz 3k"
             }
         }
-
         Item
         {
             width: parent.width/5
             height: parent.height
             Eq
             {
+                dialFreq: "1k Hz 11k"
             }
         }
     }

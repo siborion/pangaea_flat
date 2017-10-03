@@ -5,6 +5,7 @@ import "../elements/"
 Item
 {
     property string header: "TEXT"
+    property string fonColor: "#EBECEC"
     property bool on: true
     property bool checkable: true
     anchors.fill: parent
@@ -16,7 +17,7 @@ Item
         font.family: "Arial Black"
         font.bold: true
         font.pixelSize: 16
-        color: on?"firebrick":"Salmon"
+        color: on?"salmon":fonColor
         text: header
         MouseArea
         {

@@ -6,12 +6,30 @@ ApplicationWindow
 {
     id: main
     visible: true
-    height: 450
-    width:  1120
+    height: 520
+    width:  1104
     color: "#EBECEC"
-    Moduls
+    Column
     {
+        anchors.fill: parent
+        spacing: 2
+        Item
+        {
+            width:  parent.width
+            height: parent.height/1000*150
+            Head
+            {
+            }
+        }
+        Item
+        {
+            width:  parent.width
+            height: parent.height/1000*850
+            Moduls
+            {
 
+            }
+        }
     }
 }
 

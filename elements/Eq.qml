@@ -6,6 +6,7 @@ Item
 {
     id: main
     anchors.fill: parent
+    property string dialFreq: "20 Hz 220"
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
 
@@ -30,8 +31,8 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-//                    enabled: common.on
-                    name: "VOLUME"
+                    checkable: false
+                    name: "0.1 - 20"
                 }
 
             }
@@ -50,7 +51,8 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    name: "VOLUME"
+                    checkable: false
+                    name: dialFreq
                 }
             }
             Item
