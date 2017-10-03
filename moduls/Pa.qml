@@ -32,25 +32,24 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*80
+                height: parent.height/1000*90
             }
 
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
-//                Dial
-//                {
-//                }
+                height: parent.height/1000*265
+                TypePA
+                {
+                }
             }
+
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
-//                Dial
-//                {
-//                }
+                height: parent.height/1000*55
             }
+
             Item
             {
                 width:  parent.width
