@@ -132,7 +132,7 @@ Item
                 anchors.verticalCenter:   parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenterOffset: -parent.width/30
-                color: main.checkable?(main.on?"Salmon":fonColor):fonColor
+                color: main.checkable?(main.on?"Salmon":"Blue"):fonColor
                 font.family: "Arial Black"
                 font.bold: true
                 font.pixelSize: parent.width/6

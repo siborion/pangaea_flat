@@ -73,11 +73,9 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                    enabled: common.on
-//                    name: "VOLUME"
-//                }
+                SwitchIr
+                {
+                }
             }
             Item
             {
