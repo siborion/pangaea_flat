@@ -75,6 +75,7 @@ Item
                 height: parent.height/1000*165
                 SwitchIr
                 {
+                    enabled: common.on
                 }
             }
             Item

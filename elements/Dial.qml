@@ -137,6 +137,7 @@ Item
                 font.bold: true
                 font.pixelSize: parent.width/6
                 text: main.name
+                opacity: main.enabled?1:0.3
                 MouseArea
                 {
                     anchors.fill: parent

@@ -14,6 +14,7 @@ Text
     horizontalAlignment: Text.AlignHCenter
     font.bold: true
     font.pixelSize: parent.height/1.5
+    opacity: main.enabled?1:0.3
     MouseArea
     {
         anchors.fill: parent

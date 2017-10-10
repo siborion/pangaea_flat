@@ -41,6 +41,7 @@ Item
                 height: parent.height/1000*265
                 TypePA
                 {
+                    enabled: common.on
                 }
             }
 

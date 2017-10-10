@@ -9,6 +9,12 @@ Item
     property string devColor: "#5E5971"
     property int   value: mSwitch.value
     anchors.fill:  parent
+    
+    Rectangle
+    {
+        anchors.fill:  parent
+        color: devColor
+    }
 
     Column
     {
@@ -16,11 +22,10 @@ Item
         Item
         {
             width: parent.width
-            height: parent.height/100*80
+            height: parent.height/100*40
             Switch2
             {
                 id:    mSwitch
-                opacity: main.enabled?1:0.3
             }
         }
 
@@ -37,7 +42,7 @@ Item
                     height: parent.height
                     CheckText
                     {
-                        text: "On"
+                        text: "POST"
                         check: mSwitch.value==0
                         onClicked: mSwitch.value = 0
                     }
@@ -49,12 +54,41 @@ Item
                     height: parent.height
                     CheckText
                     {
-                        text: "Off"
+                        text: "PRE"
                         check: mSwitch.value==1
                         onClicked: mSwitch.value =1
                     }
                 }
             }
         }
+
+        Item
+        {
+            width: parent.width
+            height: parent.height/100*20
+            Text
+            {
+                anchors.fill: parent
+                text: "EQ"
+                color: fonColor
+                font.family: "Arial Black"
+                font.bold: true
+                font.pixelSize: parent.height/1.5
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignTop
+            }
+        }
+
+        Item
+        {
+            width: parent.width
+            height: parent.height/100*20
+            Rectangle
+            {
+                anchors.fill:  parent
+                color: devColor
+            }
+        }
+
     }
 }

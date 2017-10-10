@@ -57,6 +57,7 @@ Item
                 height: parent.height/1000*165
                 SwitchRoom
                 {
+                    enabled: common.on
                 }
             }
             Item
