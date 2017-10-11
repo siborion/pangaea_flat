@@ -51,6 +51,7 @@ Item
                 {
                     enabled: common.on
                     name: "HIGH"
+                    checkable: false
                 }
             }
             Item
@@ -61,6 +62,7 @@ Item
                 {
                     enabled: common.on
                     name: "MID"
+                    checkable: false
                 }
             }
             Item
@@ -71,6 +73,7 @@ Item
                 {
                     enabled: common.on
                     name: "LOW"
+                    checkable: false
                 }
             }
             Item
@@ -81,6 +84,7 @@ Item
                 {
                     enabled: common.on
                     name: "VOLUME"
+                    checkable: false
                 }
             }
             Item

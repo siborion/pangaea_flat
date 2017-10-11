@@ -69,6 +69,12 @@ Item
                 {
                     valueUpdate(mouseY);
                 }
+
+                onWheel:
+                {
+                    value += (wheel.angleDelta.y/120);
+                    normal();
+                }
             }
         }
     }
@@ -76,6 +82,11 @@ Item
     function valueUpdate(valMouseY)
     {
         value = (valueArea.height-valMouseY)/valueArea.height*valueMax;
+        normal();
+    }
+
+    function normal()
+    {
         value = value<=valueMin?valueMin:value;
         value = value>=valueMax?valueMax:value;
     }

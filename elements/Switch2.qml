@@ -40,6 +40,7 @@ Item
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: value=0
+                onWheel:   wheelChange(wheel.angleDelta.y);
             }
             MouseArea
             {
@@ -48,7 +49,15 @@ Item
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: value=1
+                onWheel:   wheelChange(wheel.angleDelta.y);
             }
         }
+    }
+    function wheelChange(angleDelta)
+    {
+        if((angleDelta>0)&&(main.value<1))
+            main.value++;
+        if((angleDelta<0)&&(main.value>0))
+            main.value--;
     }
 }

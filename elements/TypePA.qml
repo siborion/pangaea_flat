@@ -21,6 +21,7 @@ Item
                 text:  "PP 6L6"
                 check: (value==0)
                 onClicked: value=0
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -33,6 +34,7 @@ Item
                 text:  "PP EL34"
                 check: (value==1)
                 onClicked: value=1
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -45,6 +47,7 @@ Item
                 text:  "SE 6L6"
                 check: (value==2)
                 onClicked: value=2
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -57,6 +60,7 @@ Item
                 text:  "SE EL34"
                 check: (value==3)
                 onClicked: value=3
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -69,6 +73,7 @@ Item
                 text:  "AMT TC-3"
                 check: (value==4)
                 onClicked: value=4
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -81,6 +86,7 @@ Item
                 text:  "CALIF"
                 check: (value==5)
                 onClicked: value=5
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -93,6 +99,7 @@ Item
                 text:  "BRIT M"
                 check: (value==6)
                 onClicked: value=6
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -105,6 +112,7 @@ Item
                 text:  "BRIT L"
                 check: (value==7)
                 onClicked: value=7
+                onWheel: wheelChange(angleDelta);
             }
         }
 
@@ -116,8 +124,17 @@ Item
             {
                 text:  "DEFAULT"
                 check: (value==8)
-                onClicked: value=8
+                onClicked: value=8;
+                onWheel: wheelChange(angleDelta);
             }
         }
+    }
+
+    function wheelChange(angleDelta)
+    {
+        if((angleDelta>0)&&(main.value<8))
+            main.value++;
+        if((angleDelta<0)&&(main.value>0))
+            main.value--;
     }
 }

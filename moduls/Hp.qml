@@ -77,6 +77,7 @@ Item
                 {
                     enabled: common.on
                     name: "20 Hz 1k"
+                    checkable: false
                 }
             }
             Item

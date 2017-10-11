@@ -67,6 +67,7 @@ Item
                 {
                     enabled: common.on
                     name: "THRESH"
+                    checkable: false
                 }
             }
             Item
@@ -77,6 +78,7 @@ Item
                 {
                     enabled: common.on
                     name: "VOLUME"
+                    checkable: false
                 }
             }
             Item

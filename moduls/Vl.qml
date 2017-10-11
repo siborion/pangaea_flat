@@ -27,6 +27,7 @@ Item
                     id:common
                     anchors.fill: parent
                     header: name
+                    checkable: false
                 }
             }
             Item
