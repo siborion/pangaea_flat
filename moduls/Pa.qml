@@ -59,6 +59,7 @@ Item
                 {
                     enabled: common.on
                     name: "VOLUME"
+                    checkable: false
                 }
             }
             Item
@@ -69,6 +70,7 @@ Item
                 {
                     enabled: common.on
                     name: "PRESENCE"
+                    checkable: false
                 }
             }
             Item
@@ -79,6 +81,7 @@ Item
                 {
                     enabled: common.on
                     name: "SLAVE"
+                    checkable: false
                 }
             }
             Item
@@ -89,3 +92,4 @@ Item
         }
     }
 }
+

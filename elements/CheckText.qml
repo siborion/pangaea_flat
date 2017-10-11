@@ -6,6 +6,7 @@ Text
 {
     id: main
     signal clicked();
+    signal wheel(int angleDelta);
     property bool check: false
 
     anchors.fill: parent
@@ -14,12 +15,13 @@ Text
     horizontalAlignment: Text.AlignHCenter
     font.bold: true
     font.pixelSize: parent.height/1.5
-    opacity: main.enabled?1:0.3
+    opacity: main.enabled?1:0.5
     MouseArea
     {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: main.clicked()
+        onWheel:   main.wheel(wheel.angleDelta.y);
     }
 }

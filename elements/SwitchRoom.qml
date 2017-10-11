@@ -20,7 +20,7 @@ Item
             Switch3
             {
                 id:    mSwitch
-                opacity: main.enabled?1:0.3
+                opacity: main.enabled?1:0.5
             }
         }
 
