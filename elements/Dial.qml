@@ -20,7 +20,7 @@ Item
     property int dispMax:   31
     property int angleMin: -140
     property int angleMax:  140
-//    property int div:       1
+    //    property int div:       1
 
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
@@ -118,6 +118,24 @@ Item
                         main.value += (wheel.angleDelta.y/120);
                         valueUpdate();
                     }
+
+                    MouseArea
+                    {
+                        property int lastY
+                        width:  parent.width/2
+                        height: parent.height/2
+                        anchors.centerIn: parent
+                        cursorShape: Qt.SizeVerCursor
+                        onPositionChanged:
+                        {
+                            if (pressed)
+                            {
+                                value += ((lastY - mouseY));
+                                lastY = mouseY;
+                            }
+                        }
+                        onPressed: lastY = mouseY;
+                    }
                 }
             }
         }
@@ -137,7 +155,6 @@ Item
                 font.bold: true
                 font.pixelSize: parent.width/6
                 text: main.name
-//                opacity: main.enabled?1:0.5
                 MouseArea
                 {
                     anchors.fill: parent
