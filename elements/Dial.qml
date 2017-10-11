@@ -101,8 +101,8 @@ Item
                                 curAngle = angle;
                             else
                                 curAngle = (angle<0)?(360+angle):(-360+angle);
-                            main.value = main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin));
-                            valueUpdate();
+//                            main.value = main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin));
+                            valueUpdate(main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin)));
                             lastAngle = angle;
                         }
                     }
@@ -115,8 +115,8 @@ Item
                     }
                     onWheel:
                     {
-                        main.value += (wheel.angleDelta.y/120);
-                        valueUpdate();
+//                        main.value += (wheel.angleDelta.y/120);
+                        valueUpdate(main.value + wheel.angleDelta.y/120);
                     }
 
                     MouseArea
@@ -130,7 +130,8 @@ Item
                         {
                             if (pressed)
                             {
-                                value += ((lastY - mouseY));
+                                valueUpdate(value +(lastY - mouseY));
+//                                value += ((lastY - mouseY));
                                 lastY = mouseY;
                             }
                         }
@@ -185,8 +186,9 @@ Item
         return angle;
     }
 
-    function valueUpdate()
+    function valueUpdate(addValue)
     {
+        main.value  = addValue;
         main.value = main.value<=valueMin?valueMin:main.value;
         main.value = main.value>=valueMax?valueMax:main.value;
     }
