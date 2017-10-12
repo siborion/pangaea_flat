@@ -6,6 +6,7 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property bool eqPost: switchPostPre.value
     anchors.fill: parent
     id: main
     Row
@@ -84,6 +85,7 @@ Item
             width:  row.widthWithoutSpase/15*1
             SwitchPostPre
             {
+                id: switchPostPre
             }
         }
 

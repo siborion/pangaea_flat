@@ -8,7 +8,7 @@ Item
     property string devColor: "#5E5971"
     property string name:     "IR"
 
-    property bool on: false
+    property bool on: common.on
     anchors.fill: parent
     id: main
     Rectangle

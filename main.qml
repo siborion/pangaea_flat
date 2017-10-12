@@ -19,6 +19,8 @@ ApplicationWindow
             height: parent.height/1000*150
             Head
             {
+                id: head
+
             }
         }
         Item
@@ -27,6 +29,8 @@ ApplicationWindow
             height: parent.height/1000*850
             Moduls
             {
+                id: moduls
+                eqPost: head.eqPost
 
             }
         }
