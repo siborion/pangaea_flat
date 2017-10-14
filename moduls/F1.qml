@@ -15,6 +15,13 @@ Item
     {
         anchors.fill: parent
         color: devColor
+        MouseArea
+        {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape:  Qt.PointingHandCursor
+            onClicked: main.on = (!main.on);
+        }
         Column
         {
             anchors.fill: parent
@@ -27,6 +34,7 @@ Item
                     id:common
                     anchors.fill: parent
                     header: name
+                    on: main.on
                 }
             }
             Item
@@ -49,7 +57,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "HIGH"
                     checkable: false
                 }
@@ -60,7 +68,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "MID"
                     checkable: false
                 }
@@ -71,7 +79,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "LOW"
                     checkable: false
                 }
@@ -82,7 +90,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "VOLUME"
                     checkable: false
                 }
