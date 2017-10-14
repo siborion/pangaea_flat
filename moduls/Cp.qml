@@ -7,7 +7,6 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "CP"
-
     property bool on: false
     anchors.fill: parent
     id: main
@@ -15,19 +14,13 @@ Item
     {
         anchors.fill: parent
         color: devColor
-
         MouseArea
         {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-
-            onClicked:
-            {
-                main.on = (!main.on);
-            }
+            onClicked: main.on = (!main.on);
         }
-
         Column
         {
             anchors.fill: parent
@@ -81,7 +74,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: main.on //common.on
+                    enabled: main.on
                     name: "VOLUME"
                     checkable: false
                 }
@@ -92,6 +85,5 @@ Item
                 height: parent.height/1000*25
             }
         }
-
     }
 }

@@ -7,7 +7,6 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "GT"
-
     property bool on: false
     anchors.fill: parent
     id: main
@@ -15,6 +14,13 @@ Item
     {
         anchors.fill: parent
         color: devColor
+        MouseArea
+        {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape:  Qt.PointingHandCursor
+            onClicked: main.on = (!main.on);
+        }
         Column
         {
             anchors.fill: parent
@@ -27,6 +33,7 @@ Item
                     id:common
                     anchors.fill: parent
                     header: name
+                    on: main.on
                 }
             }
             Item
@@ -39,25 +46,16 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
@@ -65,7 +63,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "THRESH"
                     checkable: false
                 }
@@ -76,7 +74,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    enabled: common.on
+                    enabled: main.on
                     name: "VOLUME"
                     checkable: false
                 }

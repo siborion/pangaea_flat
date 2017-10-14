@@ -20,7 +20,6 @@ Item
     property int dispMax:   31
     property int angleMin: -140
     property int angleMax:  140
-    //    property int div:       1
 
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
@@ -35,6 +34,7 @@ Item
     {
         anchors.fill: parent
         opacity: main.enabled?1:0.5
+        Behavior on opacity  {NumberAnimation { duration: 200 }}
         Item
         {
             height: Math.min(parent.height, parent.width)*0.76
@@ -45,8 +45,6 @@ Item
                 anchors.fill: parent
                 radius: parent.width
                 color: fonColor
-                opacity: main.on?1:0.5
-
                 Item
                 {
                     height: parent.height
@@ -101,7 +99,6 @@ Item
                                 curAngle = angle;
                             else
                                 curAngle = (angle<0)?(360+angle):(-360+angle);
-//                            main.value = main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin));
                             valueUpdate(main.valueLast + curAngle/((angleMax-angleMin)/(valueMax-valueMin)));
                             lastAngle = angle;
                         }
@@ -115,7 +112,6 @@ Item
                     }
                     onWheel:
                     {
-//                        main.value += (wheel.angleDelta.y/120);
                         valueUpdate(main.value + wheel.angleDelta.y/120);
                     }
 
@@ -131,7 +127,6 @@ Item
                             if (pressed)
                             {
                                 valueUpdate(value +(lastY - mouseY));
-//                                value += ((lastY - mouseY));
                                 lastY = mouseY;
                             }
                         }
