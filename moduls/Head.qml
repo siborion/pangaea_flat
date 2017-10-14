@@ -32,12 +32,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-            Presets
-            {
-                id: bank
-                anchors.fill: parent
-                text: "BANK"
-            }
+//            Presets
+//            {
+//                id: bank
+//                anchors.fill: parent
+//                text: "BANK"
+//            }
         }
 
         Item
@@ -93,12 +93,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-            Presets
-            {
-                id: preset
-                anchors.fill: parent
-                text: "PRESET"
-            }
+//            Presets
+//            {
+//                id: preset
+//                anchors.fill: parent
+//                text: "PRESET"
+//            }
         }
 
         Item
