@@ -51,13 +51,13 @@ Item
         }
         Item
         {
-            id: iEqs
+            id: iEqsMap
             height: parent.height
             width:  row.widthWithoutSpase/15*(eqPost?5:1)
-            Eqs
+            EqsMap
             {
-                id: eqs
-                parent: eqPost?iEqs:iF1
+                id: eqsMap
+                parent: eqPost?iEqsMap:iF1
             }
         }
 
@@ -69,7 +69,7 @@ Item
             Hp
             {
                 id: hp
-                parent: eqPost?iHp:iEqs
+                parent: eqPost?iHp:iEqsMap
             }
         }
         Item

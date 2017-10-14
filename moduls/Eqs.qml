@@ -6,6 +6,7 @@ Item
 {
     id: main
     anchors.fill: parent
+    property bool on: true
     Row
     {
         anchors.fill: parent

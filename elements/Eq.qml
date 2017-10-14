@@ -23,13 +23,13 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*140
+                height: parent.height/1000*25
             }
 
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
+                height: parent.height/1000*185
                 Dial
                 {
                     checkable: false
@@ -43,7 +43,7 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*505
+                height: parent.height/1000*580
                 Pot
                 {
 
@@ -52,7 +52,7 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
+                height: parent.height/1000*185
                 Dial
                 {
                     checkable: false
