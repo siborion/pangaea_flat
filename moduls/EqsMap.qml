@@ -24,9 +24,25 @@ Item
         {
             height: parent.height/1000*900
             width:  parent.width
+            MouseArea
+            {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape:  Qt.PointingHandCursor
+                onClicked:
+                {
+                    if(!switchEnMap.eqOn)
+                        switchEnMap.eqOn = true;
+                }
+            }
             Eqs
             {
                 on: switchEnMap.eqOn
+                visible: !switchEnMap.map
+            }
+            Map
+            {
+                visible: switchEnMap.map
             }
         }
     }

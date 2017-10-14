@@ -42,7 +42,6 @@ Item
                 width:  parent.width*0.7
                 height: parent.width*0.7/2
                 radius: parent.width*0.2
-
                 color: fonColor
                 Text
                 {
@@ -53,6 +52,8 @@ Item
                     font.pixelSize: parent.height/2.5
                     text: dispValue
                 }
+                opacity: main.enabled?1:0.5
+                Behavior on opacity  {NumberAnimation { duration: 200 }}
             }
 
             MouseArea

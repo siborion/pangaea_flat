@@ -45,6 +45,8 @@ Item
         MouseArea
         {
             anchors.fill: parent
+            hoverEnabled: true
+            cursorShape:  Qt.PointingHandCursor
             onClicked:
             {
                 if( main.map)
@@ -91,6 +93,8 @@ Item
         MouseArea
         {
             anchors.fill: parent
+            hoverEnabled: true
+            cursorShape:  Qt.PointingHandCursor
             onClicked:
             {
                 main.map=true;

@@ -10,6 +10,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property int nomBand: 1
+    property bool on: false
 
     Rectangle
     {
@@ -37,6 +38,7 @@ Item
                     valueMin: -100
                     valueMax: 99
                     dispValue: Math.round(((value + 100) *0.1 + 0.11)*10)/10
+                    enabled: main.on
                 }
 
             }
@@ -46,7 +48,7 @@ Item
                 height: parent.height/1000*580
                 Pot
                 {
-
+                    enabled: main.on
                 }
             }
             Item
@@ -62,7 +64,7 @@ Item
                     valueMin: -100
                     valueMax: 100
                     dispValue: toolAdd + toolMult*value
-
+                    enabled: main.on
                 }
             }
             Item
