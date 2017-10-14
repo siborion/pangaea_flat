@@ -2,7 +2,6 @@ import QtQuick 2.7
 import QtQuick.Controls 1.3
 import "moduls/"
 
-
 ApplicationWindow
 {
     id: main
@@ -32,7 +31,6 @@ ApplicationWindow
             {
                 id: moduls
                 eqPost: head.eqPost
-
             }
         }
     }
