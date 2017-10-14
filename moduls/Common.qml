@@ -19,16 +19,16 @@ Item
         font.pixelSize: 16
         color: on?"salmon":fonColor
         text: header
-        MouseArea
-        {
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
-            onClicked:
-            {
-                if(main.checkable)
-                    main.on = (!main.on);
-            }
-        }
+//        MouseArea
+//        {
+//            anchors.fill: parent
+//            hoverEnabled: true
+//            cursorShape: main.checkable?Qt.PointingHandCursor:Qt.ArrowCursor
+//            onClicked:
+//            {
+//                if(main.checkable)
+//                    main.on = (!main.on);
+//            }
+//        }
     }
 }

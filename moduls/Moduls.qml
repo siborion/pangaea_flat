@@ -3,7 +3,7 @@ import QtQuick.Controls 1.5
 
 Item
 {
-//    property bool on: false
+    //    property bool on: false
     property bool eqPost: true
     anchors.fill: parent
     id: main
@@ -48,7 +48,7 @@ Item
             Lp
             {
             }
-         }
+        }
         Item
         {
             id: iEqs
@@ -56,7 +56,8 @@ Item
             width:  row.widthWithoutSpase/15*(eqPost?5:1)
             Eqs
             {
-                parent: eqPost?iEqs:iHp
+                id: eqs
+                parent: eqPost?iEqs:iF1
             }
         }
 
@@ -64,9 +65,10 @@ Item
         {
             id: iHp
             height: parent.height
-            width:  row.widthWithoutSpase/15*(eqPost?1:5)
+            width:  row.widthWithoutSpase/15*1//(eqPost?1:5)
             Hp
             {
+                id: hp
                 parent: eqPost?iHp:iEqs
             }
         }
@@ -78,6 +80,7 @@ Item
             Ir
             {
                 id: ir
+                parent: eqPost?iIr:iHp
             }
         }
         Item
@@ -88,15 +91,18 @@ Item
             Pa
             {
                 id: pa
+                parent: eqPost?iPa:iIr
             }
         }
         Item
         {
             id: iF1
             height: parent.height
-            width:  row.widthWithoutSpase/15
+            width:  row.widthWithoutSpase/15*(eqPost?1:5)
             F1
             {
+                id: f1
+                parent: eqPost?iF1:iPa
             }
         }
         Item

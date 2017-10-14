@@ -6,7 +6,7 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property bool eqPost: switchPostPre.value
+    property bool eqPost: (switchPostPre.value==0)
     anchors.fill: parent
     id: main
     Row
