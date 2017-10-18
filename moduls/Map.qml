@@ -11,42 +11,86 @@ Item
     {
         anchors.fill: parent
         color: devColor
-
-        Column
+        Item
         {
-            anchors.fill: parent
-            Item
-            {
-                width:  parent.width
-                height: parent.height/11*1
-                MapHeadBank
-                {
-                }
-            }
+            height: parent.height/1.1
+            width:  parent.width/1.1
+            anchors.centerIn: parent
 
-            Item
+            Row
             {
-                width:  parent.width
-                height: parent.height/11*10
-                Rectangle
+                anchors.fill: parent
+                Item
                 {
-                    anchors.fill: parent
-                    color: devColor
-                }
-
-                Column
-                {
-                    anchors.fill: parent
-                    Repeater
+                    height: parent.height
+                    width:  parent.width/11*1
+                    Column
                     {
-                        model: 10
+                        anchors.fill: parent
                         Item
                         {
-                            width: parent.width
-                            height: parent.height/10
-                            MapRow
+                            height: parent.height/11*1
+                            width:  parent.width
+                        }
+
+                        Item
+                        {
+                            height: parent.height/11*10
+                            width:  parent.width
+                            MapHeadPreset
                             {
-                                nomRow: index
+                            }
+                        }
+                    }
+                }
+
+                Item
+                {
+
+                    height: parent.height
+                    width:  parent.width/11*10
+
+
+
+
+                    Column
+                    {
+                        anchors.fill: parent
+                        Item
+                        {
+                            width:  parent.width
+                            height: parent.height/11*1
+                            MapHeadBank
+                            {
+                            }
+                        }
+
+                        Item
+                        {
+                            width:  parent.width
+                            height: parent.height/11*10
+                            Rectangle
+                            {
+                                anchors.fill: parent
+                                color: devColor
+                            }
+
+                            Column
+                            {
+                                anchors.fill: parent
+                                Repeater
+                                {
+                                    model: 10
+                                    Item
+                                    {
+                                        width: parent.width
+                                        height: parent.height/10
+                                        MapRow
+                                        {
+                                            nomRow: index
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -55,4 +99,3 @@ Item
         }
     }
 }
-

@@ -7,14 +7,13 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     anchors.fill: parent
-
-    Column
+    Row
     {
         anchors.fill: parent
         Item
         {
-            width:  parent.width
-            height: parent.height / 2
+            width:  parent.width/2
+            height: parent.height
             Rectangle
             {
                 anchors.fill: parent
@@ -23,20 +22,22 @@ Item
                 Text
                 {
                     anchors.fill: parent
-                    text: "BANK"
+                    text: "PRESET"
                     color: devColor
+                    rotation: 270
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment:   Text.AlignVCenter
                     font.bold: true
-                    font.pixelSize: parent.height/1.5
+                    font.pixelSize: parent.width/1.5
                 }
             }
         }
+
         Item
         {
-            width:  parent.width
-            height: parent.height /2
-            Row
+            width:  parent.width /2
+            height: parent.height
+            Column
             {
                 anchors.fill: parent
                 Repeater
@@ -45,8 +46,8 @@ Item
                     model: 10
                     Item
                     {
-                        width:  parent.width/10
-                        height: parent.height
+                        width:  parent.width
+                        height: parent.height/10
                         Rectangle
                         {
                             anchors.fill: parent
@@ -60,7 +61,7 @@ Item
                             text: index
                             color: fonColor
                             font.bold: true
-                            font.pixelSize: parent.height/1.5
+                            font.pixelSize: parent.width/1.5
                         }
                     }
                 }

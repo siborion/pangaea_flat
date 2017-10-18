@@ -13,37 +13,41 @@ Item
         anchors.fill: parent
         Repeater
         {
+            id: repeater
             anchors.fill: parent
             model: 10
             Item
             {
+                property bool light: false
                 width:  main.width/10
                 height: main.height
 
+
                 Rectangle
                 {
+                    id: preset
                     property int minSize: Math.min(parent.width, parent.height)
                     anchors.centerIn: parent
                     width:  minSize/2
                     height: minSize/2
                     radius: minSize/2
-                    objectName: index
-                    color: devColor
+                    objectName: nomRow*10 + index
+                    color: parent.light?"Red":devColor
                     border.color: fonColor
                     border.width: 3
-//                    Text
-//                    {
-//                        id: txt
-//                        anchors.fill: parent
-//                        text: nomRow*10 + index
-//                    }
-
                     MouseArea
                     {
                         anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
                         onClicked:
                         {
-                            //                                        console.log(parent.objectName.toString());
+                        }
+                        onEntered:
+                        {
+//                            console.log(preset.objectName)
+                            repeater.itemAt(1).light = true;
+//                            preset.objectName
                         }
                     }
                 }
