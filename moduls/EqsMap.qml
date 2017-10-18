@@ -16,7 +16,6 @@ Item
             SwitchEqMap
             {
                 id: switchEnMap
-
             }
         }
 
@@ -40,9 +39,11 @@ Item
                     }
                 }
             }
+
             Map
             {
                 visible: switchEnMap.map
+                anchors.fill: parent
             }
         }
     }

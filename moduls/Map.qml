@@ -11,19 +11,44 @@ Item
     {
         anchors.fill: parent
         color: devColor
+
         Column
         {
             anchors.fill: parent
-            Repeater
+            Item
             {
-                model: 10
-                Item
+                width:  parent.width
+                height: parent.height/11*1
+                MapHeadBank
                 {
-                    width: parent.width
-                    height: parent.height/10
-                    MapRow
+                }
+            }
+
+            Item
+            {
+                width:  parent.width
+                height: parent.height/11*10
+                Rectangle
+                {
+                    anchors.fill: parent
+                    color: devColor
+                }
+
+                Column
+                {
+                    anchors.fill: parent
+                    Repeater
                     {
-                        nomRow: index
+                        model: 10
+                        Item
+                        {
+                            width: parent.width
+                            height: parent.height/10
+                            MapRow
+                            {
+                                nomRow: index
+                            }
+                        }
                     }
                 }
             }
