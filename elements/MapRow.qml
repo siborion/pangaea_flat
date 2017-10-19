@@ -8,6 +8,7 @@ Item
     property string devColor: "#5E5971"
     property int nomRow:0
     anchors.fill: parent
+    property int presetNom: 0
     Row
     {
         anchors.fill: parent
@@ -22,7 +23,6 @@ Item
                 width:  main.width/10
                 height: main.height
 
-
                 Rectangle
                 {
                     id: preset
@@ -31,8 +31,7 @@ Item
                     width:  minSize/2
                     height: minSize/2
                     radius: minSize/2
-                    objectName: nomRow*10 + index
-                    color: parent.light?"Red":devColor
+                    color: ((index*10+nomRow)==main.presetNom)?"Red":devColor
                     border.color: fonColor
                     border.width: 3
                     MouseArea
@@ -42,12 +41,10 @@ Item
                         cursorShape: Qt.PointingHandCursor
                         onClicked:
                         {
+                            console.log((nomRow*10 + index))
                         }
                         onEntered:
                         {
-//                            console.log(preset.objectName)
-                            repeater.itemAt(1).light = true;
-//                            preset.objectName
                         }
                     }
                 }

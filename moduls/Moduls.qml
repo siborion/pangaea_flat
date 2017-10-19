@@ -3,10 +3,10 @@ import QtQuick.Controls 1.5
 
 Item
 {
-    //    property bool on: false
+    id: main
     property bool eqPost: true
     anchors.fill: parent
-    id: main
+    property int presetNom: 0
     Row
     {
         id: row
@@ -38,6 +38,8 @@ Item
             width:  row.widthWithoutSpase/15
             Pr
             {
+                id: pr
+                onChPresence: pa.setPresence(value)
             }
         }
         Item
@@ -58,6 +60,7 @@ Item
             {
                 id: eqsMap
                 parent: eqPost?iEqsMap:iF1
+                presetNom: main.presetNom
             }
         }
 
@@ -92,6 +95,7 @@ Item
             {
                 id: pa
                 parent: eqPost?iPa:iIr
+                onChPresence: pr.setPresence(value)
             }
         }
         Item

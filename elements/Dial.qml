@@ -28,6 +28,7 @@ Item
     property double a2: (angleMin-angleMax)/(valueMin-valueMax)
     property double a1:  angleMin-(valueMin*a2)
     property int dispAngle: a1 + value*a2
+    signal chValue(int value)
 
     anchors.fill: parent
     Column
@@ -182,6 +183,15 @@ Item
     }
 
     function valueUpdate(addValue)
+    {
+        valueUpdateSoft(addValue)
+//        main.value  = addValue;
+//        main.value = main.value<=valueMin?valueMin:main.value;
+//        main.value = main.value>=valueMax?valueMax:main.value;
+        main.chValue(main.value);
+    }
+
+    function valueUpdateSoft(addValue)
     {
         main.value  = addValue;
         main.value = main.value<=valueMin?valueMin:main.value;

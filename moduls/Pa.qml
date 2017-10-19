@@ -4,13 +4,13 @@ import "../elements/"
 
 Item
 {
+    id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "PA"
-
     property bool on: false
+    signal chPresence(int value)
     anchors.fill: parent
-    id: main
     Rectangle
     {
         anchors.fill: parent
@@ -76,9 +76,11 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: presence
                     enabled: main.on
                     name: "PRESENCE"
                     checkable: false
+                    onChValue: main.chPresence(value)
                 }
             }
             Item
@@ -87,6 +89,7 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: slave
                     enabled: main.on
                     name: "SLAVE"
                     checkable: false
@@ -98,6 +101,11 @@ Item
                 height: parent.height/1000*25
             }
         }
+    }
+
+    function setPresence(value)
+    {
+        presence.valueUpdateSoft(value);
     }
 }
 

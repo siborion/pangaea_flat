@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property bool eqPost: (switchPostPre.value==0)
+    property int  presetNom: bank.value*10+preset.value
     anchors.fill: parent
     id: main
     Row
@@ -32,12 +33,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-//            Presets
-//            {
-//                id: bank
-//                anchors.fill: parent
-//                text: "BANK"
-//            }
+            Presets
+            {
+                id: bank
+                anchors.fill: parent
+                text: "BANK"
+            }
         }
 
         Item
@@ -93,12 +94,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-//            Presets
-//            {
-//                id: preset
-//                anchors.fill: parent
-//                text: "PRESET"
-//            }
+            Presets
+            {
+                id: preset
+                anchors.fill: parent
+                text: "PRESET"
+            }
         }
 
         Item

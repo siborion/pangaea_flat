@@ -6,6 +6,7 @@ Item
 {
     id: main
     anchors.fill: parent
+    property int presetNom: 0
     Column
     {
         anchors.fill: parent
@@ -44,6 +45,7 @@ Item
             {
                 visible: switchEnMap.map
                 anchors.fill: parent
+                presetNom: main.presetNom
             }
         }
     }

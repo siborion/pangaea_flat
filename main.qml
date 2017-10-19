@@ -9,6 +9,7 @@ ApplicationWindow
     height: 520
     width:  1104
     color: "#EBECEC"
+    property int presetNom: head.presetNom
     Column
     {
         anchors.fill: parent
@@ -31,6 +32,7 @@ ApplicationWindow
             {
                 id: moduls
                 eqPost: head.eqPost
+                presetNom: main.presetNom
             }
         }
     }

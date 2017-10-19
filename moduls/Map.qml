@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     anchors.fill: parent
+    property int presetNom: 0
     Rectangle
     {
         anchors.fill: parent
@@ -88,6 +89,7 @@ Item
                                         MapRow
                                         {
                                             nomRow: index
+                                            presetNom: main.presetNom
                                         }
                                     }
                                 }

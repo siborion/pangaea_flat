@@ -7,8 +7,9 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "PR"
-
     property bool on: false
+    signal chPresence(int value)
+
     anchors.fill: parent
     id: main
     Rectangle
@@ -69,9 +70,11 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: presence
                     enabled: main.on
                     name: "PRESENCE"
                     checkable: false
+                    onChValue: main.chPresence(value)
                 }
             }
             Item
@@ -81,4 +84,10 @@ Item
             }
         }
     }
+
+    function setPresence(value)
+    {
+        presence.valueUpdateSoft(value);
+    }
+
 }
