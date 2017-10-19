@@ -8,12 +8,14 @@ Item
     property string devColor: "#5E5971"
 
     property string name: "DIAL"
+    property string nameValue: ""
 
     property bool checkable: true
     property bool on: true
 
     property int value:     15
     property int valueLast: 0
+    property int valueLastSend: 0
     property int valueMin:  0
     property int valueMax:  31
     property int dispMin:   0
@@ -185,10 +187,13 @@ Item
     function valueUpdate(addValue)
     {
         valueUpdateSoft(addValue)
-//        main.value  = addValue;
-//        main.value = main.value<=valueMin?valueMin:main.value;
-//        main.value = main.value>=valueMax?valueMax:main.value;
-        main.chValue(main.value);
+        if(main.valueLastSend!=main.value)
+        {
+            main.valueLastSend=main.value;
+            main.chValue(main.value);
+            if(main.nameValue.length>0)
+                _core.setValue(main.nameValue, main.value)
+        }
     }
 
     function valueUpdateSoft(addValue)

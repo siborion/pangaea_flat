@@ -73,6 +73,7 @@ Item
                     id: presence
                     enabled: main.on
                     name: "PRESENCE"
+                    nameValue: "presence_volume"
                     checkable: false
                     onChValue: main.chPresence(value)
                 }
