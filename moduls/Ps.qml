@@ -6,9 +6,11 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string name:     "RM"
-
+    property string name:     "PS"
+    property string nameValue: "presence_on"
     property bool on: false
+    signal chPresence(int value)
+
     anchors.fill: parent
     id: main
     Rectangle
@@ -20,9 +22,13 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
-        Column        
+        Column
         {
             anchors.fill: parent
             Item
@@ -57,10 +63,6 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-                SwitchRoom
-                {
-                    enabled: main.on
-                }
             }
             Item
             {
@@ -73,9 +75,12 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: presence
                     enabled: main.on
-                    name: "VOLUME"
+                    name: "PRESENCE"
+                    nameValue: "presence_volume"
                     checkable: false
+                    onChValue: main.chPresence(value)
                 }
             }
             Item
@@ -83,6 +88,23 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+
+    function setPresence(value)
+    {
+        presence.valueUpdateSoft(value);
+    }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.on=value
+
+                console.log(nameParam, value);
         }
     }
 }

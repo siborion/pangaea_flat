@@ -7,6 +7,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "IR"
+    property string nameValue: "cabinet_enable"
+
 
     property bool on: common.on
     anchors.fill: parent
@@ -20,7 +22,12 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                switchIr.setValue(main.on==0);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -47,35 +54,21 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                    enabled: main.on
-//                    name: "THRESH"
-//                }
             }
             Item
             {
@@ -83,13 +76,28 @@ Item
                 height: parent.height/1000*165
                 SwitchIr
                 {
+                    id: switchIr
                     enabled: main.on
+                    onChValue: main.on = (value==0)
+
                 }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*25
+            }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+            {
+                main.on=value;
+                switchIr.setValue(main.on==0);
             }
         }
     }

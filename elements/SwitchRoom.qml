@@ -21,6 +21,7 @@ Item
             {
                 id:    mSwitch
                 opacity: main.enabled?1:0.5
+                onChValue: _core.setValue("early_type", mSwitch.value)
             }
         }
 
@@ -73,6 +74,15 @@ Item
                     }
                 }
             }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((nameParam.indexOf("early_type")>=0))
+                mSwitch.value=value
         }
     }
 }

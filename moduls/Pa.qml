@@ -8,7 +8,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "PA"
-    property bool on: false
+    property bool on: true
+    property string nameValue: "amp_on"
     signal chPresence(int value)
     anchors.fill: parent
     Rectangle
@@ -20,7 +21,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -68,6 +73,7 @@ Item
                     enabled: main.on
                     name: "VOLUME"
                     checkable: false
+                    nameValue: "amp_volume"
                 }
             }
             Item
@@ -94,6 +100,7 @@ Item
                     enabled: main.on
                     name: "SLAVE"
                     checkable: false
+                    nameValue: "amp_slave"
                 }
             }
             Item
@@ -107,6 +114,16 @@ Item
     function setPresence(value)
     {
         presence.valueUpdateSoft(value);
+    }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)==0))
+                main.on=value
+        }
     }
 }
 

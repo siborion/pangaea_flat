@@ -75,7 +75,7 @@ Item
                 Dial
                 {
                     enabled: main.on
-                    name: "VOLUME"
+                    name: "DECAY"
                     checkable: false
                 }
             }

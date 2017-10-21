@@ -24,21 +24,21 @@ Item
         }
         Item
         {
-            id: iRm
+            id: iEr
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Rm
+            Er
             {
             }
         }
         Item
         {
-            id: iPr
+            id: iPs
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Pr
+            Ps
             {
-                id: pr
+                id: ps
                 onChPresence: pa.setPresence(value)
             }
         }
@@ -59,7 +59,7 @@ Item
             EqsMap
             {
                 id: eqsMap
-                parent: eqPost?iEqsMap:iF1
+                parent: eqPost?iEqsMap:iPr
                 presetNom: main.presetNom
             }
         }
@@ -95,18 +95,18 @@ Item
             {
                 id: pa
                 parent: eqPost?iPa:iIr
-                onChPresence: pr.setPresence(value)
+                onChPresence: ps.setPresence(value)
             }
         }
         Item
         {
-            id: iF1
+            id: iPr
             height: parent.height
             width:  row.widthWithoutSpase/15*(eqPost?1:5)
-            F1
+            Pr
             {
-                id: f1
-                parent: eqPost?iF1:iPa
+                id: pr
+                parent: eqPost?iPr:iPa
             }
         }
         Item

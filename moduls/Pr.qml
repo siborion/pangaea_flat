@@ -7,9 +7,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "PR"
+    property string nameValue: "preamp_on"
     property bool on: false
-    signal chPresence(int value)
-
     anchors.fill: parent
     id: main
     Rectangle
@@ -21,7 +20,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -53,16 +56,13 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
+                Dial
+                {
+                    enabled: main.on
+                    name: "HIGH"
+                    checkable: false
+                    nameValue: "preamp_high"
+                }
             }
             Item
             {
@@ -70,12 +70,34 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
-                    id: presence
                     enabled: main.on
-                    name: "PRESENCE"
-                    nameValue: "presence_volume"
+                    name: "MID"
                     checkable: false
-                    onChValue: main.chPresence(value)
+                    nameValue: "preamp_mid"
+                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+                Dial
+                {
+                    enabled: main.on
+                    name: "LOW"
+                    checkable: false
+                    nameValue: "preamp_low"
+                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+                Dial
+                {
+                    enabled: main.on
+                    name: "VOLUME"
+                    checkable: false
+                    nameValue: "preamp_volume"
                 }
             }
             Item
@@ -85,10 +107,13 @@ Item
             }
         }
     }
-
-    function setPresence(value)
+    Connections
     {
-        presence.valueUpdateSoft(value);
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.on=value
+        }
     }
-
 }

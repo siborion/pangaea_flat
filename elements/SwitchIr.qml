@@ -7,8 +7,9 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property int   value: mSwitch.value
+    property int   value: 1
     anchors.fill:  parent
+    signal chValue(int value)
 
     Column
     {
@@ -20,7 +21,9 @@ Item
             Switch2
             {
                 id:    mSwitch
+                value: main.value
                 opacity: main.enabled?1:0.5
+                onChValue: main.chValue(value)
             }
         }
 
@@ -39,7 +42,7 @@ Item
                     {
                         text: "On"
                         check: mSwitch.value==0
-                        onClicked: mSwitch.value = 0
+                        onClicked: {mSwitch.value = 0; main.chValie(value);}
                     }
                 }
 
@@ -51,10 +54,14 @@ Item
                     {
                         text: "Off"
                         check: mSwitch.value==1
-                        onClicked: mSwitch.value =1
+                        onClicked: {mSwitch.value =1; main.chValie(value)}
                     }
                 }
             }
         }
+    }
+    function setValue(value)
+    {
+        mSwitch.value = value;
     }
 }

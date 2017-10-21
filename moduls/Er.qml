@@ -6,7 +6,8 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string name:     "F1"
+    property string name:     "ER"
+    property string nameValue: "early_on"
 
     property bool on: false
     anchors.fill: parent
@@ -20,9 +21,13 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue("early_on", main.on);
+            }
         }
-        Column
+        Column        
         {
             anchors.fill: parent
             Item
@@ -47,42 +52,25 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-                Dial
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+                SwitchRoom
                 {
                     enabled: main.on
-                    name: "HIGH"
-                    checkable: false
                 }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-                Dial
-                {
-                    enabled: main.on
-                    name: "MID"
-                    checkable: false
-                }
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
-                Dial
-                {
-                    enabled: main.on
-                    name: "LOW"
-                    checkable: false
-                }
             }
             Item
             {
@@ -93,6 +81,7 @@ Item
                     enabled: main.on
                     name: "VOLUME"
                     checkable: false
+                    nameValue: "early_volume"
                 }
             }
             Item
@@ -102,4 +91,14 @@ Item
             }
         }
     }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.on=value
+        }
+    }
+
 }

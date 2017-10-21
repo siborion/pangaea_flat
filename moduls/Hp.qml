@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "HP"
+    property string nameValue: "hpf_on"
 
     property bool on: false
     anchors.fill: parent
@@ -20,7 +21,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -63,19 +68,11 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                    enabled: main.on
-//                    name: "THRESH"
-//                }
             }
             Item
             {
@@ -86,6 +83,7 @@ Item
                     enabled: main.on
                     name: "20 Hz 1k"
                     checkable: false
+                    nameValue: "hpf_volume"
                 }
             }
             Item
@@ -93,6 +91,15 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.on=value
         }
     }
 }
