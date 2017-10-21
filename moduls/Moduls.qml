@@ -111,10 +111,10 @@ Item
         }
         Item
         {
-            id: iCp
+            id: iCm
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Cp
+            Cm
             {
             }
         }

@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "GT"
+    property string nameValue: "gate_on"
     property bool on: false
     anchors.fill: parent
     id: main
@@ -19,7 +20,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -66,6 +71,7 @@ Item
                     enabled: main.on
                     name: "THRESH"
                     checkable: false
+                    nameValue: "gate_threshold"
                 }
             }
             Item
@@ -77,6 +83,7 @@ Item
                     enabled: main.on
                     name: "DECAY"
                     checkable: false
+                    nameValue: "gate_decay"
                 }
             }
             Item
@@ -84,6 +91,15 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.on=value
         }
     }
 }

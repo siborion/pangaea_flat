@@ -38,6 +38,7 @@ Item
                 id: bank
                 anchors.fill: parent
                 text: "BANK"
+                nameValue: "bank"
             }
         }
 
@@ -99,6 +100,7 @@ Item
                 id: preset
                 anchors.fill: parent
                 text: "PRESET"
+                nameValue: "preset"
             }
         }
 

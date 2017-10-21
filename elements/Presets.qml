@@ -8,6 +8,7 @@ Item
     property string devColor: "#5E5971"
     property int    value:     tumb.currentIndex
     property string text:  "TEXT"
+    property string nameValue:  ""
     anchors.fill:  parent
 
     Column
@@ -75,4 +76,13 @@ Item
         tumb.currentIndex--;
     }
 
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                tumb.currentIndex=value;
+        }
+    }
 }

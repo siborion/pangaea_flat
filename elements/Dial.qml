@@ -209,9 +209,7 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
-            {
                 main.value=value;
-            }
         }
     }
 }
