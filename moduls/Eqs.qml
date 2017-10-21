@@ -7,6 +7,7 @@ Item
     id: main
     anchors.fill: parent
     property bool on: true
+    property string nameValue: "eq_on"
     Row
     {
         anchors.fill: parent

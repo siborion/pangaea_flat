@@ -10,6 +10,7 @@ Item
     property string text:  "TEXT"
     property string nameValue:  ""
     anchors.fill:  parent
+    signal chValue(bool up)
 
     Column
     {
@@ -44,7 +45,9 @@ Item
                     anchors.fill: parent
                     onWheel:
                     {
-                        tumb.currentIndex += (wheel.angleDelta.y/120);
+//                        tumb.currentIndex += (wheel.angleDelta.y/120);
+                        main.chValue(wheel.angleDelta.y>0);
+//                        console.log(wheel.angleDelta.y>0)
                     }
                 }
             }
@@ -66,15 +69,15 @@ Item
         }
     }
 
-    function up()
-    {
-        tumb.currentIndex++;
-    }
+//    function up()
+//    {
+//        tumb.currentIndex++;
+//    }
 
-    function down()
-    {
-        tumb.currentIndex--;
-    }
+//    function down()
+//    {
+//        tumb.currentIndex--;
+//    }
 
     Connections
     {

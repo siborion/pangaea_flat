@@ -89,6 +89,14 @@ Item
             }
         }
     }
+
+    function setEnable(val)
+    {
+        main.on=val;
+        switchIr.setValue(main.on==0);
+    }
+
+
     Connections
     {
         target: _core
@@ -96,8 +104,9 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
             {
-                main.on=value;
-                switchIr.setValue(main.on==0);
+//                main.on=value;
+//                switchIr.setValue(main.on==0);
+                setEnable(value)
             }
         }
     }

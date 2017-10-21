@@ -8,8 +8,10 @@ Item
     property string devColor: "#5E5971"
     property bool eqPost: (switchPostPre.value==0)
     property int  presetNom: bank.value*10+preset.value
+    signal setImpuls()
     anchors.fill: parent
     id: main
+
     Row
     {
         id: row
@@ -24,8 +26,8 @@ Item
             UpDown
             {
                 anchors.fill: parent
-                onUp:   bank.up()
-                onDown: bank.down()
+                onUp:   _core.slSaveWithParam(1) //bank.up()
+                onDown: _core.slSaveWithParam(2) //bank.down()
             }
         }
 
@@ -39,6 +41,7 @@ Item
                 anchors.fill: parent
                 text: "BANK"
                 nameValue: "bank"
+                onChValue: _core.slSaveWithParam(up?1:2)
             }
         }
 
@@ -67,8 +70,25 @@ Item
             width:  row.widthWithoutSpase/15*7+4
             Rectangle
             {
+                id: impuls
                 anchors.fill: parent
                 color: "MediumSeaGreen"
+                Text
+                {
+                    anchors.fill: parent
+                    id: impulsTxt
+                    text: "txt"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment:   Text.AlignVCenter
+                    font.bold: true
+                    font.pixelSize: 20
+                    wrapMode: Text.Wrap
+                }
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked: main.setImpuls()
+                }
             }
         }
 
@@ -101,6 +121,7 @@ Item
                 anchors.fill: parent
                 text: "PRESET"
                 nameValue: "preset"
+                onChValue: _core.slSaveWithParam(up?3:4)
             }
         }
 
@@ -111,9 +132,20 @@ Item
             UpDown
             {
                 anchors.fill: parent
-                onUp:   preset.up()
-                onDown: preset.down()
+                onUp:   _core.slSaveWithParam(3) //bank.up()
+                onDown: _core.slSaveWithParam(4) //bank.down()
             }
         }
     }
+
+    Connections
+    {
+        target: _core
+        onSgReadText:
+        {
+            if((nameParam.indexOf("impuls_name")>=0))
+                impulsTxt.text=value;
+        }
+    }
+
 }

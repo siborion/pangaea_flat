@@ -39,6 +39,7 @@ Item
                     valueMax: 99
                     dispValue: Math.round(((value + 100) *0.1 + 0.11)*10)/10
                     enabled: main.on
+                    nameValue: "eq_freq"+main.nomBand
                 }
 
             }
@@ -49,6 +50,7 @@ Item
                 Pot
                 {
                     enabled: main.on
+                    nameValue: "eq_volume"+main.nomBand
                 }
             }
             Item
@@ -65,6 +67,7 @@ Item
                     valueMax: 100
                     dispValue: toolAdd + toolMult*value
                     enabled: main.on
+                    nameValue: "eq_q"+main.nomBand
                 }
             }
             Item

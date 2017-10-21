@@ -52,7 +52,11 @@ Item
                 if( main.map)
                     main.map=false;
                 else
+                {
                     eqOn ^= 1;
+                    _core.setValue("eq_on", eqOn);
+                }
+
             }
         }
     }
@@ -101,6 +105,16 @@ Item
                 mapCanvas.requestPaint();
                 eqCanvas.requestPaint();
             }
+        }
+    }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((nameParam.indexOf("eq_on")>=0))
+                main.value=value;
         }
     }
 }

@@ -24,21 +24,26 @@ Item
         {
             height: parent.height/1000*900
             width:  parent.width
+            MouseArea
+            {
+                anchors.fill: parent
+                enabled: !switchEnMap.eqOn
+                hoverEnabled: true
+                cursorShape:  Qt.PointingHandCursor
+                onClicked:
+                {
+                    if(!switchEnMap.eqOn)
+                    {
+                        switchEnMap.eqOn = true;
+                        _core.setValue("eq_on", switchEnMap.eqOn)
+                    }
+                }
+            }
+
             Eqs
             {
                 on: switchEnMap.eqOn
                 visible: !switchEnMap.map
-                MouseArea
-                {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape:  Qt.PointingHandCursor
-                    onClicked:
-                    {
-                        if(!switchEnMap.eqOn)
-                            switchEnMap.eqOn = true;
-                    }
-                }
             }
 
             Map
@@ -49,4 +54,15 @@ Item
             }
         }
     }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((nameParam.indexOf("eq_on")>=0))
+                switchEnMap.eqOn = value;
+        }
+    }
+
 }

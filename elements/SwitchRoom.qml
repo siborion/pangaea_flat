@@ -41,7 +41,7 @@ Item
                     {
                         text: "SHORT"
                         check: mSwitch.value==0
-                        onClicked: mSwitch.value = 0
+                        onClicked: {mSwitch.value = 0; _core.setValue("early_type", mSwitch.value)}
                         font.pixelSize: height/1.4
                         horizontalAlignment: Text.AlignLeft
                     }
@@ -55,7 +55,7 @@ Item
                     {
                         text: "MEDIUM"
                         check: mSwitch.value==1
-                        onClicked: mSwitch.value =1
+                        onClicked: {mSwitch.value = 1; _core.setValue("early_type", mSwitch.value)}
                         font.pixelSize: height/1.4
                     }
                 }
@@ -68,7 +68,7 @@ Item
                     {
                         text: "LONG"
                         check: mSwitch.value==2
-                        onClicked: mSwitch.value =2
+                        onClicked: {mSwitch.value = 2; _core.setValue("early_type", mSwitch.value)}
                         font.pixelSize: height/1.4
                         horizontalAlignment: Text.AlignRight
                     }

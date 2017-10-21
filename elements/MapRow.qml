@@ -39,10 +39,7 @@ Item
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked:
-                        {
-                            console.log((nomRow*10 + index))
-                        }
+                        onClicked: _core.setValue("set_preset", nomRow*10+index)
                         onEntered:
                         {
                         }
@@ -51,4 +48,10 @@ Item
             }
         }
     }
+
+    Connections
+    {
+        target: _core
+    }
+
 }

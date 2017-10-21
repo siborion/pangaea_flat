@@ -14,6 +14,8 @@ Item
     property int dispMin:   -15
     property int dispMax:   15
 
+    property string nameValue: ""
+
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
     property int dispValue: k1 + value*k2
@@ -90,10 +92,16 @@ Item
     {
         value = value<=valueMin?valueMin:value;
         value = value>=valueMax?valueMax:value;
+        _core.setValue(main.nameValue, main.value)
     }
 
     Connections
     {
         target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+                main.value=value;
+        }
     }
 }

@@ -128,4 +128,9 @@ Item
             }
         }
     }
+
+    function irEnable(val)
+    {
+        ir.setEnable(val)
+    }
 }
