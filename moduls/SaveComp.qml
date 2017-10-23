@@ -21,6 +21,11 @@ Item
                 MButton
                 {
                     text: "SAVE"
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("save", 0)
+                    }
                 }
             }
 
@@ -34,5 +39,10 @@ Item
                 }
             }
         }
+    }
+
+    Connections
+    {
+        target: _core
     }
 }

@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.5
+import QtQuick.Controls 2.1
 import "../elements/"
 
 Item
@@ -13,10 +13,15 @@ Item
     property bool on: common.on
     anchors.fill: parent
     id: main
+
+
+
     Rectangle
     {
         anchors.fill: parent
         color: devColor
+
+
         MouseArea
         {
             anchors.fill: parent
@@ -29,6 +34,8 @@ Item
                 _core.setValue(nameValue, main.on);
             }
         }
+
+
         Column
         {
             anchors.fill: parent
