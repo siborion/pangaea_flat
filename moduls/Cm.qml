@@ -23,7 +23,7 @@ Item
             onClicked:
             {
                 main.on = (!main.on);
-                _core.setValue(nameValue, main.on);
+                _core.setValue("compreccor_on", main.on);
             }
         }
         Column
@@ -98,7 +98,7 @@ Item
         target: _core
         onSgReadValue:
         {
-            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+            if((main.nameValue.length>0)&&(nameParam.localeCompare(main.nameValue)==0))
                 main.on=value
         }
     }

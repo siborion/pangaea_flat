@@ -11,6 +11,12 @@ ApplicationWindow
     width:  1104
     color: "#EBECEC"
     property int presetNom: head.presetNom
+    property string markEdit: ""
+    property string devName: ""
+    property string markConnect: "Disconnected"
+
+    title: qsTr("AMT Pangaea " + devName + " v.0.3.1637b "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+
     Column
     {
         anchors.fill: parent
@@ -56,8 +62,8 @@ ApplicationWindow
         onNo:       _core.setValue("set_preset_nom", saveParam) //_core.setPresetNom(saveParam)
         onVisibilityChanged:
         {
-//            mBank.keyDeactive();
-//            mPreset.keyDeactive();
+            //            mBank.keyDeactive();
+            //            mPreset.keyDeactive();
         }
     }
 
@@ -70,13 +76,17 @@ ApplicationWindow
             msg.text = str;
             msg.visible = true;
         }
-//        onSgSetEdit: wm.markEdit = setEdit ? " * " : "  ";
-//        onSgSetEnabled:  wm.compare = !val;
-
         onSgSaveWithParam:
         {
             msgSave.saveParam = inChangePreset;
             msgSave.visible = true;
+        }
+        onSgReadText:
+        {
+            if(nameParam.indexOf("open_port")==0)
+                markConnect = value;
+            if(nameParam.indexOf("close_port")==0)
+                markConnect = "Disconnected";
         }
     }
 }

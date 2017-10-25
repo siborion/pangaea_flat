@@ -38,7 +38,7 @@ Item
         anchors.left: parent.left
         text: "EQ"
         font.bold: true
-        font.pixelSize: parent.height/2.5
+        font.pixelSize: parent.height/2
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment:   Text.AlignVCenter
         color: eqOn?"Salmon":(main.map?devColor:fonColor)
@@ -90,7 +90,7 @@ Item
         anchors.right: parent.right
         text: "MAP"
         font.bold: true
-        font.pixelSize: parent.height/2.5
+        font.pixelSize: parent.height/2
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment:   Text.AlignVCenter
         color: main.map?fonColor:devColor
@@ -113,8 +113,8 @@ Item
         target: _core
         onSgReadValue:
         {
-            if((nameParam.indexOf("eq_on")>=0))
-                main.value=value;
+//            if((nameParam.indexOf("eq_on")>=0))
+//                main.value=value;
         }
     }
 }

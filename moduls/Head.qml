@@ -8,6 +8,8 @@ Item
     property string devColor: "#5E5971"
     property bool eqPost: (switchPostPre.value==0)
     property int  presetNom: bank.value*10+preset.value
+    property int  bank:   bank.value
+    property int  preset: preset.value
     signal setImpuls()
     anchors.fill: parent
     id: main
@@ -23,12 +25,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-            UpDown
-            {
-                anchors.fill: parent
-                onUp:   _core.slSaveWithParam(1) //bank.up()
-                onDown: _core.slSaveWithParam(2) //bank.down()
-            }
+//            UpDown
+//            {
+//                anchors.fill: parent
+//                onUp:   _core.slSaveWithParam(1) //bank.up()
+//                onDown: _core.slSaveWithParam(2) //bank.down()
+//            }
         }
 
         Item
@@ -77,11 +79,11 @@ Item
                 {
                     anchors.fill: parent
                     id: impulsTxt
-                    text: "txt"
+                    text: "empty"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment:   Text.AlignVCenter
                     font.bold: true
-                    font.pixelSize: 20
+                    font.pixelSize: parent.height/4
                     wrapMode: Text.Wrap
                 }
                 MouseArea
@@ -129,12 +131,12 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-            UpDown
-            {
-                anchors.fill: parent
-                onUp:   _core.slSaveWithParam(3) //bank.up()
-                onDown: _core.slSaveWithParam(4) //bank.down()
-            }
+//            UpDown
+//            {
+//                anchors.fill: parent
+//                onUp:   _core.slSaveWithParam(3) //bank.up()
+//                onDown: _core.slSaveWithParam(4) //bank.down()
+//            }
         }
     }
 

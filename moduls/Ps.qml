@@ -101,7 +101,7 @@ Item
         target: _core
         onSgReadValue:
         {
-            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
                 main.on=value
 
                 console.log(nameParam, value);

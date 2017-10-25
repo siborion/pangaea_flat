@@ -43,11 +43,20 @@ Item
                 MouseArea
                 {
                     anchors.fill: parent
-                    onWheel:
+                    onWheel: main.chValue(wheel.angleDelta.y>0);
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    onClicked:
                     {
-//                        tumb.currentIndex += (wheel.angleDelta.y/120);
-                        main.chValue(wheel.angleDelta.y>0);
-//                        console.log(wheel.angleDelta.y>0)
+                        if(mouse.button & Qt.LeftButton)
+                        {
+                            if(value<9)
+                                main.chValue(true);
+                        }
+                        else
+                        {
+                            if(value>0)
+                                main.chValue(false);
+                        }
                     }
                 }
             }
@@ -69,22 +78,22 @@ Item
         }
     }
 
-//    function up()
-//    {
-//        tumb.currentIndex++;
-//    }
+    //    function up()
+    //    {
+    //        tumb.currentIndex++;
+    //    }
 
-//    function down()
-//    {
-//        tumb.currentIndex--;
-//    }
+    //    function down()
+    //    {
+    //        tumb.currentIndex--;
+    //    }
 
     Connections
     {
         target: _core
         onSgReadValue:
         {
-            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
                 tumb.currentIndex=value;
         }
     }

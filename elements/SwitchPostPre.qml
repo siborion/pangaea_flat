@@ -9,6 +9,7 @@ Item
     property string devColor: "#5E5971"
     property int   value: mSwitch.value
     anchors.fill:  parent
+    property string nameValue: "eq_pre"
     
     Rectangle
     {
@@ -19,6 +20,13 @@ Item
     Column
     {
         anchors.fill:  parent
+
+        Item
+        {
+            width: parent.width
+            height: parent.height/100*5
+        }
+
         Item
         {
             width: parent.width
@@ -26,6 +34,7 @@ Item
             Switch2
             {
                 id:    mSwitch
+                onChValue: _core.setValue(main.nameValue, mSwitch.value)
             }
         }
 
@@ -44,7 +53,11 @@ Item
                     {
                         text: "POST"
                         check: mSwitch.value==0
-                        onClicked: mSwitch.value = 0
+                        onClicked:
+                        {
+                            mSwitch.value = 0;
+                            _core.setValue(main.nameValue, mSwitch.value)
+                        }
                     }
                 }
 
@@ -56,7 +69,11 @@ Item
                     {
                         text: "PRE"
                         check: mSwitch.value==1
-                        onClicked: mSwitch.value =1
+                        onClicked:
+                        {
+                            mSwitch.value = 1;
+                            _core.setValue(main.nameValue, mSwitch.value)
+                        }
                     }
                 }
             }
@@ -82,13 +99,19 @@ Item
         Item
         {
             width: parent.width
-            height: parent.height/100*20
+            height: parent.height/100*15
             Rectangle
             {
                 anchors.fill:  parent
                 color: devColor
             }
         }
-
     }
+
+    Connections
+    {
+        target: _core
+    }
+
+
 }

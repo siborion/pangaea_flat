@@ -9,6 +9,7 @@ Item
 
     property int value:     15
     property int valueLast: 0
+    property int valueLastSend: 0
     property int valueMin:  0
     property int valueMax:  31
     property int dispMin:   -15
@@ -56,6 +57,7 @@ Item
                 }
                 opacity: main.enabled?1:0.5
                 Behavior on opacity  {NumberAnimation { duration: 200 }}
+                Behavior on anchors.verticalCenterOffset {NumberAnimation { duration: 200 }}
             }
 
             MouseArea
@@ -92,7 +94,11 @@ Item
     {
         value = value<=valueMin?valueMin:value;
         value = value>=valueMax?valueMax:value;
-        _core.setValue(main.nameValue, main.value)
+        if(main.valueLastSend!=main.value)
+        {
+            _core.setValue(main.nameValue, main.value);
+            main.valueLastSend=main.value;
+        }
     }
 
     Connections
@@ -100,7 +106,7 @@ Item
         target: _core
         onSgReadValue:
         {
-            if((main.nameValue.length>0)&&(nameParam.indexOf(main.nameValue)>=0))
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
                 main.value=value;
         }
     }

@@ -21,6 +21,11 @@ Item
                 MButton
                 {
                     text: "COPY"
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("copy", 0)
+                    }
                 }
             }
 
@@ -31,6 +36,11 @@ Item
                 MButton
                 {
                     text: "PAST"
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("past", 0)
+                    }
                 }
             }
         }

@@ -36,6 +36,11 @@ Item
                 MButton
                 {
                     text: "COMP"
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("comp", 0)
+                    }
                 }
             }
         }
