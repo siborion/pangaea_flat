@@ -9,6 +9,7 @@ Item
     property int    value:     tumb.currentIndex
     property string text:  "TEXT"
     property string nameValue:  ""
+    property bool editable: true
     anchors.fill:  parent
     signal chValue(bool up)
 

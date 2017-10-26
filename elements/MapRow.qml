@@ -31,7 +31,7 @@ Item
                     width:  minSize/2
                     height: minSize/2
                     radius: minSize/2
-                    color: ((index*10+nomRow)==main.presetNom)?fonColor:devColor
+                    color: ((index*10+nomRow)==main.presetNom)?"Red":devColor
                     border.color: fonColor
                     border.width: 3
                     MouseArea
@@ -39,7 +39,7 @@ Item
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: _core.setValue("set_preset", nomRow+10*index)
+                        onClicked: _core.setValue("preset_set", nomRow+10*index)
                         onEntered:
                         {
                         }

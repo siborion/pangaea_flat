@@ -38,7 +38,7 @@ Item
         anchors.left: parent.left
         text: "EQ"
         font.bold: true
-        font.pixelSize: parent.height/2
+        font.pixelSize: parent.height/1.8
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment:   Text.AlignVCenter
         color: eqOn?"Salmon":(main.map?devColor:fonColor)
@@ -90,7 +90,7 @@ Item
         anchors.right: parent.right
         text: "MAP"
         font.bold: true
-        font.pixelSize: parent.height/2
+        font.pixelSize: parent.height/1.8
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment:   Text.AlignVCenter
         color: main.map?fonColor:devColor

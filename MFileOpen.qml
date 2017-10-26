@@ -67,7 +67,6 @@ Dialog
                         showHidden: true
                         nameFilters: ["*.wav"]
                         onFolderChanged:
-                            //                        onShowFilesChanged:
                         {
                             console.log("updateFolders");
                             if(msg.folderUp)

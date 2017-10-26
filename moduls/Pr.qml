@@ -62,6 +62,8 @@ Item
                     name: "HIGH"
                     checkable: false
                     nameValue: "preamp_high"
+                    valueMin: (-64)
+                    valueMax: (63)
                 }
             }
             Item
@@ -74,6 +76,8 @@ Item
                     name: "MID"
                     checkable: false
                     nameValue: "preamp_mid"
+                    valueMin: (-64)
+                    valueMax: (63)
                 }
             }
             Item
@@ -86,6 +90,8 @@ Item
                     name: "LOW"
                     checkable: false
                     nameValue: "preamp_low"
+                    valueMin: (-64)
+                    valueMax: (63)
                 }
             }
             Item

@@ -78,6 +78,10 @@ Item
                     name: "1k Hz 20k"
                     checkable: false
                     nameValue: "lpf_volume"
+                    valueMax:  195
+                    valueMin:  0
+                    dispMin:   1000
+                    dispMax:   20000
                 }
             }
             Item

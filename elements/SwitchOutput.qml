@@ -64,7 +64,7 @@ Item
                     height: parent.height
                     CheckText
                     {
-                        text: "BAT"
+                        text: "BAL"
                         check: mSwitch.value==2
                         onClicked: {mSwitch.value = 2; send();}
                     }

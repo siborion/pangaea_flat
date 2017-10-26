@@ -12,7 +12,7 @@ Item
         anchors.fill: parent
         Item
         {
-            height: parent.height/1000*80
+            height: parent.height/1000*72
             width:  parent.width
             SwitchEqMap
             {
@@ -22,7 +22,7 @@ Item
 
         Item
         {
-            height: parent.height/1000*920
+            height: parent.height/1000*928
             width:  parent.width
             MouseArea
             {

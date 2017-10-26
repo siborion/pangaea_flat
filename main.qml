@@ -11,9 +11,10 @@ ApplicationWindow
     width:  1104
     color: "#EBECEC"
     property int presetNom: head.presetNom
-    property string markEdit: ""
+    property string markEdit: " "
     property string devName: ""
     property string markConnect: "Disconnected"
+    property bool editable: false
 
     title: qsTr("AMT Pangaea " + devName + " v.0.3.1637b "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
@@ -29,6 +30,7 @@ ApplicationWindow
             {
                 id: head
                 onSetImpuls: msg.visible = true;
+                editable: main.editable
             }
         }
         Item
@@ -40,6 +42,7 @@ ApplicationWindow
                 id: moduls
                 eqPost: head.eqPost
                 presetNom: main.presetNom
+                enabled: editable
             }
         }
     }
@@ -58,13 +61,18 @@ ApplicationWindow
         property int saveParam: 0
         title: "Save preset"
         standardButtons: StandardButton.Save | StandardButton.No | StandardButton.Cancel
-        onAccepted: _core.setValue("save", saveParam)           //_core.slSave(saveParam)
-        onNo:       _core.setValue("set_preset_nom", saveParam) //_core.setPresetNom(saveParam)
+        onAccepted: _core.setValue("save_up_down", saveParam)
+        onNo:       _core.setValue("set_preset_nom", saveParam)
         onVisibilityChanged:
         {
             //            mBank.keyDeactive();
             //            mPreset.keyDeactive();
         }
+    }
+
+    MBusy
+    {
+        id: mBusy
     }
 
     Connections
@@ -83,14 +91,19 @@ ApplicationWindow
         }
         onSgReadText:
         {
-            if(nameParam.indexOf("open_port")==0)
+            if(nameParam==("open_port"))
                 markConnect = value;
-            if(nameParam.indexOf("close_port")==0)
+            if(nameParam==("close_port"))
                 markConnect = "Disconnected";
+        }
+        onSgReadValue:
+        {
+            if(nameParam==("preset_edit"))
+                markEdit = (value==1)?" * ":"   ";
+            if(nameParam==("wait"))
+                mBusy.busy = value;
+            if(nameParam=="editable")
+                main.editable=value
         }
     }
 }
-
-
-
-

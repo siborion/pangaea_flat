@@ -84,6 +84,9 @@ Item
                     name: "20 Hz 1k"
                     checkable: false
                     nameValue: "hpf_volume"
+                    valueMax: 255
+                    dispMin:   20
+                    dispMax:   1000
                 }
             }
             Item

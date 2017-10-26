@@ -111,7 +111,10 @@ Item
     Connections
     {
         target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+                mSwitch.value=value;
+        }
     }
-
-
 }

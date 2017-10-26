@@ -10,6 +10,7 @@ Item
     property int  presetNom: bank.value*10+preset.value
     property int  bank:   bank.value
     property int  preset: preset.value
+    property bool editable: true
     signal setImpuls()
     anchors.fill: parent
     id: main
@@ -25,12 +26,6 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-//            UpDown
-//            {
-//                anchors.fill: parent
-//                onUp:   _core.slSaveWithParam(1) //bank.up()
-//                onDown: _core.slSaveWithParam(2) //bank.down()
-//            }
         }
 
         Item
@@ -43,7 +38,8 @@ Item
                 anchors.fill: parent
                 text: "BANK"
                 nameValue: "bank"
-                onChValue: _core.slSaveWithParam(up?1:2)
+                onChValue:  _core.setValue("bank_change", up?1:0)
+                enabled: main.editable
             }
         }
 
@@ -63,6 +59,7 @@ Item
             SaveComp
             {
                 anchors.fill: parent
+                editable: main.editable
             }
         }
 
@@ -110,6 +107,7 @@ Item
             SwitchPostPre
             {
                 id: switchPostPre
+                enabled: main.editable
             }
         }
 
@@ -123,7 +121,8 @@ Item
                 anchors.fill: parent
                 text: "PRESET"
                 nameValue: "preset"
-                onChValue: _core.slSaveWithParam(up?3:4)
+                onChValue: _core.setValue("preset_change", up?1:0)
+                enabled: main.editable
             }
         }
 
@@ -131,12 +130,6 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
-//            UpDown
-//            {
-//                anchors.fill: parent
-//                onUp:   _core.slSaveWithParam(3) //bank.up()
-//                onDown: _core.slSaveWithParam(4) //bank.down()
-//            }
         }
     }
 
@@ -145,7 +138,7 @@ Item
         target: _core
         onSgReadText:
         {
-            if((nameParam.indexOf("impuls_name")>=0))
+            if (nameParam=="impulse_name")
                 impulsTxt.text=value;
         }
     }

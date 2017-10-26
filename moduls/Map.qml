@@ -12,6 +12,12 @@ Item
     {
         anchors.fill: parent
         color: devColor
+        MouseArea
+        {
+            anchors.fill: parent
+        }
+
+
         Item
         {
             height: parent.height/1.1

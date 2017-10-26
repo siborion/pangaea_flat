@@ -9,6 +9,7 @@ Item
     property string devColor: "#5E5971"
     property string text: text
     property int   value: 0
+    property bool  checked: false
     anchors.fill:  parent
 
     Rectangle
@@ -18,7 +19,7 @@ Item
         width:  parent.width/1.5
         height: width/2
         radius: height/2
-        color:  fonColor
+        color:  main.checked?"red":fonColor
         Text
         {
             anchors.fill:  parent
