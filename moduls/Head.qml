@@ -38,7 +38,7 @@ Item
                 anchors.fill: parent
                 text: "BANK"
                 nameValue: "bank"
-                onChValue:  _core.setValue("bank_change", up?1:0)
+                onChValue:  _core.setValue("bank_UpDown", up?1:0)
                 enabled: main.editable
             }
         }
@@ -121,7 +121,7 @@ Item
                 anchors.fill: parent
                 text: "PRESET"
                 nameValue: "preset"
-                onChValue: _core.setValue("preset_change", up?1:0)
+                onChValue: _core.setValue("preset_UpDown", up?1:0)
                 enabled: main.editable
             }
         }

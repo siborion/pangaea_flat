@@ -57,18 +57,23 @@ ApplicationWindow
 
     Dialog
     {
-        id : msgSave
+        id: msgPresetUpDownSave
         property int saveParam: 0
         title: "Save preset"
         standardButtons: StandardButton.Save | StandardButton.No | StandardButton.Cancel
         onAccepted: _core.setValue("save_up_down", saveParam)
-        onNo:       _core.setValue("set_preset_nom", saveParam)
-        onVisibilityChanged:
-        {
-            //            mBank.keyDeactive();
-            //            mPreset.keyDeactive();
-        }
+        onNo:       _core.setValue("set_preset_updown", saveParam)
     }
+    Dialog
+    {
+        id: msgPresetChangeSave
+        property int saveParam: 0
+        title: "Save preset"
+        standardButtons: StandardButton.Save | StandardButton.No | StandardButton.Cancel
+        onAccepted: _core.setValue("save_change", saveParam)
+        onNo:       _core.setValue("set_preset_change", saveParam)
+    }
+
 
     MBusy
     {
@@ -84,10 +89,15 @@ ApplicationWindow
             msg.text = str;
             msg.visible = true;
         }
-        onSgSaveWithParam:
+        onSgPresetUpDownStage1:
         {
-            msgSave.saveParam = inChangePreset;
-            msgSave.visible = true;
+            msgPresetUpDownSave.saveParam = inChangePreset;
+            msgPresetUpDownSave.visible = true;
+        }
+        onSgPresetChangeStage1:
+        {
+            msgPresetChangeSave.saveParam = inChangePreset;
+            msgPresetChangeSave.visible = true;
         }
         onSgReadText:
         {
