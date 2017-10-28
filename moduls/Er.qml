@@ -19,14 +19,11 @@ Item
         id: fon
         anchors.fill: parent
         clip: true
+        color: devColorDis
 
         Rectangle
         {
             id: colorRect
-            height: parent.height
-            width:  parent.width
-            x: parent.width/2
-            y: parent.height/2
             color: main.on?devColor:devColorDis
             transform: Translate
             {
@@ -49,7 +46,6 @@ Item
             }
         }
 
-
         MouseArea
         {
             anchors.fill: parent
@@ -59,15 +55,12 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue("early_on", main.on);
-
                 colorRect.x = mouseX
                 colorRect.y = mouseY
                 circleAnimation.start()
-
             }
-            onReleased: circleAnimation.stop()
-            onPositionChanged: circleAnimation.stop()
         }
+
         Column
         {
             anchors.fill: parent
@@ -144,5 +137,4 @@ Item
             }
         }
     }
-
 }
