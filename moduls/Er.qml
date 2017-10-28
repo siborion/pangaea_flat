@@ -12,10 +12,29 @@ Item
     property bool on: false
     anchors.fill: parent
     id: main
+
+
+
     Rectangle
     {
         anchors.fill: parent
         color: devColor
+        clip: true
+
+
+        Rectangle
+        {
+            id: click
+            color: "red"
+            height: 0
+            width: height
+            radius: height
+            anchors.centerIn: parent
+            Behavior on height {NumberAnimation { duration: 50 }}
+
+        }
+
+
         MouseArea
         {
             anchors.fill: parent
@@ -25,6 +44,7 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue("early_on", main.on);
+                click.height = 200
             }
         }
         Column        

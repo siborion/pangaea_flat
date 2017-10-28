@@ -11,6 +11,8 @@ Item
     property int  bank:   bank.value
     property int  preset: preset.value
     property bool editable: true
+    property bool edit: true
+    property bool irOn: true
     signal setImpuls()
     anchors.fill: parent
     id: main
@@ -60,6 +62,7 @@ Item
             {
                 anchors.fill: parent
                 editable: main.editable
+                edit: main.edit
             }
         }
 
@@ -88,6 +91,7 @@ Item
                     anchors.fill: parent
                     onClicked: main.setImpuls()
                 }
+                opacity: main.irOn?1:0.3
             }
         }
 

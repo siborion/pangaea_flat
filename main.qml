@@ -11,10 +11,12 @@ ApplicationWindow
     width:  1104
     color: "#EBECEC"
     property int presetNom: head.presetNom
-    property string markEdit: " "
+    property string markEdit: edit?" * ":" "
     property string devName: ""
     property string markConnect: "Disconnected"
-    property bool editable: false
+    property bool editable: true
+    property bool edit: false
+    property bool irOn: moduls.irOn
 
     title: qsTr("AMT Pangaea " + devName + " v.0.3.1637b "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
@@ -31,6 +33,8 @@ ApplicationWindow
                 id: head
                 onSetImpuls: msg.visible = true;
                 editable: main.editable
+                edit:     main.edit
+                irOn: main.irOn
             }
         }
         Item
@@ -109,9 +113,9 @@ ApplicationWindow
         onSgReadValue:
         {
             if(nameParam==("preset_edit"))
-                markEdit = (value==1)?" * ":"   ";
+                edit = value;
             if(nameParam==("wait"))
-                mBusy.busy = value;
+                mBusy.busy = false;//value;
             if(nameParam=="editable")
                 main.editable=value
         }

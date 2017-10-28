@@ -10,6 +10,8 @@ Item
     height: busy?(parent.height):0
     anchors.centerIn: parent
 
+
+
     BusyIndicator
     {
         id : bI
@@ -19,10 +21,7 @@ Item
         anchors.centerIn: parent
         onVisibleChanged:
         {
-            //            if(visible)
-            {
-                //                timer.start()
-            }
+
         }
     }
 
@@ -37,13 +36,4 @@ Item
         }
     }
 
-    Timer
-    {
-        id: timer
-        interval: 1000
-        onTriggered:
-        {
-            //            busy = false;
-        }
-    }
 }

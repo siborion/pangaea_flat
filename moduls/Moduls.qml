@@ -1,10 +1,12 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.1
 
+
 Item
 {
     id: main
     property bool eqPost: true
+    property bool irOn: ir.on
     anchors.fill: parent
     property int presetNom: 0
     Row

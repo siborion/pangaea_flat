@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property bool editable: true
+    property bool edit: true
     anchors.fill: parent
     Rectangle
     {
@@ -22,12 +23,12 @@ Item
                 MButton
                 {
                     text: "SAVE"
-                    enabled: editable
-                    opacity: editable?1:0.5
+                    enabled: main.editable & main.edit
+                    opacity: enabled?1:0.5
                     MouseArea
                     {
                         anchors.fill: parent
-                        onClicked: _core.setValue("save", 0)
+                        onClicked: _core.setValue("save_change", (-1)) //_core.setValue("save", 0)
                     }
                 }
             }
@@ -40,7 +41,9 @@ Item
                 {
                     id: bComp
                     text: "COMP"
+                    enabled:  main.edit
                     checked: !editable
+                    opacity: enabled?1:0.5
                     MouseArea
                     {
                         anchors.fill: parent
