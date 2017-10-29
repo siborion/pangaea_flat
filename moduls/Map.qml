@@ -15,8 +15,11 @@ Item
         MouseArea
         {
             anchors.fill: parent
+//            onClicked:
+//            {
+//                _core.setValue("map_update", true);
+//            }
         }
-
 
         Item
         {
@@ -46,7 +49,7 @@ Item
                             width:  parent.width
                             MapHeadPreset
                             {
-                                id: mapHeadPresent
+                                id: mapHeadPreset
                                 curVal: main.presetNom%10 //main.presetNom - (main.presetNom%10)*10
                             }
                         }
@@ -72,7 +75,15 @@ Item
                             MapHeadBank
                             {
                                 id: mapHeadBank
-                                curVal: (main.presetNom-mapHeadPresent.curVal)/10
+                                curVal: (main.presetNom-mapHeadPreset.curVal)/10
+                                MouseArea
+                                {
+                                    anchors.fill: parent
+                                    onClicked:
+                                    {
+                                        _core.setValue("map_update", true);
+                                    }
+                                }
                             }
                         }
 
@@ -91,13 +102,28 @@ Item
                                 anchors.fill: parent
                                 Repeater
                                 {
+                                    id: repeater
                                     model: 10
                                     Item
                                     {
+                                        id: iMapRow
                                         width: parent.width
                                         height: parent.height/10
+                                        function setOn(nomElement, on)
+                                        {
+                                            mapRow.setImpulsOn(nomElement, on)
+                                        }
+                                        function setEn(nomElement, en)
+                                        {
+                                            mapRow.setImpulsEn(nomElement, en)
+                                        }
+                                        function setName(nomElement, name)
+                                        {
+                                            mapRow.setImpulsName(nomElement, name)
+                                        }
                                         MapRow
                                         {
+                                            id: mapRow
                                             nomRow: index
                                             presetNom: main.presetNom
                                         }
@@ -108,6 +134,41 @@ Item
                     }
                 }
             }
+        }
+    }
+
+    function setEnImpuls(bank, preset, en)
+    {
+        repeater.itemAt(preset).setEn(bank, en);
+    }
+
+    function setEnImpulsName(bank, preset, name)
+    {
+        repeater.itemAt(preset).setName(bank, name);
+    }
+
+    function setImpulsOn(bank, preset, on)
+    {
+        repeater.itemAt(preset).setOn(bank, on);
+    }
+
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if(nameParam=="read_bank")
+                setEnImpuls(value%10, mapHeadPreset.curVal, (value/10)>=1);
+            if(nameParam=="read_preset")
+                setEnImpuls(mapHeadBank.curVal, value%10, (value/10)>=1);
+            if(nameParam=="cabinet_enable")
+                setImpulsOn(mapHeadBank.curVal, mapHeadPreset.curVal, value);
+        }
+        onSgReadText:
+        {
+            if (nameParam=="impulse_name")
+                setEnImpulsName(mapHeadBank.curVal, mapHeadPreset.curVal, value);
         }
     }
 }

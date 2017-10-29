@@ -32,7 +32,6 @@ Item
         colorRect.x = xM;
         colorRect.y = yM;
         circleAnimation.start();
-        console.log("start" , colorRect.x ,colorRect.y);
     }
 
     function stop()

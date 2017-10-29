@@ -113,12 +113,9 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
             {
-               main.on=value
-            fon.color= main.on?devColor:devColorDis
+                main.on=value
+                fon.color= main.on?devColor:devColorDis
             }
-
-            console.log(nameParam, value);
-
         }
     }
 }
