@@ -7,6 +7,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property string name:     "PA"
     property bool on: true
     property string nameValue: "amp_on"
@@ -14,8 +15,16 @@ Item
     anchors.fill: parent
     Rectangle
     {
+        id: fon
         anchors.fill: parent
         color: devColor
+        clip: true
+
+        Material
+        {
+            id: material
+        }
+
         MouseArea
         {
             anchors.fill: parent
@@ -25,6 +34,7 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue(nameValue, main.on);
+                material.start(mouseX, mouseY)
             }
         }
         Column
@@ -122,7 +132,10 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+            {
                 main.on=value
+                fon.color= main.on?devColor:devColorDis
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property string name:     "PS"
     property string nameValue: "presence_on"
     property bool on: false
@@ -15,8 +16,16 @@ Item
     id: main
     Rectangle
     {
+        id: fon
         anchors.fill: parent
-        color: devColor
+        color: devColorDis
+        clip: true
+
+        Material
+        {
+            id: material
+        }
+
         MouseArea
         {
             anchors.fill: parent
@@ -26,6 +35,7 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue(nameValue, main.on);
+                material.start(mouseX, mouseY)
             }
         }
         Column
@@ -102,9 +112,13 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
-                main.on=value
+            {
+               main.on=value
+            fon.color= main.on?devColor:devColorDis
+            }
 
-                console.log(nameParam, value);
+            console.log(nameParam, value);
+
         }
     }
 }
