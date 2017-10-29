@@ -18,37 +18,13 @@ Item
     {
         id: fon
         anchors.fill: parent
+        color: devColorDis
         clip: true
 
-        Rectangle
+        Material
         {
-            id: colorRect
-            height: parent.height
-            width:  parent.width
-            x: parent.width/2
-            y: parent.height/2
-            color: main.on?devColor:devColorDis
-            transform: Translate
-            {
-                x: -colorRect.width / 2
-                y: -colorRect.height / 2
-            }
+            id: material
         }
-
-        PropertyAnimation
-        {
-            id: circleAnimation
-            target: colorRect
-            properties: "width,height,radius"
-            from: 0
-            to: main.height*3
-            duration: 300
-            onStopped:
-            {
-                fon.color= main.on?devColor:devColorDis
-            }
-        }
-
 
         MouseArea
         {
@@ -59,15 +35,10 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue("early_on", main.on);
-
-                colorRect.x = mouseX
-                colorRect.y = mouseY
-                circleAnimation.start()
-
+                material.start(mouseX, mouseY)
             }
-            onReleased: circleAnimation.stop()
-            onPositionChanged: circleAnimation.stop()
         }
+
         Column
         {
             anchors.fill: parent
@@ -144,5 +115,4 @@ Item
             }
         }
     }
-
 }

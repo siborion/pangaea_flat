@@ -10,8 +10,6 @@ Item
     height: busy?(parent.height):0
     anchors.centerIn: parent
 
-
-
     BusyIndicator
     {
         id : bI
@@ -35,5 +33,4 @@ Item
 
         }
     }
-
 }
