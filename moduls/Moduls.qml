@@ -1,12 +1,14 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.5
+import QtQuick.Controls 2.1
+
 
 Item
 {
-    //    property bool on: false
-    property bool eqPost: true
-    anchors.fill: parent
     id: main
+    property bool eqPost: true
+    property bool irOn: ir.on
+    anchors.fill: parent
+    property int presetNom: 0
     Row
     {
         id: row
@@ -24,20 +26,22 @@ Item
         }
         Item
         {
-            id: iRm
+            id: iEr
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Rm
+            Er
             {
             }
         }
         Item
         {
-            id: iPr
+            id: iPs
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Pr
+            Ps
             {
+                id: ps
+                onChPresence: pa.setPresence(value)
             }
         }
         Item
@@ -51,13 +55,14 @@ Item
         }
         Item
         {
-            id: iEqs
+            id: iEqsMap
             height: parent.height
             width:  row.widthWithoutSpase/15*(eqPost?5:1)
-            Eqs
+            EqsMap
             {
-                id: eqs
-                parent: eqPost?iEqs:iF1
+                id: eqsMap
+                parent: eqPost?iEqsMap:iPr
+                presetNom: main.presetNom
             }
         }
 
@@ -69,7 +74,7 @@ Item
             Hp
             {
                 id: hp
-                parent: eqPost?iHp:iEqs
+                parent: eqPost?iHp:iEqsMap
             }
         }
         Item
@@ -92,25 +97,26 @@ Item
             {
                 id: pa
                 parent: eqPost?iPa:iIr
+                onChPresence: ps.setPresence(value)
             }
         }
         Item
         {
-            id: iF1
+            id: iPr
             height: parent.height
             width:  row.widthWithoutSpase/15*(eqPost?1:5)
-            F1
+            Pr
             {
-                id: f1
-                parent: eqPost?iF1:iPa
+                id: pr
+                parent: eqPost?iPr:iPa
             }
         }
         Item
         {
-            id: iCp
+            id: iCm
             height: parent.height
             width:  row.widthWithoutSpase/15
-            Cp
+            Cm
             {
             }
         }
@@ -123,5 +129,10 @@ Item
             {
             }
         }
+    }
+
+    function irEnable(val)
+    {
+        ir.setEnable(val)
     }
 }

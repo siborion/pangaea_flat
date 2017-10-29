@@ -7,6 +7,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "LP"
+    property string nameValue: "lpf_on"
 
     property bool on: false
     anchors.fill: parent
@@ -20,7 +21,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -72,6 +77,11 @@ Item
                     enabled: main.on
                     name: "1k Hz 20k"
                     checkable: false
+                    nameValue: "lpf_volume"
+                    valueMax:  195
+                    valueMin:  0
+                    dispMin:   1000
+                    dispMax:   20000
                 }
             }
             Item
@@ -79,6 +89,15 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+                main.on=value
         }
     }
 }

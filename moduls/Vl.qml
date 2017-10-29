@@ -8,20 +8,14 @@ Item
     property string devColor: "#5E5971"
     property string name:     "VL"
 
-    property bool on: false
+    property bool on: true
     anchors.fill: parent
     id: main
     Rectangle
     {
         anchors.fill: parent
         color: devColor
-        MouseArea
-        {
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
-        }
+
         Column
         {
             anchors.fill: parent
@@ -72,6 +66,7 @@ Item
                 {
                     enabled: main.on
                     name: "VOLUME"
+                    nameValue: "master_volume"
                     checkable: false
                 }
             }

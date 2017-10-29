@@ -8,6 +8,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property int   value: 0
+    signal chValue(int value)
+
     anchors.fill:  parent
 
     Rectangle
@@ -39,7 +41,7 @@ Item
                 width: parent.width/2
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onClicked: value=0
+                onClicked: {value=0; main.chValue(main.value);}
                 onWheel:   wheelChange(wheel.angleDelta.y);
             }
             MouseArea
@@ -48,7 +50,7 @@ Item
                 width: parent.width/2
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onClicked: value=1
+                onClicked: {value=1; main.chValue(main.value);}
                 onWheel:   wheelChange(wheel.angleDelta.y);
             }
         }
@@ -59,5 +61,6 @@ Item
             main.value++;
         if((angleDelta<0)&&(main.value>0))
             main.value--;
+        main.chValue(main.value)
     }
 }

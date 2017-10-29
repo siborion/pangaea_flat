@@ -6,9 +6,11 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string name:     "F1"
-
+    property string name:     "PS"
+    property string nameValue: "presence_on"
     property bool on: false
+    signal chPresence(int value)
+
     anchors.fill: parent
     id: main
     Rectangle
@@ -20,7 +22,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -47,9 +53,21 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*165
             }
             Item
             {
@@ -57,42 +75,12 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: presence
                     enabled: main.on
-                    name: "HIGH"
+                    name: "PRESENCE"
+                    nameValue: "presence_volume"
                     checkable: false
-                }
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
-                Dial
-                {
-                    enabled: main.on
-                    name: "MID"
-                    checkable: false
-                }
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
-                Dial
-                {
-                    enabled: main.on
-                    name: "LOW"
-                    checkable: false
-                }
-            }
-            Item
-            {
-                width:  parent.width
-                height: parent.height/1000*165
-                Dial
-                {
-                    enabled: main.on
-                    name: "VOLUME"
-                    checkable: false
+                    onChValue: main.chPresence(value)
                 }
             }
             Item
@@ -100,6 +88,23 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+
+    function setPresence(value)
+    {
+        presence.valueUpdateSoft(value);
+    }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+                main.on=value
+
+                console.log(nameParam, value);
         }
     }
 }

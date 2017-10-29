@@ -6,8 +6,9 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string name:     "CP"
+    property string name:     "CM"
     property bool on: false
+    property string nameValue: "compreccor_on"
     anchors.fill: parent
     id: main
     Rectangle
@@ -19,7 +20,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue("compreccor_on", main.on);
+            }
         }
         Column
         {
@@ -66,6 +71,7 @@ Item
                     enabled: main.on
                     name: "SUSTAIN"
                     checkable: false
+                    nameValue: "compreccor_sustein"
                 }
             }
             Item
@@ -77,6 +83,7 @@ Item
                     enabled: main.on
                     name: "VOLUME"
                     checkable: false
+                    nameValue: "compreccor_volume"
                 }
             }
             Item
@@ -84,6 +91,15 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam.localeCompare(main.nameValue)==0))
+                main.on=value
         }
     }
 }

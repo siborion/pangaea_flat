@@ -10,6 +10,7 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property int nomBand: 1
+    property bool on: false
 
     Rectangle
     {
@@ -23,13 +24,13 @@ Item
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*140
+                height: parent.height/1000*25
             }
 
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
+                height: parent.height/1000*185
                 Dial
                 {
                     checkable: false
@@ -37,22 +38,25 @@ Item
                     valueMin: -100
                     valueMax: 99
                     dispValue: Math.round(((value + 100) *0.1 + 0.11)*10)/10
+                    enabled: main.on
+                    nameValue: "eq_freq"+main.nomBand
                 }
 
             }
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*505
+                height: parent.height/1000*580
                 Pot
                 {
-
+                    enabled: main.on
+                    nameValue: "eq_volume"+main.nomBand
                 }
             }
             Item
             {
                 width:  parent.width
-                height: parent.height/1000*165
+                height: parent.height/1000*185
                 Dial
                 {
                     checkable: false
@@ -62,7 +66,8 @@ Item
                     valueMin: -100
                     valueMax: 100
                     dispValue: toolAdd + toolMult*value
-
+                    enabled: main.on
+                    nameValue: "eq_q"+main.nomBand
                 }
             }
             Item

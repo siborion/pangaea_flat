@@ -4,13 +4,14 @@ import "../elements/"
 
 Item
 {
+    id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string name:     "PA"
-
-    property bool on: false
+    property bool on: true
+    property string nameValue: "amp_on"
+    signal chPresence(int value)
     anchors.fill: parent
-    id: main
     Rectangle
     {
         anchors.fill: parent
@@ -20,7 +21,11 @@ Item
             anchors.fill: parent
             hoverEnabled: true
             cursorShape:  Qt.PointingHandCursor
-            onClicked: main.on = (!main.on);
+            onClicked:
+            {
+                main.on = (!main.on);
+                _core.setValue(nameValue, main.on);
+            }
         }
         Column
         {
@@ -68,6 +73,7 @@ Item
                     enabled: main.on
                     name: "VOLUME"
                     checkable: false
+                    nameValue: "amp_volume"
                 }
             }
             Item
@@ -76,9 +82,12 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: presence
                     enabled: main.on
                     name: "PRESENCE"
+                    nameValue: "presence_volume"
                     checkable: false
+                    onChValue: main.chPresence(value)
                 }
             }
             Item
@@ -87,9 +96,11 @@ Item
                 height: parent.height/1000*165
                 Dial
                 {
+                    id: slave
                     enabled: main.on
                     name: "SLAVE"
                     checkable: false
+                    nameValue: "amp_slave"
                 }
             }
             Item
@@ -97,6 +108,21 @@ Item
                 width:  parent.width
                 height: parent.height/1000*25
             }
+        }
+    }
+
+    function setPresence(value)
+    {
+        presence.valueUpdateSoft(value);
+    }
+
+    Connections
+    {
+        target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+                main.on=value
         }
     }
 }

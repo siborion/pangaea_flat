@@ -6,6 +6,8 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property bool editable: true
+    property bool edit: true
     anchors.fill: parent
     Rectangle
     {
@@ -21,6 +23,13 @@ Item
                 MButton
                 {
                     text: "SAVE"
+                    enabled: main.editable & main.edit
+                    opacity: enabled?1:0.5
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("save_change", (-1)) //_core.setValue("save", 0)
+                    }
                 }
             }
 
@@ -30,9 +39,23 @@ Item
                 height: parent.height/2
                 MButton
                 {
+                    id: bComp
                     text: "COMP"
+                    enabled:  main.edit
+                    checked: !editable
+                    opacity: enabled?1:0.5
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("comp", 0)
+                    }
                 }
             }
         }
+    }
+
+    Connections
+    {
+        target: _core
     }
 }

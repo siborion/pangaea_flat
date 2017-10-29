@@ -9,10 +9,13 @@ Item
 
     property int value:     15
     property int valueLast: 0
+    property int valueLastSend: 0
     property int valueMin:  0
     property int valueMax:  31
     property int dispMin:   -15
     property int dispMax:   15
+
+    property string nameValue: ""
 
     property double k2: (dispMin-dispMax)/(valueMin-valueMax)
     property double k1:  dispMin-(valueMin*k2)
@@ -42,7 +45,6 @@ Item
                 width:  parent.width*0.7
                 height: parent.width*0.7/2
                 radius: parent.width*0.2
-
                 color: fonColor
                 Text
                 {
@@ -53,6 +55,9 @@ Item
                     font.pixelSize: parent.height/2.5
                     text: dispValue
                 }
+                opacity: main.enabled?1:0.5
+                Behavior on opacity  {NumberAnimation { duration: 200 }}
+                Behavior on anchors.verticalCenterOffset {NumberAnimation { duration: 200 }}
             }
 
             MouseArea
@@ -89,10 +94,20 @@ Item
     {
         value = value<=valueMin?valueMin:value;
         value = value>=valueMax?valueMax:value;
+        if(main.valueLastSend!=main.value)
+        {
+            _core.setValue(main.nameValue, main.value);
+            main.valueLastSend=main.value;
+        }
     }
 
     Connections
     {
         target: _core
+        onSgReadValue:
+        {
+            if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+                main.value=value;
+        }
     }
 }

@@ -16,7 +16,7 @@ Item
         anchors.horizontalCenter: parent.horizontalCenter
         font.family: "Arial Black"
         font.bold: true
-        font.pixelSize: 16
+        font.pixelSize: parent.height/1.7
         color: on?"salmon":fonColor
         text: header
 //        MouseArea

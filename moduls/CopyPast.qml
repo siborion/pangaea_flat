@@ -21,6 +21,13 @@ Item
                 MButton
                 {
                     text: "COPY"
+                    enabled: editable
+                    opacity: editable?1:0.5
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("copy", 0)
+                    }
                 }
             }
 
@@ -31,6 +38,13 @@ Item
                 MButton
                 {
                     text: "PAST"
+                    enabled: editable
+                    opacity: editable?1:0.5
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked: _core.setValue("past", 0)
+                    }
                 }
             }
         }
