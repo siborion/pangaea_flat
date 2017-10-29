@@ -21,28 +21,29 @@ Item
         clip: true
         color: devColorDis
 
-        Rectangle
+        Item
         {
-            id: colorRect
-            color: main.on?devColor:devColorDis
-            transform: Translate
+            anchors.fill: parent
+            Rectangle
             {
-                x: -colorRect.width / 2
-                y: -colorRect.height / 2
+                id: colorRect
+                color: main.on?devColor:devColorDis
+                transform: Translate
+                {
+                    x: -colorRect.width / 2
+                    y: -colorRect.height / 2
+                }
             }
-        }
 
-        PropertyAnimation
-        {
-            id: circleAnimation
-            target: colorRect
-            properties: "width,height,radius"
-            from: 0
-            to: main.height*3
-            duration: 300
-            onStopped:
+            PropertyAnimation
             {
-                fon.color= main.on?devColor:devColorDis
+                id: circleAnimation
+                target: colorRect
+                properties: "width,height,radius"
+                from: 0
+                to: main.height*3
+                duration: 300
+                onStopped: fon.color= main.on?devColor:devColorDis
             }
         }
 

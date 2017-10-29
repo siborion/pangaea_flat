@@ -16,6 +16,7 @@ ApplicationWindow
     property string markConnect: "Disconnected"
     property bool editable: true
     property bool edit: false
+    property bool wait: false
     property bool irOn: moduls.irOn
 
     title: qsTr("AMT Pangaea " + devName + " v.0.3.1637b "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
@@ -32,7 +33,7 @@ ApplicationWindow
             {
                 id: head
                 onSetImpuls: msg.visible = true;
-                editable: main.editable
+                editable: main.editable & (!main.wait)
                 edit:     main.edit
                 irOn: main.irOn
             }
@@ -46,7 +47,7 @@ ApplicationWindow
                 id: moduls
                 eqPost: head.eqPost
                 presetNom: main.presetNom
-                enabled: editable
+                enabled: editable & (!main.wait)
             }
         }
     }
@@ -82,6 +83,7 @@ ApplicationWindow
     MBusy
     {
         id: mBusy
+        busy: main.wait
     }
 
     Connections
@@ -115,7 +117,7 @@ ApplicationWindow
             if(nameParam==("preset_edit"))
                 edit = value;
             if(nameParam==("wait"))
-                mBusy.busy = false;//value;
+                wait = value; //mBusy.busy = value;
             if(nameParam=="editable")
                 main.editable=value
         }
