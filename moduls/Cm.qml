@@ -6,6 +6,7 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property string name:     "CM"
     property bool on: false
     property string nameValue: "compreccor_on"
@@ -13,8 +14,16 @@ Item
     id: main
     Rectangle
     {
+        id: fon
         anchors.fill: parent
         color: devColor
+        clip: true
+
+        Material
+        {
+            id: material
+        }
+
         MouseArea
         {
             anchors.fill: parent
@@ -24,6 +33,7 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue("compreccor_on", main.on);
+                material.start(mouseX, mouseY)
             }
         }
         Column
@@ -99,7 +109,10 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam.localeCompare(main.nameValue)==0))
+            {
                 main.on=value
+                fon.color= main.on?devColor:devColorDis
+            }
         }
     }
 }

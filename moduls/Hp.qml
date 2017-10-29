@@ -6,16 +6,24 @@ Item
 {
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property string name:     "HP"
     property string nameValue: "hpf_on"
-
     property bool on: false
     anchors.fill: parent
     id: main
     Rectangle
     {
+        id: fon
         anchors.fill: parent
-        color: devColor
+        color: devColorDis
+        clip: true
+
+        Material
+        {
+            id: material
+        }
+
         MouseArea
         {
             anchors.fill: parent
@@ -25,6 +33,7 @@ Item
             {
                 main.on = (!main.on);
                 _core.setValue(nameValue, main.on);
+                material.start(mouseX, mouseY)
             }
         }
         Column
@@ -52,17 +61,17 @@ Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
+                //                Dial
+                //                {
+                //                }
             }
             Item
             {
                 width:  parent.width
                 height: parent.height/1000*165
-//                Dial
-//                {
-//                }
+                //                Dial
+                //                {
+                //                }
             }
             Item
             {
@@ -102,7 +111,10 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
+            {
                 main.on=value
+                fon.color= main.on?devColor:devColorDis
+            }
         }
     }
 }
