@@ -119,7 +119,8 @@ Item
             {
                 main.on=value;
                 switchIr.setValue(main.on==0);
-                material.start(mouseX, mouseY)
+                fon.color= main.on?devColor:devColorDis
+//                material.start(mouseX, mouseY)
                 //setEnable(value)
             }
         }

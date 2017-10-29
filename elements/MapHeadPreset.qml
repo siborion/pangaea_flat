@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property int curVal: -1
     anchors.fill: parent
     Row
     {
@@ -59,7 +60,7 @@ Item
                             horizontalAlignment: Qt.AlignHCenter
                             verticalAlignment:   Qt.AlignVCenter
                             text: index
-                            color: fonColor
+                            color: index==curVal?"Salmon":fonColor
                             font.bold: true
                             font.pixelSize: parent.width/1.5
                         }

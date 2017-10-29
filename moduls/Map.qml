@@ -46,6 +46,7 @@ Item
                             width:  parent.width
                             MapHeadPreset
                             {
+                                curVal: main.presetNom - (main.presetNom%10)*10
                             }
                         }
                     }
@@ -69,6 +70,7 @@ Item
                             height: parent.height/11*1
                             MapHeadBank
                             {
+                                curVal: main.presetNom/10
                             }
                         }
 

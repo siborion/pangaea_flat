@@ -31,8 +31,8 @@ Item
                     width:  minSize/2
                     height: minSize/2
                     radius: minSize/2
-                    color: ((index*10+nomRow)==main.presetNom)?"Red":devColor
-                    border.color: fonColor
+                    color: index==nomRow?"Salmon":devColor
+                    border.color: ((index*10+nomRow)==main.presetNom)?"Salmon":fonColor
                     border.width: 3
                     MouseArea
                     {
