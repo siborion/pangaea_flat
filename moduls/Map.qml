@@ -15,10 +15,6 @@ Item
         MouseArea
         {
             anchors.fill: parent
-//            onClicked:
-//            {
-//                _core.setValue("map_update", true);
-//            }
         }
 
         Item
@@ -47,10 +43,10 @@ Item
                         {
                             height: parent.height/11*10
                             width:  parent.width
-                            MapHeadPreset
+                            MapHeadBank
                             {
-                                id: mapHeadPreset
-                                curVal: main.presetNom%10 //main.presetNom - (main.presetNom%10)*10
+                                id: mapHeadBank
+                                curVal: (main.presetNom-mapHeadPreset.curVal)/10
                             }
                         }
                     }
@@ -62,9 +58,6 @@ Item
                     height: parent.height
                     width:  parent.width/11*10
 
-
-
-
                     Column
                     {
                         anchors.fill: parent
@@ -72,17 +65,14 @@ Item
                         {
                             width:  parent.width
                             height: parent.height/11*1
-                            MapHeadBank
+                            MapHeadPreset
                             {
-                                id: mapHeadBank
-                                curVal: (main.presetNom-mapHeadPreset.curVal)/10
+                                id: mapHeadPreset
+                                curVal: main.presetNom%10
                                 MouseArea
                                 {
                                     anchors.fill: parent
-                                    onClicked:
-                                    {
-                                        _core.setValue("map_update", true);
-                                    }
+                                    onClicked: _core.setValue("map_update", true);
                                 }
                             }
                         }
@@ -159,16 +149,16 @@ Item
         onSgReadValue:
         {
             if(nameParam=="read_bank")
-                setEnImpuls(value%10, mapHeadPreset.curVal, (value/10)>=1);
+                setEnImpuls(mapHeadPreset.curVal, value%10, (value/10)>=1);
             if(nameParam=="read_preset")
-                setEnImpuls(mapHeadBank.curVal, value%10, (value/10)>=1);
+                setEnImpuls(value%10, mapHeadBank.curVal, (value/10)>=1);
             if(nameParam=="cabinet_enable")
-                setImpulsOn(mapHeadBank.curVal, mapHeadPreset.curVal, value);
+                setImpulsOn(mapHeadPreset.curVal, mapHeadBank.curVal, value);
         }
         onSgReadText:
         {
             if (nameParam=="impulse_name")
-                setEnImpulsName(mapHeadBank.curVal, mapHeadPreset.curVal, value);
+                setEnImpulsName(mapHeadPreset.curVal, mapHeadBank.curVal, value);
         }
     }
 }

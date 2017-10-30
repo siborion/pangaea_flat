@@ -47,14 +47,14 @@ Item
                     height: minSize/2
                     radius: minSize/2
                     color: impulsEn?(on?"Salmon":"Bisque"):devColor//index==nomRow?"Salmon":devColor
-                    border.color: ((index*10+nomRow)==main.presetNom)?"Salmon":fonColor
+                    border.color: ((index+nomRow*10)==main.presetNom)?"Salmon":fonColor
                     border.width: 3
                     MouseArea
                     {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked:   _core.setValue("preset_change", nomRow+10*index)
+                        onClicked:   _core.setValue("preset_change", nomRow*10+index)
                         onEntered: tp.visible = true
                         onExited:  tp.visible = false
                     }
