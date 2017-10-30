@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property bool copyFirst: false
     anchors.fill: parent
     Rectangle
     {
@@ -26,7 +27,7 @@ Item
                     MouseArea
                     {
                         anchors.fill: parent
-                        onClicked: _core.setValue("copy", 0)
+                        onClicked: {_core.setValue("copy", 0); copyFirst=true;}
                     }
                 }
             }
@@ -38,8 +39,8 @@ Item
                 MButton
                 {
                     text: "PAST"
-                    enabled: editable
-                    opacity: editable?1:0.5
+                    enabled: editable & copyFirst
+                    opacity: enabled?1:0.5
                     MouseArea
                     {
                         anchors.fill: parent
