@@ -23,12 +23,7 @@ Item
                 {
                     text: "COPY"
                     enabled: editable
-                    opacity: editable?1:0.5
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        onClicked: {_core.setValue("copy", 0); copyFirst=true;}
-                    }
+                    onClicked: {_core.setValue("copy", 0); copyFirst=true;}
                 }
             }
 
@@ -40,12 +35,7 @@ Item
                 {
                     text: "PAST"
                     enabled: editable & copyFirst
-                    opacity: enabled?1:0.5
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        onClicked: _core.setValue("past", 0)
-                    }
+                    onClicked: _core.setValue("past", 0)
                 }
             }
         }

@@ -10,6 +10,7 @@ Item
     property string text: text
     property int   value: 0
     property bool  checked: false
+    signal clicked();
     anchors.fill:  parent
 
     Rectangle
@@ -19,7 +20,14 @@ Item
         width:  parent.width/1.5
         height: width/2
         radius: height/2
-        color:  main.checked?"red":fonColor
+        color:  main.checked?"Salmon":fonColor
+        clip: true
+
+        MaterialButton
+        {
+            id: material
+        }
+
         Text
         {
             anchors.fill:  parent
@@ -30,13 +38,15 @@ Item
             verticalAlignment:   Text.AlignVCenter
             text: main.text
             color: devColor
+            opacity: main.enabled?1:0.3
+            Behavior on opacity  {NumberAnimation { duration:500 }}
         }
         MouseArea
         {
             anchors.fill:  parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: value=0
+            onClicked: {main.clicked(); material.start(mouseX, mouseY);}
         }
     }
 }

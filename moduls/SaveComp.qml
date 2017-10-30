@@ -24,12 +24,8 @@ Item
                 {
                     text: "SAVE"
                     enabled: main.editable & main.edit
-                    opacity: enabled?1:0.5
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        onClicked: _core.setValue("save_change", (-1)) //_core.setValue("save", 0)
-                    }
+//                    opacity: enabled?1:0.5
+                    onClicked: _core.setValue("save_change", (-1))
                 }
             }
 
@@ -42,13 +38,7 @@ Item
                     id: bComp
                     text: "COMP"
                     enabled:  main.edit
-                    checked: !editable
-                    opacity: enabled?1:0.5
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        onClicked: _core.setValue("comp", 0)
-                    }
+                    onClicked: {bComp.checked = main.editable; _core.setValue("comp", 0);}
                 }
             }
         }
