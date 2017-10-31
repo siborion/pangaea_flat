@@ -158,7 +158,10 @@ Item
         onSgReadText:
         {
             if (nameParam=="impulse_name")
+            {
                 setEnImpulsName(mapHeadPreset.curVal, mapHeadBank.curVal, value);
+                setEnImpuls(mapHeadPreset.curVal, mapHeadBank.curVal, value!="empty");
+            }
         }
     }
 }

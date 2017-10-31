@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property bool   map: false
     property bool   eqOn: false
     anchors.fill:  parent
@@ -19,8 +20,8 @@ Item
         {
             var ctx = getContext("2d")
             ctx.lineWidth = 4
-            ctx.strokeStyle = devColor
-            ctx.fillStyle =   devColor
+            ctx.strokeStyle = eqOn?devColor:devColorDis
+            ctx.fillStyle =   eqOn?devColor:devColorDis
             ctx.beginPath()
             ctx.moveTo(0,            0)
             ctx.lineTo(parent.width/2-parent.width/30, 0)
@@ -55,8 +56,8 @@ Item
                 {
                     eqOn ^= 1;
                     _core.setValue("eq_on", eqOn);
+                    eqCanvas.requestPaint();
                 }
-
             }
         }
     }

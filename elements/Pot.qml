@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
 
     property int value:     15
     property int valueLast: 0
@@ -27,7 +28,7 @@ Item
     {
         anchors.centerIn: parent
         anchors.fill: parent
-        color: devColor
+        color: main.enabled?devColor:devColorDis
 
         Rectangle
         {
@@ -35,7 +36,7 @@ Item
             anchors.centerIn: parent
             width:  parent.width
             height: parent.height*0.8
-            color: devColor
+            color: main.enabled?devColor:devColorDis
 
             Rectangle
             {

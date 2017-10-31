@@ -101,10 +101,10 @@ Item
         }
     }
 
-    function setPresence(value)
-    {
-        presence.valueUpdateSoft(value);
-    }
+//    function setPresence(value)
+//    {
+//        presence.valueUpdateSoft(value);
+//    }
 
     Connections
     {

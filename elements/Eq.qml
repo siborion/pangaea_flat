@@ -9,6 +9,7 @@ Item
     property string dialFreq: "20 Hz 220"
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property int nomBand: 1
     property bool on: false
 
@@ -16,7 +17,7 @@ Item
     {
         id: common
         anchors.fill: parent
-        color: devColor
+        color: main.on?devColor:devColorDis
 
         Column
         {

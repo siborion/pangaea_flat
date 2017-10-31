@@ -13,8 +13,6 @@ Item
     anchors.fill: parent
     id: main
 
-
-
     Rectangle
     {
         id: fon
@@ -92,7 +90,6 @@ Item
                     id: switchIr
                     enabled: main.on
                     onChValue: main.on = (value==0)
-
                 }
             }
             Item
@@ -102,13 +99,6 @@ Item
             }
         }
     }
-
-    function setEnable(val)
-    {
-        main.on=val;
-        switchIr.setValue(main.on==0);
-    }
-
 
     Connections
     {
