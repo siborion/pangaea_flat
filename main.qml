@@ -116,7 +116,10 @@ ApplicationWindow
         onSgReadText:
         {
             if(nameParam==("open_port"))
+            {
                 markConnect = value;
+                msgAnswerError.close();
+            }
             if(nameParam==("close_port"))
             {
                 markConnect = "Disconnected";
