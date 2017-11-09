@@ -103,8 +103,9 @@ Item
             onClicked:
             {
                 main.map=true;
-                mapCanvas.requestPaint();
-                eqCanvas.requestPaint();
+                redraw();
+//                mapCanvas.requestPaint();
+//                eqCanvas.requestPaint();
             }
         }
     }
@@ -117,5 +118,11 @@ Item
 //            if((nameParam.indexOf("eq_on")>=0))
 //                main.value=value;
         }
+    }
+
+    function redraw()
+    {
+        mapCanvas.requestPaint();
+        eqCanvas.requestPaint();
     }
 }

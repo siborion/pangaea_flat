@@ -3,13 +3,16 @@ import QtQuick.Controls 1.3
 import QtQuick.Dialogs 1.2
 import "moduls/"
 
+
+
 ApplicationWindow
+//Item
 {
     id: main
     visible: true
     height: 520
     width:  1104
-    color: "#EBECEC"
+    //    color: "#EBECEC"
     property int presetNom: head.presetNom
     property string markEdit: edit?" * ":" "
     property string devName: ""
@@ -18,8 +21,8 @@ ApplicationWindow
     property bool edit: false
     property bool wait: false
     property bool irOn: moduls.irOn
-
-    title: qsTr("AMT Pangaea " + devName + " v.0.3.1637b "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    //    property string
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1661a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -79,6 +82,11 @@ ApplicationWindow
         onNo:       _core.setValue("set_preset_change", saveParam)
     }
 
+    Dialog
+    {
+        id: msgAnswerError
+        standardButtons: StandardButton.Ok
+    }
 
     MBusy
     {
@@ -110,7 +118,16 @@ ApplicationWindow
             if(nameParam==("open_port"))
                 markConnect = value;
             if(nameParam==("close_port"))
+            {
                 markConnect = "Disconnected";
+                msgAnswerError.title = markConnect
+                msgAnswerError.visible = true;
+            }
+            if(nameParam==("no_answer"))
+            {
+                msgAnswerError.title = "Answer error \""+value+"\""
+                msgAnswerError.visible = true;
+            }
         }
         onSgReadValue:
         {
@@ -123,3 +140,4 @@ ApplicationWindow
         }
     }
 }
+

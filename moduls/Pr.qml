@@ -74,6 +74,8 @@ Item
                     nameValue: "preamp_high"
                     valueMin: (-64)
                     valueMax: (63)
+                    dispMin:  (-64)
+                    dispMax:  (63)
                 }
             }
             Item
@@ -88,6 +90,8 @@ Item
                     nameValue: "preamp_mid"
                     valueMin: (-64)
                     valueMax: (63)
+                    dispMin:  (-64)
+                    dispMax:  (63)
                 }
             }
             Item
@@ -102,6 +106,8 @@ Item
                     nameValue: "preamp_low"
                     valueMin: (-64)
                     valueMax: (63)
+                    dispMin:  (-64)
+                    dispMax:  (63)
                 }
             }
             Item

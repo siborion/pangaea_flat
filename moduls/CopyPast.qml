@@ -33,7 +33,7 @@ Item
                 height: parent.height/2
                 MButton
                 {
-                    text: "PAST"
+                    text: "PASTE"
                     enabled: editable & copyFirst
                     onClicked: _core.setValue("past", 0)
                 }

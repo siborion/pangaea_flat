@@ -4,6 +4,7 @@ import Qt.labs.folderlistmodel 2.1
 import QtQuick.Controls 1.4
 import "qrc:/qml/elements"
 
+
 Dialog
 {
     width:  800

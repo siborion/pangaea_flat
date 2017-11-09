@@ -34,7 +34,7 @@ Item
             {
                 text:  "PP EL34"
                 check: (value==1)
-                onClicked: {main.value=1; core.setValue(main.nameValue, main.value)}
+                onClicked: {main.value=1; _core.setValue(main.nameValue, main.value)}
                 onWheel: wheelChange(angleDelta);
             }
         }

@@ -35,7 +35,8 @@ Item
                     if(!switchEnMap.eqOn)
                     {
                         switchEnMap.eqOn = true;
-                        _core.setValue("eq_on", switchEnMap.eqOn)
+                        _core.setValue("eq_on", switchEnMap.eqOn);
+                        switchEnMap.redraw();
                     }
                 }
             }
@@ -61,7 +62,10 @@ Item
         onSgReadValue:
         {
             if((nameParam.indexOf("eq_on")>=0))
+            {
                 switchEnMap.eqOn = value;
+                switchEnMap.redraw();
+            }
         }
     }
 

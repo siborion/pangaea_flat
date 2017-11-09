@@ -6,7 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
-    property string devColorDis: "#7E7991"
+//    property string devColorDis: "#7E7991"
 
     property int value:     15
     property int valueLast: 0
@@ -24,19 +24,21 @@ Item
 
     anchors.fill: parent
 
-    Rectangle
+    Item
     {
         anchors.centerIn: parent
         anchors.fill: parent
-        color: main.enabled?devColor:devColorDis
+//        color:   devColor  //main.enabled?devColor:devColorDis
+//        opacity: main.enabled?1:0.5
 
-        Rectangle
+        Item
         {
             id: valueArea
             anchors.centerIn: parent
             width:  parent.width
             height: parent.height*0.8
-            color: main.enabled?devColor:devColorDis
+//            color: devColor //main.enabled?devColor:devColorDis
+//            opacity: main.enabled?1:0.5
 
             Rectangle
             {
