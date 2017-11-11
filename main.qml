@@ -140,6 +140,17 @@ ApplicationWindow
                 wait = value; //mBusy.busy = value;
             if(nameParam=="editable")
                 main.editable=value
+
+            if(nameParam==("type_dev"))
+            {
+                switch (value)
+                {
+                case 1: devName = "CP-100";  break;
+                case 2: devName = "CP-16M";  break;
+                case 3: devName = "CP-16PA"; break;
+                case 3: devName = "CP-100PA"; break;
+                }
+            }
         }
     }
 }

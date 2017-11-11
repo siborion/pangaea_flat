@@ -69,11 +69,6 @@ Item
                             {
                                 id: mapHeadPreset
                                 curVal: main.presetNom%10
-                                MouseArea
-                                {
-                                    anchors.fill: parent
-                                    onClicked: _core.setValue("map_update", true);
-                                }
                             }
                         }
 
