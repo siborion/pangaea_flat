@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.5
+import QtQuick.Controls 2.2
 import "../elements/"
 
 Item
@@ -37,6 +37,20 @@ Item
                 _core.setValue("early_on", main.on);
                 material.start(mouseX, mouseY)
             }
+//            onEntered:
+//            {
+//                toolTip.x = mouseX;
+//                toolTip.y = mouseY;
+//                toolTip.visible = true;
+//            }
+//            ToolTip
+//            {
+//                id: toolTip
+//                visible: false
+//                timeout: 500
+//                parent: parent
+//                text:   "Early Reflection"
+//            }
         }
 
         Column

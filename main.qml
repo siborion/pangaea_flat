@@ -22,7 +22,7 @@ ApplicationWindow
     property bool wait: false
     property bool irOn: moduls.irOn
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1661a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1663a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -148,10 +148,17 @@ ApplicationWindow
                 case 1: devName = "CP-100";  break;
                 case 2: devName = "CP-16M";  break;
                 case 3: devName = "CP-16PA"; break;
-                case 3: devName = "CP-100PA"; break;
+                case 4: devName = "CP-100PA"; break;
                 }
             }
         }
+    }
+
+    onClosing:
+    {
+        close.accepted = false;
+        console.log("Close");
+        Qt.quit();
     }
 }
 

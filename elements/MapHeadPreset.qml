@@ -65,7 +65,6 @@ Item
                 {
                     id: toolTip
                     visible: false
-//                    delay: 1000
                     timeout: 1000
                     parent: parent
                     text:   "Refresh Map"
