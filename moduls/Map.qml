@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property int maxMapRow: 10
     anchors.fill: parent
     property int presetNom: 0
     Rectangle
@@ -111,6 +112,7 @@ Item
                                             id: mapRow
                                             nomRow: index
                                             presetNom: main.presetNom
+                                            enabled: (index<main.maxMapRow)
                                         }
                                     }
                                 }
@@ -149,6 +151,16 @@ Item
                 setEnImpuls(value%10, mapHeadBank.curVal, (value/10)>=1);
             if(nameParam=="cabinet_enable")
                 setImpulsOn(mapHeadPreset.curVal, mapHeadBank.curVal, value);
+            if(nameParam==("type_dev"))
+            {
+                switch (value)
+                {
+                case 1: maxMapRow = 10;  break;
+                case 2: maxMapRow = 4;  break;
+                case 3: maxMapRow = 4; break;
+                case 4: maxMapRow = 10; break;
+                }
+            }
         }
         onSgReadText:
         {

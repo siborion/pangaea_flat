@@ -6,6 +6,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property int maxMapColumn: 10
     property int nomRow:0
     anchors.fill: parent
     property int presetNom: 0
@@ -24,6 +25,7 @@ Item
                 height: main.height
 
                 function setImpulsEn(en)
+
                 {
                     preset.impulsEn = en;
                 }
@@ -49,6 +51,8 @@ Item
                     color: impulsEn?(on?"Salmon":"Bisque"):devColor//index==nomRow?"Salmon":devColor
                     border.color: ((index+nomRow*10)==main.presetNom)?"Salmon":fonColor
                     border.width: 3
+                    enabled: (index<main.maxMapColumn)
+                    opacity: enabled?1:0.5
                     MouseArea
                     {
                         anchors.fill: parent
@@ -87,5 +91,19 @@ Item
     Connections
     {
         target: _core
+        onSgReadValue:
+        {
+
+            if(nameParam==("type_dev"))
+            {
+                switch (value)
+                {
+                case 1: maxMapColumn = 10;  break;
+                case 2: maxMapColumn = 4;  break;
+                case 3: maxMapColumn = 4; break;
+                case 4: maxMapColumn = 10; break;
+                }
+            }
+        }
     }
 }

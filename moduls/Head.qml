@@ -28,6 +28,9 @@ Item
         {
             height: parent.height
             width:  row.widthWithoutSpase/15*1
+            Logo
+            {
+            }
         }
 
         Item

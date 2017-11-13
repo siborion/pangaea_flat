@@ -34,6 +34,7 @@ Item
                 MButton
                 {
                     text: "PASTE"
+                    scaleText: 0.88
                     enabled: editable & copyFirst
                     onClicked: _core.setValue("past", 0)
                 }

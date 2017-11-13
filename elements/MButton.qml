@@ -8,7 +8,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property string text: text
-    property int   value: 0
+    property int    value: 0
+    property double scaleText: 1
     property bool  checked: false
     signal clicked();
     anchors.fill:  parent
@@ -33,7 +34,7 @@ Item
             anchors.fill:  parent
             font.family: "Arial Black"
             font.bold: true
-            font.pixelSize: parent.height/2
+            font.pixelSize: parent.height/2*scaleText
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment:   Text.AlignVCenter
             text: main.text
