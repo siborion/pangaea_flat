@@ -10,15 +10,15 @@ Item
     property bool noRefresh: false
     anchors.fill: parent
 
-    Timer
-    {
-        id: timer
-        property bool flash: false
-        interval: 500
-        repeat: true
-        running: true
-        onTriggered: flash ^= 1;
-    }
+//    Timer
+//    {
+//        id: timer
+//        property bool flash: false
+//        interval: 500
+//        repeat: true
+//        running: true
+//        onTriggered: flash ^= 1;
+//    }
 
     Column
     {
@@ -30,7 +30,8 @@ Item
             Rectangle
             {
                 anchors.fill: parent
-                color:  noRefresh?(timer.flash?"Salmon":fonColor):fonColor
+//                color:  noRefresh?(timer.flash?"Salmon":fonColor):fonColor
+                color: fonColor
                 radius: parent.height
                 Text
                 {
@@ -52,23 +53,22 @@ Item
                 id: mouseArea
                 anchors.fill: parent
                 hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
+//                cursorShape: Qt.PointingHandCursor
+//               onClicked:
+//                {
+//                    _core.setValue("map_update", true);
+//                    noRefresh = false;
+//                }
+//                onEntered: toolTip.visible = true
 
-                onClicked:
-                {
-                    _core.setValue("map_update", true);
-                    noRefresh = false;
-                }
-                onEntered: toolTip.visible = true
-
-                ToolTip
-                {
-                    id: toolTip
-                    visible: false
-                    timeout: 1000
-                    parent: parent
-                    text:   "Refresh Map"
-                }
+//                ToolTip
+//                {
+//                    id: toolTip
+//                    visible: false
+//                    timeout: 1000
+//                    parent: parent
+//                    text:   "Refresh Map"
+//                }
             }
         }
         Item

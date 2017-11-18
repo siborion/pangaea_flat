@@ -9,6 +9,10 @@ Item
     property int maxMapRow: 10
     anchors.fill: parent
     property int presetNom: 0
+
+    property string  impulseNames: "Here,There,That,This"
+    property variant impulseName:  impulseNames.split(',')
+
     Rectangle
     {
         anchors.fill: parent
@@ -107,6 +111,10 @@ Item
                                         {
                                             mapRow.setImpulsName(nomElement, name)
                                         }
+                                        function clear()
+                                        {
+                                            mapRow.clear();
+                                        }
                                         MapRow
                                         {
                                             id: mapRow
@@ -138,7 +146,14 @@ Item
     {
         repeater.itemAt(preset).setOn(bank, on);
     }
-
+    function clear()
+    {
+        var i;
+        for(i=0;i<10;i++)
+        {
+            repeater.itemAt(i).clear();
+        }
+    }
 
     Connections
     {
@@ -164,10 +179,34 @@ Item
         }
         onSgReadText:
         {
+            if (nameParam=="impulse_names")
+            {
+                var i, j, kolvo, max=0;
+                main.impulseNames = value;
+                kolvo = main.impulseName.length;
+                console.log("kolvo", kolvo);
+                switch(kolvo)
+                {
+                case 17:  max=4;  break;
+                case 101: max=10; break;
+                }
+                for(i=0; i<max; i++)
+                {
+                    for(j=0; j<max; j++)
+                    {
+                        setEnImpulsName(i, j, main.impulseName[j*max+i]);
+                    }
+                }
+            }
+
             if (nameParam=="impulse_name")
             {
                 setEnImpulsName(mapHeadPreset.curVal, mapHeadBank.curVal, value);
                 setEnImpuls(mapHeadPreset.curVal, mapHeadBank.curVal, value!="empty");
+            }
+            if(nameParam==("close_port"))
+            {
+                clear();
             }
         }
     }

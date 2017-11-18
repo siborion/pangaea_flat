@@ -22,7 +22,7 @@ ApplicationWindow
     property bool wait: false
     property bool irOn: moduls.irOn
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1663a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1665a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -79,7 +79,13 @@ ApplicationWindow
         title: "Save preset"
         standardButtons: StandardButton.Save | StandardButton.No | StandardButton.Cancel
         onAccepted: _core.setValue("save_change", saveParam)
-        onNo:       _core.setValue("set_preset_change", saveParam)
+        onNo:
+        {
+            if(saveParam==(-2))
+                Qt.quit();
+            else
+                _core.setValue("set_preset_change", saveParam)
+        }
     }
 
     Dialog
@@ -137,7 +143,15 @@ ApplicationWindow
             if(nameParam==("preset_edit"))
                 edit = value;
             if(nameParam==("wait"))
-                wait = value; //mBusy.busy = value;
+            {
+                wait = value;
+                if(msgPresetChangeSave.saveParam==(-2))
+                {
+
+                }
+                if(!value && msgPresetChangeSave.visible && (msgPresetChangeSave.saveParam==(-2)))
+                    Qt.quit();
+            }
             if(nameParam=="editable")
                 main.editable=value
 
@@ -145,6 +159,7 @@ ApplicationWindow
             {
                 switch (value)
                 {
+                case 0: devName = "";  break;
                 case 1: devName = "CP-100";  break;
                 case 2: devName = "CP-16M";  break;
                 case 3: devName = "CP-16PA"; break;
@@ -156,9 +171,12 @@ ApplicationWindow
 
     onClosing:
     {
-        close.accepted = false;
-        console.log("Close");
-        Qt.quit();
+        if(main.edit)
+        {
+            msgPresetChangeSave.saveParam = (-2);
+            msgPresetChangeSave.visible = true;
+            close.accepted = false;
+        }
     }
 }
 

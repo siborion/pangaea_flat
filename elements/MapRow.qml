@@ -37,6 +37,12 @@ Item
                 {
                     preset.on = on;
                 }
+                function clear()
+                {
+                    preset.on = false;
+                    preset.impulsEn = false;
+                    tp.text = "";
+                }
 
                 Rectangle
                 {
@@ -59,14 +65,14 @@ Item
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked:   _core.setValue("preset_change", nomRow*10+index)
-                        onEntered: tp.visible = true
+                        onEntered: tp.visible = (tp.text.length>0)
                         onExited:  tp.visible = false
                     }
 
                     ToolTip
                     {
                         id: tp
-                        text: "tool"
+                        text: ""
                         visible: false
                         timeout: 0
                     }
@@ -87,6 +93,15 @@ Item
     {
         repeater.itemAt(nomElement).setImpulsName(name);
     }
+    function clear()
+    {
+        var i;
+        for(i=0;i<10;i++)
+        {
+            repeater.itemAt(i).clear();
+        }
+    }
+
 
     Connections
     {
