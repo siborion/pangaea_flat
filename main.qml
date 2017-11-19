@@ -22,7 +22,7 @@ ApplicationWindow
     property bool wait: false
     property bool irOn: moduls.irOn
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1665a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1667a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -81,12 +81,15 @@ ApplicationWindow
         onAccepted: _core.setValue("save_change", saveParam)
         onNo:
         {
+            console.log("saveParam", saveParam);
             if(saveParam==(-2))
-                Qt.quit();
+                //Qt.quit();
+                _core.setValue("esc", 0);
             else
-                _core.setValue("set_preset_change", saveParam)
+                _core.setValue("set_preset_change", saveParam);
         }
-    }
+        onRejected: saveParam = 0;
+   }
 
     Dialog
     {
@@ -147,10 +150,9 @@ ApplicationWindow
                 wait = value;
                 if(msgPresetChangeSave.saveParam==(-2))
                 {
-
+                    if(!value && (!msgPresetChangeSave.visible) && (msgPresetChangeSave.saveParam==(-2)))
+                        Qt.quit();
                 }
-                if(!value && msgPresetChangeSave.visible && (msgPresetChangeSave.saveParam==(-2)))
-                    Qt.quit();
             }
             if(nameParam=="editable")
                 main.editable=value

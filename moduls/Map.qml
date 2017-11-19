@@ -10,8 +10,12 @@ Item
     anchors.fill: parent
     property int presetNom: 0
 
-    property string  impulseNames: "Here,There,That,This"
+    property string  impulseNames: ""
     property variant impulseName:  impulseNames.split(',')
+
+    property string  impulseEns: ""
+    property variant impulseEn:  impulseEns.split(',')
+
 
     Rectangle
     {
@@ -146,6 +150,7 @@ Item
     {
         repeater.itemAt(preset).setOn(bank, on);
     }
+
     function clear()
     {
         var i;
@@ -195,6 +200,26 @@ Item
                     for(j=0; j<max; j++)
                     {
                         setEnImpulsName(i, j, main.impulseName[j*max+i]);
+                    }
+                }
+            }
+
+            if (nameParam=="impulse_en")
+            {
+                var i, j, kolvo, max=0;
+                main.impulseEns = value;
+                kolvo = main.impulseEn.length;
+                console.log("kolvo", kolvo);
+                switch(kolvo)
+                {
+                case 17:  max=4;  break;
+                case 101: max=10; break;
+                }
+                for(i=0; i<max; i++)
+                {
+                    for(j=0; j<max; j++)
+                    {
+                        setImpulsOn(i, j, (main.impulseEn[j*max+i]=="01"));
                     }
                 }
             }

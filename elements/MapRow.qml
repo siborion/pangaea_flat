@@ -25,7 +25,6 @@ Item
                 height: main.height
 
                 function setImpulsEn(en)
-
                 {
                     preset.impulsEn = en;
                 }
@@ -36,6 +35,7 @@ Item
                 function setImpulsOn(on)
                 {
                     preset.on = on;
+
                 }
                 function clear()
                 {
@@ -54,7 +54,8 @@ Item
                     width:  minSize/2
                     height: minSize/2
                     radius: minSize/2
-                    color: impulsEn?(on?"Salmon":"Bisque"):devColor//index==nomRow?"Salmon":devColor
+                    color: (tp.text!="empty")?(on?"Salmon":"Bisque"):devColor
+//                    color: on?"Salmon":"Bisque"
                     border.color: ((index+nomRow*10)==main.presetNom)?"Salmon":fonColor
                     border.width: 3
                     enabled: (index<main.maxMapColumn)
@@ -72,7 +73,7 @@ Item
                     ToolTip
                     {
                         id: tp
-                        text: ""
+                        text: "empty"
                         visible: false
                         timeout: 0
                     }
