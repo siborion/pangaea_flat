@@ -107,10 +107,18 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
             {
-                main.on=value;
-                switchIr.setValue(main.on==0);
-                fon.color= main.on?devColor:devColorDis
+                setEnable(value)
+//                main.on=value;
+//                switchIr.setValue(main.on==0);
+//                fon.color= main.on?devColor:devColorDis
             }
         }
+    }
+
+    function setEnable(value)
+    {
+        main.on=value;
+        switchIr.setValue(main.on==0);
+        fon.color= main.on?devColor:devColorDis
     }
 }

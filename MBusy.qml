@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.2
 
 Item
 {
@@ -14,8 +14,8 @@ Item
     {
         id : bI
         visible: busy
-        width:  busy?(parent.width/16):0
-        height: busy?(parent.width/16):0
+        width:  busy?(parent.width/10):0
+        height: busy?(parent.width/10):0
         anchors.centerIn: parent
         onVisibleChanged:
         {

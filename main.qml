@@ -1,18 +1,17 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.3
+import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
 import "moduls/"
 
-
-
-ApplicationWindow
-//Item
+//ApplicationWindow
+Item
 {
     id: main
     visible: true
     height: 520
     width:  1104
     //    color: "#EBECEC"
+//    signal closeAccepted()
     property int presetNom: head.presetNom
     property string markEdit: edit?" * ":" "
     property string devName: ""
@@ -21,8 +20,7 @@ ApplicationWindow
     property bool edit: false
     property bool wait: false
     property bool irOn: moduls.irOn
-    //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1667a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    property string title: qsTr("AMT Pangaea " + devName + " v.1.0.1667a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -83,7 +81,6 @@ ApplicationWindow
         {
             console.log("saveParam", saveParam);
             if(saveParam==(-2))
-                //Qt.quit();
                 _core.setValue("esc", 0);
             else
                 _core.setValue("set_preset_change", saveParam);
@@ -101,6 +98,7 @@ ApplicationWindow
     {
         id: mBusy
         busy: main.wait
+        z:1
     }
 
     Connections
@@ -171,14 +169,18 @@ ApplicationWindow
         }
     }
 
-    onClosing:
+    function closing()
     {
         if(main.edit)
         {
             msgPresetChangeSave.saveParam = (-2);
             msgPresetChangeSave.visible = true;
-            close.accepted = false;
+//            close.accepted = false;
+//            main.closeAccepted();
+            return false;
         }
+        else
+            return true;
     }
 }
 
