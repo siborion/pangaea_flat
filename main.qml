@@ -3,8 +3,8 @@ import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
 import "moduls/"
 
-//ApplicationWindow
-Item
+ApplicationWindow
+//Item
 {
     id: main
     visible: true
@@ -16,11 +16,12 @@ Item
     property string markEdit: edit?" * ":" "
     property string devName: ""
     property string markConnect: "Disconnected"
-    property bool editable: true
+    property bool editable: false
     property bool edit: false
     property bool wait: false
     property bool irOn: moduls.irOn
-    property string title: qsTr("AMT Pangaea " + devName + " v.1.0.1667a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+//    property string
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1669a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -132,6 +133,7 @@ Item
                 markConnect = "Disconnected";
                 msgAnswerError.title = markConnect
                 msgAnswerError.visible = true;
+                main.editable = false;
             }
             if(nameParam==("no_answer"))
             {
@@ -169,18 +171,19 @@ Item
         }
     }
 
-    function closing()
+//    function closing()
+    onClosing:
     {
         if(main.edit)
         {
             msgPresetChangeSave.saveParam = (-2);
             msgPresetChangeSave.visible = true;
-//            close.accepted = false;
+            close.accepted = false;
 //            main.closeAccepted();
-            return false;
+//            return false;
         }
-        else
-            return true;
+//        else
+//            return true;
     }
 }
 
