@@ -14,6 +14,7 @@ Dialog
     standardButtons: StandardButton.Ok | StandardButton.Cancel
     property bool folderUp: false
     property string sTmp
+    property string curFolderTxt: dataModel.folder
 
     Item
     {
@@ -34,7 +35,7 @@ Dialog
                     id: mDrivers
                     onSgSetDrive:
                     {
-                        dataModel.folder = "file:///" + drive;
+                        dataModel.folder =  "file://"+drive;
                     }
                 }
             }
@@ -46,7 +47,7 @@ Dialog
                 Text
                 {
                     id: mText
-                    text: dataModel.folder
+                    text: curFolderTxt
                 }
             }
 
@@ -62,7 +63,7 @@ Dialog
                     FolderListModel
                     {
                         id: dataModel
-                        showDirs: true
+                        showDirs:      true
                         showDirsFirst: true
                         showDotAndDotDot: true
                         showHidden: true
@@ -140,34 +141,40 @@ Dialog
                                 str = "..";
                                 if(dataModel.get(idRow,"fileName") == ".")
                                 {
-//                                    msg.sTmp = dataModel.folder.toString();
-//                                    msg.sTmp = msg.sTmp.substring(0,11);
-//                                    dataModel.folder = sTmp;
-                                    dataModel.folder = dataModel.parentFolder
-                                    msg.folderUp = true;
+                                    if(curFolderTxt.length>8)
+                                    {
+                                        dataModel.folder = dataModel.parentFolder
+                                        msg.folderUp = true;
+                                    }
                                 }
                                 else
                                 {
                                     if(dataModel.get(idRow,"fileName") == "..")
                                     {
-                                        dataModel.folder = dataModel.parentFolder
-                                        msg.folderUp = true;
+                                        if(curFolderTxt.length>8)
+                                        {
+                                            dataModel.folder = dataModel.parentFolder
+                                            msg.folderUp = true;
+                                        }
                                     }
                                     else
                                     {
-                                        if((dataModel.folder.toString().lastIndexOf("/")+1) == dataModel.folder.toString().length)
+                                        if(dataModel.get(idRow,"fileSize") != 0)
                                         {
-                                            _core.setFolderPos(idRow);
-                                            dataModel.folder = dataModel.folder + dataModel.get(idRow,"fileName");
-                                            view.selection.clear();
-                                            view.selection.select(0,0);
-                                        }
-                                        else
-                                        {
-                                            _core.setFolderPos(idRow);
-                                            dataModel.folder = dataModel.folder + "/" + dataModel.get(idRow,"fileName");
-                                            view.selection.clear();
-                                            view.selection.select(0,0);
+                                            if((dataModel.folder.toString().lastIndexOf("/")+1) == dataModel.folder.toString().length)
+                                            {
+                                                _core.setFolderPos(idRow);
+                                                dataModel.folder = dataModel.folder + dataModel.get(idRow,"fileName");
+                                                view.selection.clear();
+                                                view.selection.select(0,0);
+                                            }
+                                            else
+                                            {
+                                                _core.setFolderPos(idRow);
+                                                dataModel.folder = dataModel.folder + "/" + dataModel.get(idRow,"fileName");
+                                                view.selection.clear();
+                                                view.selection.select(0,0);
+                                            }
                                         }
                                     }
                                 }
