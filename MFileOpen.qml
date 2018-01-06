@@ -1,6 +1,6 @@
-import QtQuick 2.7
+import QtQuick 2.9
 import QtQuick.Dialogs 1.2
-import Qt.labs.folderlistmodel 2.1
+import Qt.labs.folderlistmodel 2.2
 import QtQuick.Controls 1.4
 import "qrc:/qml/elements"
 
@@ -159,7 +159,7 @@ Dialog
                                     }
                                     else
                                     {
-                                        if(dataModel.get(idRow,"fileSize") != 0)
+//                                        if(dataModel.get(idRow,"fileSize") != 0)
                                         {
                                             if((dataModel.folder.toString().lastIndexOf("/")+1) == dataModel.folder.toString().length)
                                             {
