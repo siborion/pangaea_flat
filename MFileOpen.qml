@@ -35,7 +35,7 @@ Dialog
                     id: mDrivers
                     onSgSetDrive:
                     {
-                        dataModel.folder =  "file://"+drive;
+                        dataModel.folder =  "file:///"+drive;
                     }
                 }
             }

@@ -39,7 +39,7 @@ Item
                 // По клику по кнопке отдаём в текстовое поле индекс элемента в ListView
                 onClicked:
                 {
-                    iMain.sgSetDrive("/"+idshnik);
+                    iMain.sgSetDrive(idshnik);
 //                    sgSetDrive("C:/");
 //                    textIndex.text = index
                 }
