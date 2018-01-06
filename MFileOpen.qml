@@ -39,7 +39,6 @@ Dialog
                             dataModel.folder =  "file:/" ;
                         else
                             dataModel.folder =  "file:/" + drive ;
-                        mText.text = (drive=="/")?"1":"2";
                     }
                 }
             }
