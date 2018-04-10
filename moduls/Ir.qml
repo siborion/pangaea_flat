@@ -89,7 +89,11 @@ Item
                 {
                     id: switchIr
                     enabled: main.on
-                    onChValue: main.on = (value==0)
+                    onChValue: 
+		    {
+			main.on = (value==0)
+	                _core.setValue(nameValue, main.on);
+		    }
                 }
             }
             Item

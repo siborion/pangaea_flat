@@ -21,7 +21,7 @@ ApplicationWindow
     property bool wait: false
     property bool irOn: moduls.irOn
 //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1669a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1670a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
