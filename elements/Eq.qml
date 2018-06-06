@@ -40,7 +40,7 @@ Item
                     valueMax: 99
                     dispValue: Math.round(((value + 100) *0.1 + 0.11)*10)/10
                     enabled: main.on
-                    nameValue: "eq_freq"+main.nomBand
+                    nameValue: "eq_q"+main.nomBand
                 }
 
             }
@@ -68,7 +68,7 @@ Item
                     valueMax: 100
                     dispValue: toolAdd + toolMult*value
                     enabled: main.on
-                    nameValue: "eq_q"+main.nomBand
+                    nameValue: "eq_freq"+main.nomBand
                 }
             }
             Item

@@ -96,6 +96,8 @@ Item
                     valueMax: 255
                     dispMin:   20
                     dispMax:   1000
+            dispValue: ((value*980.0/255.0)+20.0).toFixed()
+//data*(980.0f/255.0f)+20.0f;
                 }
             }
             Item

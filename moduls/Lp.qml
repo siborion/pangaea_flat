@@ -84,6 +84,8 @@ Item
                 Dial
                 {
                     enabled: main.on
+		    angleMin: 140
+                    angleMax: -140
                     name: "1k Hz 20k"
                     checkable: false
                     nameValue: "lpf_volume"
@@ -91,6 +93,8 @@ Item
                     valueMin:  0
                     dispMin:   1000
                     dispMax:   20000
+		    dispValue: (Math.pow(195.0-value, 2) * (19000.0/Math.pow(195.0, 2.0)) + 1000.0).toFixed()
+//powf(195.0f - data,2.0)*(19000.0f/powf(195.0f,2.0f))+1000.0f;
                 }
             }
             Item
