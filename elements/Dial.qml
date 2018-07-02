@@ -210,7 +210,8 @@ Item
         onSgReadValue:
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
-                main.value=value;
+		valueUpdateSoft(value);
+//                main.value=value;
         }
     }
 }

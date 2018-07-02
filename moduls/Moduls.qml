@@ -135,4 +135,17 @@ Item
     {
         ir.setEnable(val)
     }
+
+    Connections
+    {
+    target: _core
+    onSgReadValue:
+        {
+        if(nameParam==("type_dev"))
+            {
+	    if(value==1)
+                iPa.enabled = false;
+            }
+        }  
+    }
 }

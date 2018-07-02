@@ -148,6 +148,13 @@ Item
             if (nameParam=="impulse_name")
                 impulsTxt.text=value;
         }
+        onSgReadValue:
+        {
+        if(nameParam==("type_dev"))
+            {
+	    if(value==1)
+                switchPostPre.enabled = false;
+            }
+        }
     }
-
 }
