@@ -1,6 +1,7 @@
-import QtQuick 2.7
-import QtQuick.Controls 2.2
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 import QtQuick.Dialogs 1.2
+//import Qt.labs.platform 1.0
 import "moduls/"
 
 ApplicationWindow
@@ -21,7 +22,7 @@ ApplicationWindow
     property bool wait: false
     property bool irOn: moduls.irOn
 //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1671a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1673a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Column
     {
@@ -54,6 +55,17 @@ ApplicationWindow
         }
     }
 
+    FileDialog
+    {
+        id: fileSaveLog
+        title: "Save log file"
+        visible: false
+        selectExisting: false
+        onAccepted:
+        {
+            _core.slAnswerErrSave(fileUrl);
+        }
+    }
 
     MFileOpen
     {
@@ -77,7 +89,7 @@ ApplicationWindow
         property int saveParam: 0
         title: "Save preset"
         standardButtons: StandardButton.Save | StandardButton.No | StandardButton.Cancel
-        onAccepted: _core.setValue("save_change", saveParam)
+        onAccepted: _core.setValue("save_change", saveParam);
         onNo:
         {
             console.log("saveParam", saveParam);
@@ -95,6 +107,31 @@ ApplicationWindow
         standardButtons: StandardButton.Ok
     }
 
+    Dialog
+    {
+        id: msgAnswerErrSave
+        width: 300
+        visible: false
+        Column
+        {
+            Text
+            {
+                id: tCommand
+                text: ""
+            }
+            Text
+            {
+                id: tError
+                text: qsTr("Error.\r\nSave log exchange?")
+            }
+        }
+        standardButtons: StandardButton.Yes  | StandardButton.No
+        onYes:
+        {
+            fileSaveLog.open();
+        }
+    }
+
     MBusy
     {
         id: mBusy
@@ -105,12 +142,19 @@ ApplicationWindow
     Connections
     {
         target: _core
-        onSignal: console.log("The application data changed!")
-        onSgPortError:
+        onSignal: console.log("The application data changed!");
+
+        onSgAnswerErrSave:
         {
-            msg.text = str;
-            msg.visible = true;
+            msgAnswerErrSave.visible = true;
+            tCommand.text = "Command: " + strCom;
         }
+
+//        onSgPortError:
+//        {
+//            msg.text = str;
+//            msg.visible = true;
+//        }
         onSgPresetUpDownStage1:
         {
             msgPresetUpDownSave.saveParam = inChangePreset;
@@ -135,11 +179,11 @@ ApplicationWindow
                 msgAnswerError.visible = true;
                 main.editable = false;
             }
-            if(nameParam==("no_answer"))
-            {
-                msgAnswerError.title = "Answer error \""+value+"\""
-                msgAnswerError.visible = true;
-            }
+//            if(nameParam==("no_answer"))
+//            {
+//                msgAnswerError.title = "Answer error \""+value+"\""
+//                msgAnswerError.visible = true;
+//            }
         }
         onSgReadValue:
         {
