@@ -7,6 +7,7 @@ Item
     id: main
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
+    property string devColorDis: "#7E7991"
     property int   value: mSwitch.value
     anchors.fill:  parent
     property string nameValue: "eq_pre"
@@ -14,7 +15,7 @@ Item
     Rectangle
     {
         anchors.fill:  parent
-        color: devColor
+        color: main.enabled?devColor:devColorDis
     }
 
     Column
@@ -103,7 +104,7 @@ Item
             Rectangle
             {
                 anchors.fill:  parent
-                color: devColor
+                color: main.enabled?devColor:devColorDis
             }
         }
     }
