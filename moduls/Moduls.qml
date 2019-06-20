@@ -143,8 +143,7 @@ Item
         {
         if(nameParam==("type_dev"))
             {
-	    if(value==1)
-                iPa.enabled = false;
+                iGt.enabled = iCm.enabled = iPr.enabled = iPa.enabled = ((value==3)||(value==4));
             }
         }  
     }

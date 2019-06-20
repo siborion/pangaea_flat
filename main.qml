@@ -16,9 +16,10 @@ ApplicationWindow
     property int presetNom: head.presetNom
     property string markEdit: edit?" * ":" "
     property string devName: ""
-    property string markConnect: "Disconnected"
+    property string markConnect: connect?"Connected":"Disconnected"
     property bool editable: false
     property bool edit: false
+    property bool connect: false
     property bool wait: false
     property bool irOn: moduls.irOn
 //    property string
@@ -169,13 +170,13 @@ ApplicationWindow
         {
             if(nameParam==("open_port"))
             {
-                markConnect = value;
+		connect = true;
                 msgAnswerError.close();
             }
             if(nameParam==("close_port"))
             {
-                markConnect = "Disconnected";
-                msgAnswerError.title = markConnect
+		connect = false;
+                msgAnswerError.title = markConnect;
                 msgAnswerError.visible = true;
                 main.editable = false;
             }
@@ -218,7 +219,7 @@ ApplicationWindow
 //    function closing()
     onClosing:
     {
-        if(main.edit)
+        if(main.edit && main.connect)
         {
             msgPresetChangeSave.saveParam = (-2);
             msgPresetChangeSave.visible = true;

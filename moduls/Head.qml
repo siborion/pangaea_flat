@@ -152,8 +152,7 @@ Item
         {
         if(nameParam==("type_dev"))
             {
-	    if(value==1)
-                switchPostPre.enabled = false;
+                switchPostPre.enabled = ((value==3)||(value==4));
             }
         }
     }
