@@ -40,36 +40,35 @@ Item
                     font.bold: true
                     font.family: "Arial Black"
                 }
-
-                MouseArea
+            }
+            MouseArea
+            {
+                anchors.fill: parent
+                onWheel:
                 {
-                    anchors.fill: parent
-                    onWheel:
+                    if(wheel.angleDelta.y>0)
                     {
-                        if(wheel.angleDelta.y>0)
-                        {
-                            if(value<9)
-                                main.chValue(true);
-                        }
-                        else
-                        {
-                            if(value>0)
-                                main.chValue(false);
-                        }
+                        if(value<9)
+                            main.chValue(true);
                     }
-                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    onClicked:
+                    else
                     {
-                        if(mouse.button & Qt.LeftButton)
-                        {
-                            if(value<9)
-                                main.chValue(true);
-                        }
-                        else
-                        {
-                            if(value>0)
-                                main.chValue(false);
-                        }
+                        if(value>0)
+                            main.chValue(false);
+                    }
+                }
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                onClicked:
+                {
+                    if(mouse.button & Qt.LeftButton)
+                    {
+                        if(value<9)
+                            main.chValue(true);
+                    }
+                    else
+                    {
+                        if(value>0)
+                            main.chValue(false);
                     }
                 }
             }
@@ -91,15 +90,15 @@ Item
         }
     }
 
-        function up()
-        {
-            tumb.currentIndex++;
-        }
+    function up()
+    {
+        tumb.currentIndex++;
+    }
 
-        function down()
-        {
-            tumb.currentIndex--;
-        }
+    function down()
+    {
+        tumb.currentIndex--;
+    }
 
     Connections
     {
