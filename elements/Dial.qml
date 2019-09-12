@@ -168,6 +168,18 @@ Item
                 }
             }
         }
+        Timer
+        {
+            id: timer
+            interval: 100
+            running: false
+            repeat: false
+            onTriggered:
+            {
+//                console.log(dispValue);
+                _core.slSpeechValue(dispValue);
+            }
+        }
     }
 
     function angleFromPoint(x, y)
@@ -213,5 +225,27 @@ Item
 		valueUpdateSoft(value);
 //                main.value=value;
         }
+        onSgUpDown:
+        {
+            if( main.nameValue === controlName)
+            {
+                if( up )
+                {
+                    if( main.value<valueMax )
+                    {
+                        main.value++;
+                    }
+                }
+                else
+                {
+                    if( main.value>valueMin )
+                    {
+                        main.value--;
+                    }
+                }
+                timer.restart();
+            }
+        }
     }
+
 }

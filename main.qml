@@ -12,7 +12,7 @@ ApplicationWindow
     height: 520
     width:  1104
     //    color: "#EBECEC"
-//    signal closeAccepted()
+    //    signal closeAccepted()
     property int presetNom: head.presetNom
     property string markEdit: edit?" * ":" "
     property string devName: ""
@@ -22,38 +22,62 @@ ApplicationWindow
     property bool connect: false
     property bool wait: false
     property bool irOn: moduls.irOn
-//    property string
+    //    property string
     title: qsTr("AMT Pangaea " + devName + " v.1.0.1673a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
-    Column
+    Item
     {
+        focus: true
         anchors.fill: parent
-        spacing: 2
-        Item
+
+        Column
         {
-            width:  parent.width
-            height: parent.height/1000*150
-            Head
+            anchors.fill: parent
+            spacing: 2
+            Item
             {
-                id: head
-                onSetImpuls: msg.visible = true;
-                editable: main.editable & (!main.wait)
-                edit:     main.edit
-                irOn: main.irOn
+                width:  parent.width
+                height: parent.height/1000*150
+                Head
+                {
+                    id: head
+                    onSetImpuls: msg.visible = true;
+                    editable: main.editable & (!main.wait)
+                    edit:     main.edit
+                    irOn: main.irOn
+                }
+            }
+            Item
+            {
+                width:  parent.width
+                height: parent.height/1000*850
+                Moduls
+                {
+                    id: moduls
+                    eqPost: head.eqPost
+                    presetNom: main.presetNom
+                    enabled: editable & (!main.wait)
+                }
             }
         }
-        Item
+
+        Keys.onPressed:
         {
-            width:  parent.width
-            height: parent.height/1000*850
-            Moduls
+            console.log(event.key);
+            if( event.key === Qt.Key_Tab )
             {
-                id: moduls
-                eqPost: head.eqPost
-                presetNom: main.presetNom
-                enabled: editable & (!main.wait)
+                _core.slTabKey(event.modifiers & Qt.ShiftModifier);
+            }
+            if( event.key === Qt.Key_Up )
+            {
+                _core.slUpDown(1);
+            }
+            if( event.key === Qt.Key_Down )
+            {
+                _core.slUpDown(0);
             }
         }
+
     }
 
     FileDialog
@@ -100,7 +124,7 @@ ApplicationWindow
                 _core.setValue("set_preset_change", saveParam);
         }
         onRejected: saveParam = 0;
-   }
+    }
 
     Dialog
     {
@@ -151,11 +175,11 @@ ApplicationWindow
             tCommand.text = "Command: " + strCom;
         }
 
-//        onSgPortError:
-//        {
-//            msg.text = str;
-//            msg.visible = true;
-//        }
+        //        onSgPortError:
+        //        {
+        //            msg.text = str;
+        //            msg.visible = true;
+        //        }
         onSgPresetUpDownStage1:
         {
             msgPresetUpDownSave.saveParam = inChangePreset;
@@ -170,21 +194,21 @@ ApplicationWindow
         {
             if(nameParam==("open_port"))
             {
-		connect = true;
+                connect = true;
                 msgAnswerError.close();
             }
             if(nameParam==("close_port"))
             {
-		connect = false;
+                connect = false;
                 msgAnswerError.title = markConnect;
                 msgAnswerError.visible = true;
                 main.editable = false;
             }
-//            if(nameParam==("no_answer"))
-//            {
-//                msgAnswerError.title = "Answer error \""+value+"\""
-//                msgAnswerError.visible = true;
-//            }
+            //            if(nameParam==("no_answer"))
+            //            {
+            //                msgAnswerError.title = "Answer error \""+value+"\""
+            //                msgAnswerError.visible = true;
+            //            }
         }
         onSgReadValue:
         {
@@ -216,7 +240,7 @@ ApplicationWindow
         }
     }
 
-//    function closing()
+    //    function closing()
     onClosing:
     {
         if(main.edit && main.connect)
@@ -224,11 +248,11 @@ ApplicationWindow
             msgPresetChangeSave.saveParam = (-2);
             msgPresetChangeSave.visible = true;
             close.accepted = false;
-//            main.closeAccepted();
-//            return false;
+            //            main.closeAccepted();
+            //            return false;
         }
-//        else
-//            return true;
+        //        else
+        //            return true;
     }
 }
 
