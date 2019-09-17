@@ -54,7 +54,7 @@ Dialog
 
             Item
             {
-                height: parent.height/20*17
+                height: parent.height/20*16
                 width:  parent.width
                 Rectangle
                 {
@@ -125,6 +125,7 @@ Dialog
                         {
                             var idRow;
                             idRow = view.currentRow
+                            mWarning.text = ""
                             if(!dataModel.get(idRow,"fileIsDir"))
                             {
                                 mBusy.busy = true;
@@ -185,6 +186,18 @@ Dialog
                     }
                 }
             }
+
+            Item
+            {
+                height: parent.height/20*1
+                width:  parent.width
+                Text
+                {
+                    id: mWarning
+                    text: ""
+                    color: "Red"
+                }
+            }
         }
 
         MBusy
@@ -219,6 +232,10 @@ Dialog
         {
             mBusy.busy = wait;
             view.enabled  = (!wait);
+        }
+        onSgNotSupport:
+        {
+            mWarning.text = "Invalid file format. Required 48 kHz/24 bits/Mono"
         }
     }
 
