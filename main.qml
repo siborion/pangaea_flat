@@ -20,10 +20,10 @@ ApplicationWindow
     property bool editable: false
     property bool edit: false
     property bool connect: false
-    property bool wait: false
+    property bool wait: true
     property bool irOn: moduls.irOn
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1673a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1674a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Item
     {
