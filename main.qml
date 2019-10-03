@@ -2,7 +2,10 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Dialogs 1.2
 //import Qt.labs.platform 1.0
+import Qt.labs.settings 1.0
+
 import "moduls/"
+
 
 ApplicationWindow
 //Item
@@ -11,7 +14,7 @@ ApplicationWindow
     visible: true
     height: 520
     width:  1104
-    //    color: "#EBECEC"
+    color: "#EBECEC"
     //    signal closeAccepted()
     property int presetNom: head.presetNom
     property string markEdit: edit?" * ":" "
@@ -20,10 +23,20 @@ ApplicationWindow
     property bool editable: false
     property bool edit: false
     property bool connect: false
-    property bool wait: true
+    property bool wait: false
     property bool irOn: moduls.irOn
+    property string lastSelectFile: ""
+
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1674a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1675a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+
+    Settings
+    {
+        category: "CurFolder"
+        property alias curFolder: fileOpen.folder
+    }
+
+
 
     Item
     {
@@ -41,7 +54,7 @@ ApplicationWindow
                 Head
                 {
                     id: head
-                    onSetImpuls: msg.visible = true;
+                    onSetImpuls: fileOpen.open();
                     editable: main.editable & (!main.wait)
                     edit:     main.edit
                     irOn: main.irOn
@@ -92,12 +105,29 @@ ApplicationWindow
         }
     }
 
-    MFileOpen
+    Timer
     {
-        id: msg
-        onAccepted: moduls.irEnable(true);
+        interval: 250
+        repeat: true
+        running: fileOpen.visible
+        onTriggered:
+        {
+            if(lastSelectFile!=fileOpen.fileUrl)
+            {
+                var cleanPath;
+                lastSelectFile=fileOpen.fileUrl;
+                cleanPath = decodeURIComponent(lastSelectFile.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,""));
+                _core.setImpuls(cleanPath);
+            }
+        }
     }
 
+    MFileOpen
+    {
+        id: fileOpen
+        onAccepted: moduls.irEnable(true);
+        onRejected: _core.slEscImpuls();
+    }
 
     Dialog
     {
@@ -164,10 +194,24 @@ ApplicationWindow
         z:1
     }
 
+    Timer
+    {
+        id: timerColor
+        interval: 200
+        repeat: false
+        onTriggered: main.color = "#EBECEC";
+    }
+
     Connections
     {
         target: _core
         onSignal: console.log("The application data changed!");
+
+        onSgNotSupport:
+        {
+            main.color = "#FF5050";
+            timerColor.start();
+        }
 
         onSgAnswerErrSave:
         {
