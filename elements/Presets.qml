@@ -88,7 +88,7 @@ Item
             ToolTip
             {
                 id: tp
-                text: "Up - click mouse \r\nDown - click + Ctrl"
+                text: (Qt.platform.os=="windows")?"Up - Mouse Click \r\nDown - Click + Ctrl":"Up - Mouse Click \r\nDown - Click + cmd"
                 visible: false
                 timeout: 2000
             }
