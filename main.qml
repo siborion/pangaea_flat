@@ -23,7 +23,7 @@ ApplicationWindow
     property bool editable: false
     property bool edit: false
     property bool connect: false
-    property bool wait: false
+    property bool wait: true
     property bool irOn: moduls.irOn
     property string lastSelectFile: ""
 

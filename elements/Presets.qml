@@ -44,6 +44,8 @@ Item
             MouseArea
             {
                 anchors.fill: parent
+                hoverEnabled: true
+
                 onWheel:
                 {
                     if(wheel.angleDelta.y>0)
@@ -60,17 +62,35 @@ Item
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked:
                 {
-                    if(mouse.button & Qt.LeftButton)
-                    {
-                        if(value<9)
-                            main.chValue(true);
-                    }
-                    else
+                    if( mouse.modifiers & Qt.ControlModifier )
                     {
                         if(value>0)
                             main.chValue(false);
                     }
+                    else
+                    {
+                        if(mouse.button & Qt.LeftButton)
+                        {
+                            if(value<9)
+                                main.chValue(true);
+                        }
+                        else
+                        {
+                            if(value>0)
+                                main.chValue(false);
+                        }
+                    }
                 }
+                onEntered: tp.visible = true
+                onExited:  tp.visible = false
+            }
+
+            ToolTip
+            {
+                id: tp
+                text: "Up - click mouse \r\nDown - click + Ctrl"
+                visible: false
+                timeout: 2000
             }
         }
 
