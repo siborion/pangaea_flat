@@ -7,11 +7,13 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property int    value:     tumb.currentIndex
+    property int maxMapRow: 10
     property string text:  "TEXT"
     property string nameValue:  ""
     property bool editable: true
     anchors.fill:  parent
-    signal chValue(bool up)
+    signal chPreset()
+
 
     Column
     {
@@ -50,13 +52,19 @@ Item
                 {
                     if(wheel.angleDelta.y>0)
                     {
-                        if(value<9)
-                            main.chValue(true);
+                        if(value < (maxMapRow-1))
+                        {
+                            tumb.currentIndex++;
+                            timer.restart();
+                        }
                     }
                     else
                     {
                         if(value>0)
-                            main.chValue(false);
+                        {
+                            tumb.currentIndex--;
+                            timer.restart();
+                        }
                     }
                 }
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -65,24 +73,41 @@ Item
                     if( mouse.modifiers & Qt.ControlModifier )
                     {
                         if(value>0)
-                            main.chValue(false);
+                        {
+                            tumb.currentIndex--;
+                            timer.restart();
+                        }
                     }
                     else
                     {
                         if(mouse.button & Qt.LeftButton)
                         {
-                            if(value<9)
-                                main.chValue(true);
+                            if(value < (maxMapRow-1))
+                            {
+                                tumb.currentIndex++;
+                                timer.restart();
+                            }
                         }
                         else
                         {
                             if(value>0)
-                                main.chValue(false);
+                            {
+                                tumb.currentIndex--;
+                                timer.restart();
+                            }
                         }
                     }
                 }
                 onEntered: tp.visible = true
                 onExited:  tp.visible = false
+
+                Timer
+                {
+                    id: timer
+                    interval: 700
+                    repeat: false
+                    onTriggered: main.chPreset()
+                }
             }
 
             ToolTip
@@ -127,6 +152,17 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
                 tumb.currentIndex=value;
+
+            if(nameParam==("type_dev"))
+            {
+                switch (value)
+                {
+                case 1: maxMapRow = 10;  break;
+                case 2: maxMapRow = 4;  break;
+                case 3: maxMapRow = 4; break;
+                case 4: maxMapRow = 10; break;
+                }
+            }
         }
     }
 }

@@ -56,7 +56,7 @@ Item
                     radius: minSize/2
                     color: (tp.text!="empty")?(on?"Salmon":"Bisque"):devColor
 //                    color: on?"Salmon":"Bisque"
-                    border.color: ((index+nomRow*10)==main.presetNom)?"Salmon":fonColor
+                    border.color: ((index+nomRow*maxMapColumn)==main.presetNom)?"Salmon":fonColor
                     border.width: 3
                     enabled: (index<main.maxMapColumn)
                     opacity: enabled?1:0.5
@@ -73,7 +73,7 @@ Item
                     ToolTip
                     {
                         id: tp
-                        text: "empty"
+                        text: "empty"  //index+nomRow*10 //"empty"
                         visible: false
                         timeout: 0
                     }
@@ -92,6 +92,7 @@ Item
     }
     function setImpulsName(nomElement, name)
     {
+        console.log("nomRow", nomRow, "  nomElement", nomElement, " name:", name);
         repeater.itemAt(nomElement).setImpulsName(name);
     }
     function clear()

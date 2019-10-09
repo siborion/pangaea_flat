@@ -7,7 +7,8 @@ Item
     property string fonColor: "#EBECEC"
     property string devColor: "#5E5971"
     property bool eqPost: (switchPostPre.value==0)
-    property int  presetNom: bank.value*10+preset.value
+    property int  maxMapRow: 10
+    property int  presetNom: bank.value*maxMapRow+preset.value
     property int  bank:   bank.value
     property int  preset: preset.value
     property bool editable: true
@@ -43,7 +44,7 @@ Item
                 anchors.fill: parent
                 text: "BANK"
                 nameValue: "bank"
-                onChValue:  _core.setValue("bank_UpDown", up?1:0)
+                onChPreset: _core.setValue("preset_change", presetNom)
                 enabled: main.editable
             }
         }
@@ -128,7 +129,7 @@ Item
                 anchors.fill: parent
                 text: "PRESET"
                 nameValue: "preset"
-                onChValue: _core.setValue("preset_UpDown", up?1:0)
+                onChPreset: _core.setValue("preset_change", presetNom)
                 enabled: main.editable
             }
         }
@@ -150,9 +151,20 @@ Item
         }
         onSgReadValue:
         {
-        if(nameParam==("type_dev"))
+            if(nameParam==("type_dev"))
             {
                 switchPostPre.enabled = ((value==3)||(value==4));
+            }
+
+            if(nameParam==("type_dev"))
+            {
+                switch (value)
+                {
+                case 1: maxMapRow = 10;  break;
+                case 2: maxMapRow = 4;  break;
+                case 3: maxMapRow = 4; break;
+                case 4: maxMapRow = 10; break;
+                }
             }
         }
     }

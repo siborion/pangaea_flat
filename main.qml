@@ -116,7 +116,7 @@ ApplicationWindow
             {
                 var cleanPath;
                 lastSelectFile=fileOpen.fileUrl;
-                cleanPath = (Qt.platform.os=="windows")?decodeURIComponent(lastSelectFile.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"")):decodeURIComponent(lastSelectFile.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,""));
+                cleanPath = (Qt.platform.os=="windows")?decodeURIComponent(lastSelectFile.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"")):decodeURIComponent(lastSelectFile.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,""));
                 _core.setImpuls(cleanPath);
             }
         }

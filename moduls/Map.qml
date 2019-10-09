@@ -55,7 +55,9 @@ Item
                             MapHeadBank
                             {
                                 id: mapHeadBank
-                                curVal: (main.presetNom-mapHeadPreset.curVal)/10
+                                curVal: (main.presetNom-mapHeadPreset.curVal)/maxMapRow
+//                                curVal: main.presetNom/maxMapRow
+
                             }
                         }
                     }
@@ -77,7 +79,7 @@ Item
                             MapHeadPreset
                             {
                                 id: mapHeadPreset
-                                curVal: main.presetNom%10
+                                curVal: main.presetNom%maxMapRow
                             }
                         }
 
@@ -166,9 +168,9 @@ Item
         onSgReadValue:
         {
             if(nameParam=="read_bank")
-                setEnImpuls(mapHeadPreset.curVal, value%10, (value/10)>=1);
+                setEnImpuls(mapHeadPreset.curVal, value%maxMapRow, (value/maxMapRow)>=1);
             if(nameParam=="read_preset")
-                setEnImpuls(value%10, mapHeadBank.curVal, (value/10)>=1);
+                setEnImpuls(value%maxMapRow, mapHeadBank.curVal, (value/maxMapRow)>=1);
             if(nameParam=="cabinet_enable")
                 setImpulsOn(mapHeadPreset.curVal, mapHeadBank.curVal, value);
             if(nameParam==("type_dev"))
@@ -199,6 +201,7 @@ Item
                 {
                     for(j=0; j<max; j++)
                     {
+                        console.log(i, j, main.impulseName[j*max+i]);
                         setEnImpulsName(i, j, main.impulseName[j*max+i]);
                     }
                 }
@@ -226,8 +229,9 @@ Item
 
             if (nameParam=="impulse_name")
             {
-                setEnImpulsName(mapHeadPreset.curVal, mapHeadBank.curVal, value);
-                setEnImpuls(mapHeadPreset.curVal, mapHeadBank.curVal, value!="empty");
+                console.log("impulse_name", mapHeadPreset.curVal, mapHeadBank.curVal, value);
+//                setEnImpulsName(mapHeadPreset.curVal, mapHeadBank.curVal, value);
+//                setEnImpuls(mapHeadPreset.curVal, mapHeadBank.curVal, value!="empty");
             }
             if(nameParam==("close_port"))
             {
