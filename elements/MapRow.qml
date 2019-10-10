@@ -56,7 +56,7 @@ Item
                     radius: minSize/2
                     color: (tp.text!="empty")?(on?"Salmon":"Bisque"):devColor
 //                    color: on?"Salmon":"Bisque"
-                    border.color: ((index+nomRow*maxMapColumn)==main.presetNom)?"Salmon":fonColor
+                    border.color: ((index+nomRow*maxMapColumn)==main.presetNom && (index<maxMapColumn))?"Salmon":fonColor
                     border.width: 3
                     enabled: (index<main.maxMapColumn)
                     opacity: enabled?1:0.5
@@ -65,7 +65,7 @@ Item
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked:   _core.setValue("preset_change", nomRow*10+index)
+                        onClicked:   _core.setValue("preset_change", nomRow*maxMapColumn+index)
                         onEntered: tp.visible = (tp.text.length>0)
                         onExited:  tp.visible = false
                     }
@@ -73,7 +73,7 @@ Item
                     ToolTip
                     {
                         id: tp
-                        text: "empty"  //index+nomRow*10 //"empty"
+                        text: "empty"
                         visible: false
                         timeout: 0
                     }
