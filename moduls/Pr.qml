@@ -136,7 +136,7 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
             {
-                main.on=value
+                main.on= (value && main.enabled)
                 fon.color= main.on?devColor:devColorDis
             }
         }
