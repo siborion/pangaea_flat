@@ -13,6 +13,7 @@ Item
     property bool presentInDev: true
     property string nameValue: "amp_on"
     signal chPresence(int value)
+
     anchors.fill: parent
     Rectangle
     {
@@ -33,9 +34,12 @@ Item
             cursorShape:  Qt.PointingHandCursor
             onClicked:
             {
-                main.on = (!main.on);
-                _core.setValue(nameValue, main.on);
-                material.start(mouseX, mouseY)
+                if( main.presentInDev )
+                {
+                    main.on = (!main.on);
+                    _core.setValue(nameValue, main.on);
+                    material.start(mouseX, mouseY)
+                }
             }
         }
         Column
