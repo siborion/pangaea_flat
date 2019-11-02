@@ -28,7 +28,7 @@ ApplicationWindow
     property string lastSelectFile: ""
 
     //    property string
-    title: qsTr("AMT Pangaea " + devName + " v.1.0.1675a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
+    title: qsTr("AMT Pangaea " + devName + " v.1.0.1676a "  + markConnect + " Bank " + head.bank + " Preset " + head.preset + markEdit)
 
     Settings
     {

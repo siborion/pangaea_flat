@@ -8,6 +8,7 @@ Item
     property string devColor: "#5E5971"
     property string devColorDis: "#7E7991"
     property string name:     "PR"
+    property bool presentInDev: true
     property string nameValue: "preamp_on"
     property bool on: false
     anchors.fill: parent
@@ -136,7 +137,7 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
             {
-                main.on= (value && main.enabled)
+                main.on= (value && main.presentInDev)
                 fon.color= main.on?devColor:devColorDis
             }
         }

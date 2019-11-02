@@ -10,6 +10,7 @@ Item
     property string devColorDis: "#7E7991"
     property string name:     "PA"
     property bool on: true
+    property bool presentInDev: true
     property string nameValue: "amp_on"
     signal chPresence(int value)
     anchors.fill: parent
@@ -133,7 +134,7 @@ Item
         {
             if((main.nameValue.length>0)&&(nameParam==main.nameValue))
             {
-                main.on= (value && main.enabled)
+                main.on= (value && main.presentInDev)
                 fon.color= main.on?devColor:devColorDis
             }
         }

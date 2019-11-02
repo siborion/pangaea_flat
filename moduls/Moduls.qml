@@ -143,8 +143,8 @@ Item
         {
         if(nameParam==("type_dev"))
             {
-                iPa.enabled = ((value==3)||(value==4));
-                iPr.enabled = ((value==1)||(value==3)||(value==4));
+                pa.presentInDev = ((value===3)||(value===4));
+                pr.presentInDev = ((value===1)||(value===3)||(value===4))
             }
         }  
     }
